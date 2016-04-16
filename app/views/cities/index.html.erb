@@ -1,2 +1,18 @@
-<h1>Cities#index</h1>
-<p>Find me in app/views/cities/index.html.erb</p>
+<center>
+	<h1>Cidades</h1>
+	
+	<table>
+			<%cont = 0%>
+			<%@cities.each do |f| %>
+					<%if cont<5 %>
+						<td><%= f.name %></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<%else%>
+						<tr>
+							<td><%= f.name %></td>
+						</tr>
+					<%end%>
+				<%cont=cont+1%>
+			<%end%>	
+	</table>
+</center>
