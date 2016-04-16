@@ -4,7 +4,7 @@ class CitiesController < ApplicationController
   	if(params[:find])
   		@cities = City.where("name like ?", "%#{params[:find]}%")
   	else
-  		@cities = City.all.order('CREATED AT DESC')
+  		@cities = City.all.order('created_at DESC')
   	end
   end
 

@@ -1,6 +1,11 @@
 <center>
 	<h1>Cidades</h1>
 	
+	<%= form_tag(find_path, :method => :get) do %>
+		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...' %>
+		<%= submit_tag "Pesquisar" %>
+	<% end %>
+
 	<table>
 			<%cont = 0%>
 			<%@cities.each do |f| %>
