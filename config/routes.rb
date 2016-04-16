@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   get 'cities/index'
   get 'find' => 'cities#index'
+  get 'cities/show'
 
 
   # Example of regular route:

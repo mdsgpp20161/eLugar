@@ -10,7 +10,7 @@
 			<%cont = 0%>
 			<%@cities.each do |f| %>
 					<%if cont<5 %>
-						<td><%= f.name %></td>
+						<td><%= link_to f.name, city_path(f) %></td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<%else%>
 						<tr>
