@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :cities
 
   root 'cities#index'
-
+  
   get 'cities/index'
   get 'find' => 'cities#index'
 
