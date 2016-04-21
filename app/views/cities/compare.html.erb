@@ -60,6 +60,8 @@
 	    	
 	    	<%= form_tag(find_path, :method => :get) do %>
 	    		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
+	    		<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
+	    					   'Saude']),{include_blank: true}%>
 	    		<%= submit_tag "Pesquisar" %>
 	    	<% end %>
 
