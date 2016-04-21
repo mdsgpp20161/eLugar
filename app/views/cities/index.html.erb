@@ -2,7 +2,7 @@
 	<h1>Cidades</h1>
 	
 	<%= form_tag(find_path, :method => :get) do %>
-		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
+		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '60'%>
 		<%= submit_tag "Pesquisar" %>
 	<% end %>
 
@@ -14,8 +14,10 @@
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<%else%>
 						<tr>
-							<td><%= f.name %></td>
 						</tr>
+							<td><%= link_to f.name, city_path(f) %> </td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<%cont = 0%>
 					<%end%>
 				<%cont=cont+1%>
 			<%end%>	
