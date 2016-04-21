@@ -1,7 +1,31 @@
 class CitiesController < ApplicationController
   def index
+    order = params[:order]
   	if(params[:find])
-  		@cities = City.where("name like ?", "%#{params[:find]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      if(order == "Populacao")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.population.to_f}.reverse
+      end
+      if(order == "Densidade")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.demographic_density.to_f}.reverse
+      end
+      if(order == "Area")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.area.to_f}.reverse
+      end
+      if(order == "Frota")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.fleet.to_f}.reverse
+      end
+      if(order == "IDH")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.idh.to_f}.reverse
+      end
+      if(order == "Gini")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by {|obj| obj.gini.to_f}.reverse
+      end
+      if(order == "Saude")
+        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.health.to_f}.reverse
+      end
+      if(order == "")
+  		  @cities = City.where("name like ?", "%#{params[:find]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      end
   	else
   		@cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
