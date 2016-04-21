@@ -66,14 +66,16 @@
 	    	<table>
 	    			<%cont = 0%>
 	    			<%@cities.each do |f| %>
-	    					<%if cont<5 %>
-	    						<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
-	    						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	    					<%else%>
-	    						<tr>
-	    							<td><%= f.name %></td>
-	    						</tr>
-	    					<%end%>
+	    				<%if cont<5 %>
+	    					<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
+	    					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	    				<%else%>
+							<tr>
+							</tr>
+							<td><%= link_to f.name, city_path(f) %> </td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<%cont = 0%>
+	    				<%end%>
 	    				<%cont=cont+1%>
 	    			<%end%>	
 	    	</table>  
