@@ -72,7 +72,7 @@
 	    				<%else%>
 							<tr>
 							</tr>
-							<td><%= link_to f.name, city_path(f) %> </td>
+							<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<%cont = 0%>
 	    				<%end%>
