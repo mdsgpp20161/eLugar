@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :cities
 
   root 'cities#index'
-  
-  get 'cities/index'
-  get 'find' => 'cities#index'
+
+  get 'index' => 'cities#index'
+  get 'find' => 'cities#show_cities'
   get 'cities/show'
   get 'compare' => 'cities#compare'
 

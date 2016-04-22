@@ -1,27 +1,193 @@
-<center>
-	<h1>Cidades</h1>
-	
-	<%= form_tag(find_path, :method => :get) do %>
-		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '60'%>
-		&nbsp;Ordenar por:
-		<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),			{include_blank: true}%>
-		<%= submit_tag "Pesquisar" %>
-	<% end %>
+<!DOCTYPE html>
+<html lang="en">
 
-	<table>
-			<%cont = 0%>
-			<%@cities.each do |f| %>
-					<%if cont<5 %>
-						<td><%= link_to f.name, city_path(f) %></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<%else%>
-						<tr>
-						</tr>
-							<td><%= link_to f.name, city_path(f) %> </td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<%cont = 0%>
-					<%end%>
-				<%cont=cont+1%>
-			<%end%>	
-	</table>
-</center>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>êLugar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">êLugar</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="#services">Referências</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contato</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>êLugar</h1>
+                        <h3>O lugar de comparar cidades</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons black">
+                            <li>
+                                <a href="<%= find_path%>" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Ver Cidades</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+	<a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Visualize !</h2>
+                    <p class="lead">Selecione a cidade que tenha interesse em conhecer e veja informações sobre ela !</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/assets/ipad.png" alt="">
+					
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Compare !</h2>
+                    <p class="lead"> Faça a comparação entre cidades e veja qual atende mais suas necessidades !</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="/assets/dog.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Métricas</h2>
+                    <p class="lead">Alguns atributos das cidades são baseados em métricas definidas pelos desenvolvedores para melhor atender aos usuários:
+                    <ul>
+	                    <li>
+		                    <p class="lead"> <b>Transporte: </b>Essa medida foi elaborada visando calcular o número de pessoas por onibus em determinada cidade. Quanto menor for esse valor, significa que maior é a frota de onibus da cidade e consequentemente, possui mais condições de atendê-la com maior qualidade.<br><br>
+							<b>Número de Pessoas/ Frota (Número de ônibus+ número de micro-ônibus) = Número de pessoas por onibus.</b><br></p>
+						</li>
+						<li>
+							<p class="lead"><b>Saúde: </b>Essa medida foi elaborada visando determinar a capacidade da cidade de oferecer serviços de saúde suficientes para atender sua população, de maneira adequada. Ela calcula a quantidade de pessoas em relação a todos os estabelecimentos de saúde da cidade.<br><br> 
+							<b>Número de pessoas / Número de estabelecimentos de saúde total = Número de pessoas por hospital.</b><br></p>
+						</li>
+					</ul>
+	<p class="lead">Os outros atributos são mostrados em seus valores absolutos.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/assets/phones.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

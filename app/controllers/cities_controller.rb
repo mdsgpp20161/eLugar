@@ -1,5 +1,9 @@
 class CitiesController < ApplicationController
   def index
+    
+  end
+
+  def show_cities
     order = params[:order]
   	if(params[:find])
       if(order == "Populacao")
