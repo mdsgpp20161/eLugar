@@ -1,0 +1,55 @@
+<%= form_tag(cities_show_path, :method => :get) do %>
+	<h1>
+		<%=@city.name%>
+	</h1>
+
+	<table>
+		<tr>
+			<td>
+				População Estimada 2015: <%=@city.population%>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Densidade Demográfica: <%=@city.demographic_density%>
+			</td>
+		</tr>			
+		<tr>
+			<td>
+				Tamanho da cidade: <%=@city.area%>
+			</td>	
+		</tr>		
+		<tr>
+			<td>
+				Transporte: <%=@city.fleet%>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				Índice de Desenvolvimento Humano: <%=@city.idh%>	
+			</td>			
+		</tr>	
+		<tr>
+			<td>
+				Índice de Gini: <%=@city.gini%>	
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				Saúde: <%=@city.health%>	
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				Homicídios por arma de fogo: <%=@city.violence%>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				Possui cobertura do Uber?: <%=@city.uber%>
+			</td>
+		</tr>			
+	</table>
+<% end %>
+
+<%= link_to "Compare", compare_path(:id => @oldID) %>
