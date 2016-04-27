@@ -22,29 +22,110 @@
     				</td>	
     			</tr>		
     			<tr>
-    				<td>
-    					Transporte: <%=@city1.fleet%>
-    				</td>
+    				<%if @city2!=nil%>
+    					<%if @city2.fleet < @city1.fleet%>
+								<td>
+									<font color="green">Transporte: <%=@city1.fleet%></font>
+								</td>
+							<%elsif @city2.fleet == @city1.fleet%>
+								<td>
+									<font color="blue">Trasporte: <%=@city1.fleet%></font>
+								</td>
+							<%else%>
+								<td>
+									<font color="red">Transporte: <%=@city1.fleet%></font>
+								</td>
+						<%end%>
+					<%else%>
+						<td>
+							Transporte: <%=@city1.fleet%>
+						</td>
+					<%end%>
     			</tr>	
     			<tr>
-    				<td>
-    					Índice de Desenvolvimento Humano: <%=@city1.idh%>	
-    				</td>			
+    				<%if @city2!=nil%>
+    					<%if @city2.idh < @city1.idh%>
+								<td>
+									<font color="green">Índice de Desenvolvimento Humano: <%=@city1.idh%></font>
+								</td>
+							<%elsif @city2.idh == @city1.idh%>
+								<td>
+									<font color="blue">Índice de Desenvolvimento Humano: <%=@city1.idh%>
+									</font>
+								</td>
+							<%else%>
+								<td>
+									<font color="red">Índice de Desenvolvimento Humano: <%=@city1.idh%></font>
+								</td>
+						<%end%>
+					<%else%>
+						<td>
+							Índice de Desenvolvimento Humano: <%=@city1.idh%>
+						</td>
+					<%end%>			
     			</tr>	
     			<tr>
-    				<td>
-    					Índice de Gini: <%=@city1.gini%>	
-    				</td>
+    				<%if @city2!=nil%>
+    					<%if @city2.gini > @city1.gini%>
+								<td>
+									<font color="green">Índice de Gini: <%=@city1.gini%></font>
+								</td>
+							<%elsif @city2.gini == @city1.gini%>
+								<td>
+									<font color="blue">Índice de Gini: <%=@city1.gini%></font>
+								</td>
+							<%else%>
+								<td>
+									<font color="red">Índice de Gini: <%=@city1.gini%></font>
+								</td>
+						<%end%>
+					<%else%>
+						<td>
+							Índice de Gini: <%=@city1.gini%>
+						</td>
+					<%end%>	
     			</tr>	
     			<tr>
-    				<td>
-    					Saúde: <%=@city1.health%>	
-    				</td>
+    				<%if @city2!=nil%>
+    					<%if @city2.health < @city1.health%>
+								<td>
+									<font color="green">Saúde: <%=@city1.health%></font>
+								</td>
+							<%elsif @city2.health == @city1.health%>
+								<td>
+									<font color="blue">Saúde: <%=@city1.health%></font>
+								</td>
+							<%else%>
+								<td>
+									<font color="red">Saúde: <%=@city1.health%></font>
+								</td>
+						<%end%>
+					<%else%>
+						<td>
+							Saúde: <%=@city1.health%>
+						</td>
+					<%end%>	
     			</tr>	
     			<tr>
-    				<td>
-    					Homicídios por arma de fogo: <%=@city1.violence%>
-    				</td>
+    				<%if @city2!=nil%>
+    					<%if @city2.violence > @city1.violence%>
+								<td>
+									<font color="green">Homicídios por arma de fogo: <%=@city1.violence%></font>
+								</td>
+							<%elsif @city2.violence == @city1.violence%>
+								<td>
+									<font color="blue">Homicídios por arma de fogo: <%=@city1.violence%></font>
+								</td>
+							<%else%>
+								<td>
+									<font color="red">Homicídios por arma de fogo: <%=@city1.violence%></font>
+								</td>
+						<%end%>
+					<%else%>
+						<td>
+							Homicídios por arma de fogo: <%=@city1.violence%>
+						</td>
+					<%end%>	
     			</tr>	
     			<tr>
     				<td>
@@ -104,29 +185,87 @@
 						</td>	
 					</tr>		
 					<tr>
-						<td>
-							Transporte: <%=@city2.fleet%>
-						</td>
+						<%if @city2.fleet > @city1.fleet%>
+							<td>
+								<font color="green">Transporte: <%=@city2.fleet%></font>
+							</td>
+						<%elsif @city2.fleet == @city1.fleet%>
+								<td>
+									<font color="blue">Transporte: <%=@city2.fleet%></font>
+								</td>
+						<%else%>
+							<td>
+								<font color="red">Transporte: <%=@city2.fleet%></font>
+							</td>
+						<%end%>
 					</tr>	
 					<tr>
-						<td>
-							Índice de Desenvolvimento Humano: <%=@city2.idh%>	
-						</td>			
+						<%if @city2.idh > @city1.idh%>
+							<td>
+								<font color="green">Índice de Desenvolvimento Humano: <%=@city2.idh%>
+								</font>	
+							</td>
+						<%elsif @city2.idh == @city1.idh%>
+								<td>
+									<font color="blue">Índice de Desenvolvimento Humano: <%=@city2.idh%></font>
+								</td>
+						<%else%>
+							<td>
+								<font color="red">Índice de Desenvolvimento Humano: <%=@city2.idh%>
+								</font>
+							</td>
+						<%end%>			
 					</tr>	
 					<tr>
-						<td>
-							Índice de Gini: <%=@city2.gini%>	
-						</td>
+						<%if @city2.gini < @city1.gini%>
+							<td>
+								<font color="green">Índice de Gini: <%=@city2.gini%>
+								</font>	
+							</td>
+						<%elsif @city2.gini == @city1.gini%>
+							<td>
+								<font color="blue">Índice de Gini: <%=@city2.gini%></font>
+							</td>
+						<%else%>
+							<td>
+								<font color="red">Índice de Gini: <%=@city2.gini%>
+								</font>
+							</td>
+						<%end%>	
 					</tr>	
 					<tr>
-						<td>
-							Saúde: <%=@city2.health%>	
-						</td>
+						<%if @city2.health > @city1.health%>
+							<td>
+								<font color="green">Saúde: <%=@city2.health%>
+								</font>	
+							</td>
+						<%elsif @city2.health == @city1.health%>
+							<td>
+								<font color="blue">Saúde: <%=@city2.health%></font>
+							</td>
+						<%else%>
+							<td>
+								<font color="red">Saúde: <%=@city2.health%>
+								</font>
+							</td>
+						<%end%>
 					</tr>	
 					<tr>
-						<td>
-							Homicídios por arma de fogo: <%=@city2.violence%>
-						</td>
+						<%if @city2.violence < @city1.violence%>
+							<td>
+								<font color="green">Homicídios por arma de fogo: <%=@city2.violence%>
+								</font>	
+							</td>
+						<%elsif @city2.violence == @city1.violence%>
+							<td>
+								<font color="blue">Homicídios por arma de fogo: <%=@city2.violence%></font>
+							</td>
+						<%else%>
+							<td>
+								<font color="red">Homicídios por arma de fogo: <%=@city2.violence%>
+								</font>
+							</td>
+						<%end%>
 					</tr>	
 					<tr>
 						<td>
@@ -136,5 +275,5 @@
 				</table>
 			<% end %>
 		<% end %>
-	</div>
+	</div>	
 </div>
