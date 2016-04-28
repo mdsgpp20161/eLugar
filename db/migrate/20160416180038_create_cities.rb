@@ -11,6 +11,7 @@ class CreateCities < ActiveRecord::Migration
       t.float :health
       t.float :violence
       t.string :uber
+      t.string :image
 
       t.timestamps null: false
     end
