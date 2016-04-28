@@ -6758,3 +6758,13 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.text-left{
+  text-align: left;
+}
+
+.text-left td{
+  position: relative;
+  width:250px;
+  left:25%;
+}
