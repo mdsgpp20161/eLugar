@@ -29,6 +29,7 @@
     <![endif]-->
 
 </head>
+<body>
 	
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -74,11 +75,32 @@
                         <ul class="list-inline intro-social-buttons black">
                             <li>
                                 <%= form_tag(find_path, :method => :get) do %>
-									<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%>
-									<br>&nbsp;<b class="black">Ordenar por:</b>
-									<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),			{include_blank: true}%>
-									<%= submit_tag "Pesquisar" %>
-								<% end %>                      
+									<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
+                                    <b class="black">Ordenar por:</b>
+									<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
+                                    &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
+									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
+                                    <div id="filter_form">
+                                        <br>
+                                        <div class="panel panel-default">
+                                        <div class="panel-heading"><left>Filtragem</left></div>
+                                            <div class="panel-body">
+                                                <table>
+                                                <td>
+                                                IDH:
+                                                <br><%=radio_button_tag('idh', 'elevado', checked = false)%>Alto
+                                                <br><%=radio_button_tag('idh', 'medio', checked = false)%>Médio
+                                                <br><%=radio_button_tag('idh', 'baixo', checked = false)%>Baixo
+                                                </td>
+                                                <td>
+                                                &nbsp;&nbsp;&nbsp;
+                                                </td>
+                                                <td><div style="border-left:1px solid #000;height:120px; border-color: #DDDDDD"></div></td>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% end %>
                             </li>
                             <br><br><br>
                             <li>
@@ -111,7 +133,6 @@
                     </div>
                 </div>
             </div>
-
 		<!-- <a href="#abrirModal">Open Modal</a>
 
         <div id="abrirModal" class="modal">
@@ -125,3 +146,17 @@
         </div>
         <!-- /.container -->
     </div>
+    <script>
+        var count = 0;
+            $("#show_filter_form").click(function(){
+                $("#filter_form").toggle("slow");
+                if(count == 0){
+                    $("#show_filter_form").text("-");
+                    count = 1;
+                }else{
+                    $("#show_filter_form").text("+");
+                    count = 0;
+                }
+            });
+    </script>
+  </body>  
