@@ -1126,7 +1126,7 @@ img {
   height: auto;
 }
 .img-rounded {
-  border-radius: 6px;
+  border-radius: 50% !important;
 }
 .img-thumbnail {
   display: inline-block;
@@ -6803,6 +6803,7 @@ button.close {
 .foto{
   height: 200em;
   width: 200em;
+  position: absolute;
 }
 
 
@@ -6830,5 +6831,3 @@ button.close {
   border: 1px solid #DDD;
   margin-right: 6px;
 }
-
-

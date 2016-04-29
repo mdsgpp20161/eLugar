@@ -4,34 +4,30 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    order = params[:order]
+    sorted_cities = params[:sort_cities]
   	if(params[:find])
-      if(order == "Populacao")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.population.to_f}.reverse
+      @cities = City.where("name like ?", "%#{params[:find]}%")
+      case sorted_cities
+        when "Populacao"
+          @cities = @cities.sort_by{|obj| obj.population}.reverse
+        when "Densidade"
+          @cities = @cities.sort_by{|obj| obj.demographic_density}.reverse
+        when "Area"
+          @cities = @cities.sort_by{|obj| obj.area}.reverse
+        when "Frota"
+          @cities = @cities.sort_by{|obj| obj.fleet}.reverse
+        when "IDH"
+          @cities = @cities.sort_by{|obj| obj.idh}.reverse
+        when "Gini"
+          @cities = @cities.sort_by {|obj| obj.gini}.reverse
+        when "Saude"
+          @cities = @cities.sort_by{|obj| obj.health}.reverse
+        else
+  		    @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
       end
-      if(order == "Densidade")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.demographic_density.to_f}.reverse
-      end
-      if(order == "Area")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.area.to_f}.reverse
-      end
-      if(order == "Frota")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.fleet.to_f}.reverse
-      end
-      if(order == "IDH")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.idh.to_f}.reverse
-      end
-      if(order == "Gini")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by {|obj| obj.gini.to_f}.reverse
-      end
-      if(order == "Saude")
-        @cities = City.where("name like ?", "%#{params[:find]}%").sort_by{|obj| obj.health.to_f}.reverse
-      end
-      if(order == "")
-  		  @cities = City.where("name like ?", "%#{params[:find]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
-      end
-  	else
-  		@cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+    else
+  	  @cities = City.all
+      @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
   end
 
