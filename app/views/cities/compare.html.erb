@@ -1,279 +1,30 @@
-<div style="width: 100%; overflow: hidden;">
-    <div style="width: 600px; float: left;"> 
-    	<%= form_tag(cities_show_path, :method => :get) do %>
-    		<h1>
-    			<%=@city1.name%>
-    		</h1>
-
-    		<table>
-    			<tr>
-    				<td>
-    					População Estimada 2015: <%=@city1.population%>
-    				</td>
-    			</tr>
-    			<tr>
-    				<td>
-    					Densidade Demográfica: <%=@city1.demographic_density%>
-    				</td>
-    			</tr>			
-    			<tr>
-    				<td>
-    					Tamanho da cidade: <%=@city1.area%>
-    				</td>	
-    			</tr>		
-    			<tr>
-    				<%if @city2!=nil%>
-    					<%if @city2.fleet < @city1.fleet%>
-								<td>
-									<font color="green">Transporte: <%=@city1.fleet%></font>
-								</td>
-							<%elsif @city2.fleet == @city1.fleet%>
-								<td>
-									<font color="blue">Trasporte: <%=@city1.fleet%></font>
-								</td>
-							<%else%>
-								<td>
-									<font color="red">Transporte: <%=@city1.fleet%></font>
-								</td>
-						<%end%>
-					<%else%>
-						<td>
-							Transporte: <%=@city1.fleet%>
-						</td>
-					<%end%>
-    			</tr>	
-    			<tr>
-    				<%if @city2!=nil%>
-    					<%if @city2.idh < @city1.idh%>
-								<td>
-									<font color="green">Índice de Desenvolvimento Humano: <%=@city1.idh%></font>
-								</td>
-							<%elsif @city2.idh == @city1.idh%>
-								<td>
-									<font color="blue">Índice de Desenvolvimento Humano: <%=@city1.idh%>
-									</font>
-								</td>
-							<%else%>
-								<td>
-									<font color="red">Índice de Desenvolvimento Humano: <%=@city1.idh%></font>
-								</td>
-						<%end%>
-					<%else%>
-						<td>
-							Índice de Desenvolvimento Humano: <%=@city1.idh%>
-						</td>
-					<%end%>			
-    			</tr>	
-    			<tr>
-    				<%if @city2!=nil%>
-    					<%if @city2.gini > @city1.gini%>
-								<td>
-									<font color="green">Índice de Gini: <%=@city1.gini%></font>
-								</td>
-							<%elsif @city2.gini == @city1.gini%>
-								<td>
-									<font color="blue">Índice de Gini: <%=@city1.gini%></font>
-								</td>
-							<%else%>
-								<td>
-									<font color="red">Índice de Gini: <%=@city1.gini%></font>
-								</td>
-						<%end%>
-					<%else%>
-						<td>
-							Índice de Gini: <%=@city1.gini%>
-						</td>
-					<%end%>	
-    			</tr>	
-    			<tr>
-    				<%if @city2!=nil%>
-    					<%if @city2.health < @city1.health%>
-								<td>
-									<font color="green">Saúde: <%=@city1.health%></font>
-								</td>
-							<%elsif @city2.health == @city1.health%>
-								<td>
-									<font color="blue">Saúde: <%=@city1.health%></font>
-								</td>
-							<%else%>
-								<td>
-									<font color="red">Saúde: <%=@city1.health%></font>
-								</td>
-						<%end%>
-					<%else%>
-						<td>
-							Saúde: <%=@city1.health%>
-						</td>
-					<%end%>	
-    			</tr>	
-    			<tr>
-    				<%if @city2!=nil%>
-    					<%if @city2.violence > @city1.violence%>
-								<td>
-									<font color="green">Homicídios por arma de fogo: <%=@city1.violence%></font>
-								</td>
-							<%elsif @city2.violence == @city1.violence%>
-								<td>
-									<font color="blue">Homicídios por arma de fogo: <%=@city1.violence%></font>
-								</td>
-							<%else%>
-								<td>
-									<font color="red">Homicídios por arma de fogo: <%=@city1.violence%></font>
-								</td>
-						<%end%>
-					<%else%>
-						<td>
-							Homicídios por arma de fogo: <%=@city1.violence%>
-						</td>
-					<%end%>	
-    			</tr>	
-    			<tr>
-    				<td>
-    					Possui cobertura do Uber?: <%=@city1.uber%>
-    				</td>
-    			</tr>			
-    		</table>
-    	<% end %>
-    </div>
-    <div style="margin-left: 620px;">
-    	<% if(not params[:newID])%>
-	    	<h1>Cidades</h1>
-	    	
-	    	<%= form_tag(find_path, :method => :get) do %>
-	    		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
-	    		<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-	    					   'Saude']),{include_blank: true}%>
-	    		<%= submit_tag "Pesquisar" %>
-	    	<% end %>
-
-	    	<table>
-	    			<%cont = 0%>
-	    			<%@cities.each do |f| %>
-	    				<%if cont<5 %>
-	    					<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
-	    					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	    				<%else%>
-							<tr>
-							</tr>
-							<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<%cont = 0%>
-	    				<%end%>
-	    				<%cont=cont+1%>
-	    			<%end%>	
-	    	</table>  
-		<% else %>
-			<%= form_tag(cities_show_path, :method => :get) do %>
-				<h1>
-					<%=@city2.name%>
-				</h1>
-
-				<table>
-					<tr>
-						<td>
-							População Estimada 2015: <%=@city2.population%>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Densidade Demográfica: <%=@city2.demographic_density%>
-						</td>
-					</tr>			
-					<tr>
-						<td>
-							Tamanho da cidade: <%=@city2.area%>
-						</td>	
-					</tr>		
-					<tr>
-						<%if @city2.fleet > @city1.fleet%>
-							<td>
-								<font color="green">Transporte: <%=@city2.fleet%></font>
-							</td>
-						<%elsif @city2.fleet == @city1.fleet%>
-								<td>
-									<font color="blue">Transporte: <%=@city2.fleet%></font>
-								</td>
-						<%else%>
-							<td>
-								<font color="red">Transporte: <%=@city2.fleet%></font>
-							</td>
-						<%end%>
-					</tr>	
-					<tr>
-						<%if @city2.idh > @city1.idh%>
-							<td>
-								<font color="green">Índice de Desenvolvimento Humano: <%=@city2.idh%>
-								</font>	
-							</td>
-						<%elsif @city2.idh == @city1.idh%>
-								<td>
-									<font color="blue">Índice de Desenvolvimento Humano: <%=@city2.idh%></font>
-								</td>
-						<%else%>
-							<td>
-								<font color="red">Índice de Desenvolvimento Humano: <%=@city2.idh%>
-								</font>
-							</td>
-						<%end%>			
-					</tr>	
-					<tr>
-						<%if @city2.gini < @city1.gini%>
-							<td>
-								<font color="green">Índice de Gini: <%=@city2.gini%>
-								</font>	
-							</td>
-						<%elsif @city2.gini == @city1.gini%>
-							<td>
-								<font color="blue">Índice de Gini: <%=@city2.gini%></font>
-							</td>
-						<%else%>
-							<td>
-								<font color="red">Índice de Gini: <%=@city2.gini%>
-								</font>
-							</td>
-						<%end%>	
-					</tr>	
-					<tr>
-						<%if @city2.health > @city1.health%>
-							<td>
-								<font color="green">Saúde: <%=@city2.health%>
-								</font>	
-							</td>
-						<%elsif @city2.health == @city1.health%>
-							<td>
-								<font color="blue">Saúde: <%=@city2.health%></font>
-							</td>
-						<%else%>
-							<td>
-								<font color="red">Saúde: <%=@city2.health%>
-								</font>
-							</td>
-						<%end%>
-					</tr>	
-					<tr>
-						<%if @city2.violence < @city1.violence%>
-							<td>
-								<font color="green">Homicídios por arma de fogo: <%=@city2.violence%>
-								</font>	
-							</td>
-						<%elsif @city2.violence == @city1.violence%>
-							<td>
-								<font color="blue">Homicídios por arma de fogo: <%=@city2.violence%></font>
-							</td>
-						<%else%>
-							<td>
-								<font color="red">Homicídios por arma de fogo: <%=@city2.violence%>
-								</font>
-							</td>
-						<%end%>
-					</tr>	
-					<tr>
-						<td>
-							Possui cobertura do Uber?: <%=@city2.uber%>
-						</td>
-					</tr>			
-				</table>
-			<% end %>
+<div style="float: center"> 
+	<%= form_tag(cities_show_path, :method => :get) do %>
+		<h1 style="float: left">
+			<%=@city1.name%>
+		</h1>
+		<% if @city2 %>
+			<h1 style="float: right">
+				<%=@city2.name%>
+			</h1>
 		<% end %>
-	</div>	
+		<br>
+		</br>
+		<center>
+			<% if @city1 && @city2 %>
+				<% @city1.attributes.each do |attr_name, attr_value| %>
+					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
+						<% next %>
+					<% end %>
+					<%= attr_name %>
+	    			<div class="progress" style="width: 1000px;">
+	    			  <div class="progress-bar progress-bar-success" style="width: <%= attr_value %>%;">
+	    			  </div>
+	    			  <div class="progress-bar progress-bar-danger" style="width: <%= 100-@population %>%">
+	    			  </div>
+	    			</div>
+	    		<% end %>
+			<% end %>
+		</center>
+	<% end %>
 </div>

@@ -48,6 +48,7 @@ class CitiesController < ApplicationController
     if(params[:newID])
       @newID = params[:newID]
       @city2 = City.find(@newID)
+      @population = @city1.population*100/(@city1.population + @city2.population)
     end
     if(params[:find])
       @cities = City.where("name like ?", "%#{params[:id]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
