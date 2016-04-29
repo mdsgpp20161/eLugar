@@ -8,23 +8,66 @@
 				<%=@city2.name%>
 			</h1>
 		<% end %>
-		<br>
-		</br>
-		<center>
-			<% if @city1 && @city2 %>
+		<br></br>
+		<% if @city1 && @city2 %>
+			<center>
 				<% @city1.attributes.each do |attr_name, attr_value| %>
 					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
-						<% next %>
-					<% end %>
-					<%= attr_name %>
-	    			<div class="progress" style="width: 1000px;">
-	    			  <div class="progress-bar progress-bar-success" style="width: <%= attr_value %>%;">
-	    			  </div>
-	    			  <div class="progress-bar progress-bar-danger" style="width: <%= 100-@population %>%">
-	    			  </div>
-	    			</div>
-	    		<% end %>
-			<% end %>
-		</center>
+					<% next %>
+				<% end %>
+				<%= attr_name %>
+	    		<div class="progress" style="width: 1000px;">
+		    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value %>%;"></div>
+		    		<div class="progress-bar progress-bar-danger" style="width: <%= 100-@population %>%"></div>
+	    		</div>
+    		<% end %>
+			</center>
+    	<% else%>
+    		<div style="width: 100%; display: table;">
+    			<div style="display: table-row">
+		    		<div style="width: 600px; display: table-cell;">
+			    		<% @city1.attributes.each do |attr_name, attr_value| %>
+			    			<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
+			    				<% next %>
+			    			<% end %>
+			    			<table>
+				    			<tr>
+					    			<td>
+					    				<%= attr_name + " : " + attr_value.to_s %>
+					    			</td>
+					    		</tr>
+				    		</table>
+			    		<% end %>
+			    	</div>
+		    		<div style="display: table-cell;">
+				    	<h1>Cidades</h1>
+				    	
+				    	<%= form_tag(find_path, :method => :get) do %>
+				    		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
+				    		<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
+				    					   'Saude']),{include_blank: true}%>
+				    		<%= submit_tag "Pesquisar" %>
+				    	<% end %>
+
+				    	<table>
+				    			<%cont = 0%>
+				    			<%@cities.each do |f| %>
+				    				<%if cont<5 %>
+				    					<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
+				    					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				    				<%else%>
+										<tr>
+										</tr>
+										<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										<%cont = 0%>
+				    				<%end%>
+				    				<%cont=cont+1%>
+				    			<%end%>	
+				    	</table>
+				    </div>
+				</div> 	
+			</div>
+		<% end %>
 	<% end %>
 </div>
