@@ -26,10 +26,13 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>	
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+</head>
 
-<body>	
+<body>
+    
+<nav class="navbar navbar-default topnav" role="navigation">
+
+<body>  
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="index">êLugar</a>
+                <a class="navbar-brand topnav" href="cities#index">êLugar</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,9 +62,9 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>	
-	
-	<!-- Header -->
+    </nav>  
+    
+    <!-- Header -->
     <a name="about"></a>
     <div class="intro-header-find">
         <div class="container">
@@ -74,11 +77,11 @@
                         <ul class="list-inline intro-social-buttons black">
                             <li>
                                 <%= form_tag(find_path, :method => :get) do %>
-									<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
+                                    <%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
                                     <b class="black">Ordenar por:</b>
-									<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
+                                    <%= select_tag :sort_cities, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
                                     &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
-									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
+                                    <%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
                                     <div id="filter_form">
                                         <br>
                                         <div class="panel panel-default">
@@ -103,49 +106,48 @@
                             </li>
                             <br><br><br>
                             <li>
-                            	<table>
-									<%cont = 0%>
-									<%@cities.each do |f| %>
-										<%if cont<3 %>
-											<td>
-												<%=link_to city_path(f), :class=>'opacityit' do%>
-                                                	<img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
+                                <table>
+                                    <%cont = 0%>
+                                    <%@cities.each do |f| %>
+                                        <%if cont<3 %>
+                                            <td>
+                                                <%=link_to city_path(f), :class=>'opacityit' do%>
+                                                    <img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
                                                 <% end %>
-											</td>
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<%else%>
-											<tr>
-											</tr>
-											<td>
-												<%= link_to city_path(f), :class=>'opacityit' do%>
-                                                	<img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> alt="" heigth="300" width="300">
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <%else%>
+                                            <tr>
+                                            </tr>
+                                            <td>
+                                                <%= link_to city_path(f), :class=>'opacityit' do%>
+                                                    <img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> alt="" heigth="300" width="300">
                                                 <% end %>
-											</td>
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-											<%cont = 0%>
-										<%end%>
-										<%cont=cont+1%>
-									<%end%>	
-								</table>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <%cont = 0%>
+                                        <%end%>
+                                        <%cont=cont+1%>
+                                    <%end%> 
+                                </table>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-		<!-- <a href="#abrirModal">Open Modal</a>
+        <!-- <a href="#abrirModal">Open Modal</a>
 
         <div id="abrirModal" class="modal">
-			<a href="#fechar" title="Fechar" class="fechar">x</a>
-			<h2>Janela Modal</h2>
-			<p>Esta é uma simples janela de modal.</p>
-			<p>Você pode fazer qualquer coisa aqui.</p>
+            <a href="#fechar" title="Fechar" class="fechar">x</a>
+            <h2>Janela Modal</h2>
+            <p>Esta é uma simples janela de modal.</p>
+            <p>Você pode fazer qualquer coisa aqui.</p>
         </div>  -->
 
 
         </div>
         <!-- /.container -->
     </div>
-</body>
     <script>
         var count = 0;
             $("#filter_form").hide();
@@ -160,3 +162,15 @@
                 }
             });
     </script>
+  </body>  
+
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>

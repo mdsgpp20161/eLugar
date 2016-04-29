@@ -66,93 +66,106 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="intro-message-show">
+                    <div class="intro-message-show black">
                         <h3>Análise da Cidade</h3>
                         <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons black">
-                            <li>
+                        <div class="list-inline intro-social-buttons black">
+	                        <ul class="teste">
 	                            <%= form_tag(cities_show_path, :method => :get) do %>
 									<h1>
 										<%=@city.name%>
 									</h1>
-
-									<table class="text-left">
-										<tr>
-											<td>
-												População Estimada 2015:
-											</td>
-											<td>
-												<%=@city.population%>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Densidade Demográfica: 
-											</td>
-											<td>
-												<%=@city.demographic_density%>
-											</td>
-										</tr>			
-										<tr>
-											<td>
-												Tamanho da cidade: 
-											</td>
-											<td>
-												<%=@city.area%>
-											</td>	
-										</tr>		
-										<tr>
-											<td>
-												Transporte: 
-											</td>
-											<td>
-												<%=@city.fleet%>
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												Índice de Desenvolvimento Humano: 
-											</td>
-											<td>
-												<%=@city.idh%>
-											</td>			
-										</tr>	
-										<tr>
-											<td>
-												Índice de Gini: 	
-											</td>
-											<td>
-												<%=@city.gini%>
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												Saúde: 	
-											</td>
-											<td>
-												<%=@city.health%>
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												Homicídios por arma de fogo: 
-											</td>
-											<td>
-												<%=@city.violence%>
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												Possui cobertura do Uber? 
-											</td>
-											<td>
-												<%=@city.uber%>
-											</td>
-										</tr>			
-									</table>
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho">População Estimada 2015
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.population%></p>
+											</div>	
+										</div>
+									</li>
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Densidade Demográfica
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p class="pop"><%=@city.demographic_density%></p>
+											</div>
+										</div>
+									</li>
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Tamanho da Cidade
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.area%></p>
+											</div>	
+										</div>
+									</li>	
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Transporte
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.fleet%></p>
+											</div>
+										</div>
+									</li>	
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> IDH
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.idh%></p>
+											</div>
+										</div>			
+									</li>
+									<br><br>
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Índice de Gini
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.gini%></p>
+											</div>
+										</div>
+									</li>	
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Saúde
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.health%></p>
+										</div>
+									</li>	
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Homicídios
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.violence%></p>
+										</div>
+									</li>	
+									<li class="teste">
+										<div class="animation">
+											<p class="cabecalho"> Possui Uber?
+												<img class=" img-responsive foto" style="border: none;" src="/assets/feliz1.png" heigth="200em" width="200em"></img>
+											</p>
+											<div class="pop">
+												<p><%=@city.uber%></p>
+										</div>
+									</li>			
 								<% end %>
-                            </li>
-                        </ul>
+	                        </ul>
+                        </div>
                        <%= link_to "Compare", compare_path(:id => @oldID) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                        <%= link_to "Voltar", find_path(:id => nil) %>  
                     </div>

@@ -6768,3 +6768,67 @@ button.close {
   width:250px;
   left:25%;
 }
+
+.animation{
+  width: 200px;
+  height: 100px;
+  background: #303030;
+  color: white;
+  position: absolute;
+  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
+  transition: all 1.5s;
+}
+
+.pop{
+  width: 200px;
+  height: 100px;
+  display: none;
+  color: white;
+  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
+  transition: all 1.5s;
+}
+
+.cabecalho{
+  display: block;
+}
+
+.animation:hover{
+  height: 280px;
+}
+
+.animation:hover .cabecalho{
+  display:none;
+}
+
+.foto{
+  height: 200em;
+  width: 200em;
+}
+
+
+.animation:hover .pop{
+  height: 280px;
+  display: block;
+}
+
+.teste{
+  
+}
+
+.teste ul{
+  margin: 0;
+  padding: 0;
+  width: 9999px;
+}
+
+.teste li{
+  position: relative;
+  display: inline-block;
+  list-style-type: none;
+  width: 200px;
+  height: 280px;
+  border: 1px solid #DDD;
+  margin-right: 6px;
+}
+
+
