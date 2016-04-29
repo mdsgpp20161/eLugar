@@ -65,49 +65,79 @@
         <!-- /.container -->
     </nav>  
     
-    <!-- Header -->
-    <a name="about"></a>
-    <div class="intro-header-find">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message-find">
-                        <h3>Escolha a cidade que deseja conhecer !</h3>
-                        <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons black">
-                            <li>
-                                <%= form_tag(find_path, :method => :get) do %>
-                                    <%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
-                                    <b class="black">Ordenar por:</b>
-                                    <%= select_tag :sort_cities, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
-                                    &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
-                                    <%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
-                                    <div id="filter_form">
-                                        <br>
-                                        <div class="panel panel-default">
-                                        <div class="panel-heading"><left>Filtragem</left></div>
-                                            <div class="panel-body">
-                                                <table>
-                                                <td>
-                                                IDH:
-                                                <br><%=radio_button_tag('idh', 'elevado', checked = false)%>Alto
-                                                <br><%=radio_button_tag('idh', 'medio', checked = false)%>Médio
-                                                <br><%=radio_button_tag('idh', 'baixo', checked = false)%>Baixo
-                                                </td>
-                                                <td>
-                                                &nbsp;&nbsp;&nbsp;
-                                                </td>
-                                                <td><div style="border-left:1px solid #000;height:120px; border-color: #DDDDDD"></div></td>
-                                                </table>
+        	<!-- Header -->
+            <a name="about"></a>
+            <div class="intro-header-find">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="intro-message-find">
+                                <h3>Escolha a cidade que deseja conhecer !</h3>
+                                <hr class="intro-divider">
+                                <ul class="list-inline intro-social-buttons black">
+                                    <li>
+                                        <%= form_tag(find_path, :method => :get) do %>
+        									<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
+                                            <b class="black">Ordenar por:</b>
+        									<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
+                                            &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
+        									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
+                                            <div id="filter_form">
+                                                <br>
+                                                <div class="panel panel-default">
+                                                <div class="panel-heading"><left>Filtragem</left></div>
+                                                    <div class="panel-body">
+                                                        <table>
+                                                        <td>
+                                                        IDH:
+                                                        <br><%=radio_button_tag('idh', 'elevado', checked = false)%>Alto
+                                                        <br><%=radio_button_tag('idh', 'medio', checked = false)%>Médio
+                                                        <br><%=radio_button_tag('idh', 'baixo', checked = false)%>Baixo
+                                                        </td>
+                                                        <td>
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                        <td><div style="border-left:1px solid #000;height:120px; border-color: #DDDDDD"></div></td>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                <% end %>
-                            </li>
-                        </ul>
+                                        <% end %>
+                                    </li>
+                                    <br><br><br>
+                                    <li>
+                                    	<table>
+                                            <%cont = 0%>
+                                            <%@cities.each do |f| %>
+                                                <%if cont<3 %>
+                                                    <td>
+                                                        <%=link_to city_path(f), :class=>'opacityit' do%>
+                                                            <img class="img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
+                                                        <% end %>
+                                                        <p><%=f.name%></p>
+                                                    </td>
+                                                    
+                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <%else%>
+                                                    <tr>
+                                                    </tr>
+                                                    <td>
+                                                        <%= link_to city_path(f), :class=>'opacityit' do%>
+                                                            <img class="img-rounded"src= <%="/assets/#{f.image}.jpg"%> alt="" heigth="300" width="300">
+                                                        <% end %>
+                                                        <p><%=f.name%></p>
+                                                    </td>
+                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                    <%cont = 0%>
+                                                <%end%>
+                                                <%cont=cont+1%>
+                                            <%end%> 
+                                         </table>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.navbar-collapse -->
                 </div>
                 <!-- /.container -->
             </div>
@@ -125,6 +155,7 @@
                     });
             </script>
     </div>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
