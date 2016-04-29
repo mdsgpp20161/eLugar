@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>êLugar</title>
+        <title>êLugar</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Core CSS -->
+        <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
+        
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="jquery.bxslider.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
 <body>
     
@@ -104,73 +105,31 @@
                                     </div>
                                 <% end %>
                             </li>
-                            <br><br><br>
-                            <li>
-                                <table>
-                                    <%cont = 0%>
-                                    <%@cities.each do |f| %>
-                                        <%if cont<3 %>
-                                            <td>
-                                                <%=link_to city_path(f), :class=>'opacityit' do%>
-                                                    <img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
-                                                <% end %>
-                                            </td>
-                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <%else%>
-                                            <tr>
-                                            </tr>
-                                            <td>
-                                                <%= link_to city_path(f), :class=>'opacityit' do%>
-                                                    <img class="img-responsive"src= <%="/assets/#{f.image}.jpg"%> alt="" heigth="300" width="300">
-                                                <% end %>
-                                            </td>
-                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                            <%cont = 0%>
-                                        <%end%>
-                                        <%cont=cont+1%>
-                                    <%end%> 
-                                </table>
-                            </li>
                         </ul>
                     </div>
+                    <!-- /.navbar-collapse -->
                 </div>
+                <!-- /.container -->
             </div>
-        <!-- <a href="#abrirModal">Open Modal</a>
-
-        <div id="abrirModal" class="modal">
-            <a href="#fechar" title="Fechar" class="fechar">x</a>
-            <h2>Janela Modal</h2>
-            <p>Esta é uma simples janela de modal.</p>
-            <p>Você pode fazer qualquer coisa aqui.</p>
-        </div>  -->
-
-
-        </div>
-        <!-- /.container -->
+            <script>
+                var count = 0;
+                    $("#show_filter_form").click(function(){
+                        $("#filter_form").toggle("slow");
+                        if(count == 0){
+                            $("#show_filter_form").text("-");
+                            count = 1;
+                        }else{
+                            $("#show_filter_form").text("+");
+                            count = 0;
+                        }
+                    });
+            </script>
     </div>
-    <script>
-        var count = 0;
-            $("#filter_form").hide();
-            $("#show_filter_form").click(function(){
-                $("#filter_form").toggle("slow");
-                if(count == 0){
-                    $("#show_filter_form").text("-");
-                    count = 1;
-                }else{
-                    $("#show_filter_form").text("+");
-                    count = 0;
-                }
-            });
-    </script>
-  </body>  
-
-        </div>
-        <!-- /.container -->
-    </div>
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- /.container -->
+ </div>
 </body>
