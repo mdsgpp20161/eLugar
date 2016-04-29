@@ -25,8 +25,8 @@ class CitiesController < ApplicationController
         else
   		    @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
       end
-  	else
-  		@cities = City.all
+    else
+  	  @cities = City.all
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
   end
