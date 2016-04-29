@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+brasilia:
+  name: "brasilia"
   population: 1
   demographic_density: 1.5
   area: 1.5
@@ -10,7 +10,7 @@ one:
   gini: 1.5
   health: 1.5
   violence: 1.5
-  uber: MyString
+  uber: "sim"
 
 two:
   name: MyString
