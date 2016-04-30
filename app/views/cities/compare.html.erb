@@ -1,4 +1,4 @@
-<div style="float: center"> 
+<div style="align: center"> 
 	<%= form_tag(cities_show_path, :method => :get) do %>
 		<h1 style="float: left">
 			<%=@city1.name%>
@@ -8,19 +8,26 @@
 				<%=@city2.name%>
 			</h1>
 		<% end %>
-		<br></br>
+		</br>
+		</br>
+		</br>
 		<% if @city1 && @city2 %>
 			<center>
 				<% @city1.attributes.each do |attr_name, attr_value| %>
 					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
 					<% next %>
 				<% end %>
-				<%= attr_name %>
+				<%= "#{attr_name} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
 	    		<div class="progress" style="width: 1000px;">
-		    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value %>%;"></div>
-		    		<div class="progress-bar progress-bar-danger" style="width: <%= 100-@population %>%"></div>
+	    			<%if(attr_value > @city2.send(attr_name.to_sym))%>
+			    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
+			    		<div class="progress-bar progress-bar-danger" style="width: <%= @city2.send(attr_name.to_sym)*100/(attr_value +@city2.send(attr_name.to_sym))%>%"></div>
+			    	<% else %>
+			    		<div class="progress-bar progress-bar-danger" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
+			    		<div class="progress-bar progress-bar-success" style="width: <%= @city2.send(attr_name.to_sym)*100/(attr_value +@city2.send(attr_name.to_sym))%>%"></div>
+			    	<% end %>
 	    		</div>
-    		<% end %>
+    			<% end %>
 			</center>
     	<% else%>
     		<div style="width: 100%; display: table;">
