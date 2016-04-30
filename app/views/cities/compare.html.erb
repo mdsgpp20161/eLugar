@@ -11,7 +11,7 @@
 		</br>
 		</br>
 		</br>
-		<% if @city1 && @city2 %>
+		<% if @city1 && @city2 %>		
 			<center>
 				<% @city1.attributes.each do |attr_name, attr_value| %>
 					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
@@ -28,6 +28,7 @@
 			    	<% end %>
 	    		</div>
     			<% end %>
+    			<%= link_to "Voltar", compare_path(:id => @oldID)%>		
 			</center>
     	<% else%>
     		<div style="width: 100%; display: table;">
@@ -49,12 +50,12 @@
 		    		<div style="display: table-cell;">
 				    	<h1>Cidades</h1>
 				    	
-				    	<%= form_tag(find_path, :method => :get) do %>
-				    		<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
-				    		<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-				    					   'Saude']),{include_blank: true}%>
-				    		<%= submit_tag "Pesquisar" %>
-				    	<% end %>
+				    	<%= form_tag(compare_path, :method => :get) do %>
+	    					<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
+	    					<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
+	    					   'Saude']),{include_blank: true}%>
+	    					<%= link_to "Pesquisar",compare_path(:id => @oldID,:find => @cities),class: "btn btn-default btn-sm"%>
+	    				<% end %>
 
 				    	<table>
 				    			<%cont = 0%>
@@ -74,7 +75,7 @@
 				    	</table>
 				    </div>
 				</div> 	
-			</div>
+			</div>	
 		<% end %>
 	<% end %>
 </div>
