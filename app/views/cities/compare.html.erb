@@ -1,7 +1,9 @@
 <div style="align: center"> 
-	<%= form_tag(cities_show_path, :method => :get) do %>
+	<%#= form_tag(cities_show_path, :method => :get) do %>
 		<h1 style="float: left">
+		<%if @city1 %>
 			<%=@city1.name%>
+		<% end %>
 		</h1>
 		<% if @city2 %>
 			<h1 style="float: right">
@@ -30,7 +32,7 @@
     			<% end %>
     			<%= link_to "Voltar", compare_path(:id => @oldID)%>		
 			</center>
-    	<% else%>
+    	<% elsif @city1%>
     		<div style="width: 100%; display: table;">
     			<div style="display: table-row">
 		    		<div style="width: 600px; display: table-cell;">
@@ -50,11 +52,11 @@
 		    		<div style="display: table-cell;">
 				    	<h1>Cidades</h1>
 				    	
-				    	<%= form_tag(compare_path, :method => :get) do %>
-	    					<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...'%>
+				    	<%= form_tag(compare_path(:id => @oldID)) do %>
+	    					<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
 	    					<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
 	    					   'Saude']),{include_blank: true}%>
-	    					<%= link_to "Pesquisar",compare_path(:id => @oldID,:find => @cities),class: "btn btn-default btn-sm"%>
+	    					<%= submit_tag "Pesquisar"%>
 	    				<% end %>
 
 				    	<table>
@@ -77,5 +79,5 @@
 				</div> 	
 			</div>	
 		<% end %>
-	<% end %>
+	<%# end %>
 </div>

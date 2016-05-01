@@ -73,8 +73,8 @@
                                 <hr class="intro-divider">
                                 <ul class="list-inline intro-social-buttons black">
                                     <li>
-                                        <%= form_tag(find_path, :method => :get) do %>
-        									<%= text_field_tag 'find', nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
+                                        <%= form_tag(find_path, :method => :post) do %>
+        									<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
                                             <b class="black">Ordenar por:</b>
         									<%= select_tag :sort_cities, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
                                             &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
