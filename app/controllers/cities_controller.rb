@@ -32,11 +32,13 @@ class CitiesController < ApplicationController
   end
 
   def show
+    get_hash
     @oldID = params[:id]
     @city = City.find(@oldID)
   end
 
   def compare
+    get_hash
     if(params[:id])
       @oldID = params[:id]
       @city1 = City.find(@oldID)
@@ -51,5 +53,19 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
     end
+  end
+
+  def get_hash
+    @hash = Hash.new
+    @hash['name'] = 'Nome'
+    @hash['population'] = 'População Estimada 2015'
+    @hash['demographic_density'] = 'Densidade Demográfica'
+    @hash['area'] = 'Tamanho da Cidade'
+    @hash['fleet'] = 'Transporte'
+    @hash['idh'] = 'IDH'
+    @hash['gini'] = 'Índice de Gini'
+    @hash['health'] = 'Índice de Saúde'
+    @hash['violence'] = 'Índice de Violência'
+    @hash['uber'] = 'Uber'
   end
 end

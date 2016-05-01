@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="">êLugar</a>
+                <a class="navbar-brand topnav" href="/">êLugar</a>
             </div>
             <!-- Collect the nav links, forms, and other content	 for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -75,94 +75,21 @@
 									<h1>
 										<%=@city.name%>
 									</h1>
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho">População Estimada 2015
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot1.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.population%></p>
-											</div>	
-										</div>
-									</li>
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Densidade Demográfica
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot2.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p class="pop"><%=@city.demographic_density%></p>
+									<% @city.attributes.each do |attr_name, attr_value| %>
+										<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
+										<% next %>
+									<% end %>
+										<li class="teste">
+											<div class="animation">
+												<p class="cabecalho"><%= @hash[attr_name] %>
+													<img class=" img-responsive foto" style="border: none;" src="/assets/emot1.png" height="200em" width="200em"></img>
+												</p>
+												<div class="pop">
+													<p><%=attr_value%></p>
+												</div>	
 											</div>
-										</div>
-									</li>
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Tamanho da Cidade
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot3.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.area%></p>
-											</div>	
-										</div>
-									</li>	
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Transporte
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot4.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.fleet%></p>
-											</div>
-										</div>
-									</li>	
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> IDH
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot5.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.idh%></p>
-											</div>
-										</div>			
-									</li>
-									<br><br>
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Índice de Gini
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot1.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.gini%></p>
-											</div>
-										</div>
-									</li>	
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Saúde
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot2.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.health%></p>
-										</div>
-									</li>	
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Homicídios
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot3.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.violence%></p>
-										</div>
-									</li>	
-									<li class="teste">
-										<div class="animation">
-											<p class="cabecalho"> Possui Uber?
-												<img class=" img-responsive foto" style="border: none;" src="/assets/emot4.png" height="200em" width="200em"></img>
-											</p>
-											<div class="pop">
-												<p><%=@city.uber%></p>
-										</div>
-									</li>			
+										</li>
+									<% end %>
 								<% end %>
 	                        </ul>
                         </div>
@@ -175,5 +102,3 @@
         <!-- /.container -->
     </div>
 </body>
-
-

@@ -17,7 +17,7 @@
 					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
 					<% next %>
 				<% end %>
-				<%= "#{attr_name} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
+				<%= "#{@hash[attr_name]} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
 	    		<div class="progress" style="width: 1000px;">
 	    			<%if(attr_value > @city2.send(attr_name.to_sym))%>
 			    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
@@ -41,7 +41,7 @@
 			    			<table>
 				    			<tr>
 					    			<td>
-					    				<%= attr_name + " : " + attr_value.to_s %>
+					    				<%= @hash[attr_name] + " : " + attr_value.to_s %>
 					    			</td>
 					    		</tr>
 				    		</table>
