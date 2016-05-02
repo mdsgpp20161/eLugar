@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'compare' => 'cities#compare'
   post 'compare' => 'cities#compare'
   post 'find' => 'cities#show_cities'
+  get 'about' => 'static_pages#about'
 
 
   # Example of regular route:
