@@ -4,9 +4,38 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    sorted_cities = params[:sort_cities]
   	if(params[:find])
       @cities = City.where("name like ?", "%#{params[:find]}%")
+
+      if (params[:from_idh] != '' and params[:to_idh] != '')
+        @cities = @cities.where(idh: params[:from_idh].to_f .. params[:to_idh].to_f)
+      end
+      if (params[:from_population]!= '' and params[:to_population] != '')
+        @cities = @cities.where(population:params[:from_population].to_i .. params[:to_population].to_i)
+      end
+      if (params[:from_density] != '' and params[:to_density] != '')
+        @cities = @cities.where(demographic_density: params[:from_density].to_f .. params[:to_density].to_f)
+      end
+      if (params[:from_area] != '' and params[:to_area] != '')
+        @cities = @cities.where(area: params[:from_area].to_f .. params[:to_area].to_f)
+      end
+      if (params[:from_fleet] != '' and params[:to_fleet] != '')
+        @cities = @cities.where(fleet: params[:from_fleet].to_f .. params[:to_fleet].to_f)
+      end
+      if (params[:from_gini] != '' and params[:to_gini] != '')
+        @cities = @cities.where(gini: params[:from_gini].to_f .. params[:to_gini].to_f)
+      end
+      if (params[:from_health] != '' and params[:to_health] != '')
+        @cities = @cities.where(health: params[:from_health].to_f .. params[:to_health].to_f)
+      end
+      if (params[:from_violence] != '' and params[:to_violence] != '')
+        @cities = @cities.where(violence: params[:from_violence].to_f .. params[:to_violence].to_f)
+      end
+      if (params[:uber_rb])
+        @cities = @cities.where(uber: 'Sim')
+      end
+
+      sorted_cities = params[:sort_cities]
       case sorted_cities
         when "Populacao"
           @cities = @cities.sort_by{|obj| obj.population}.reverse
@@ -29,6 +58,9 @@ class CitiesController < ApplicationController
   	  @cities = City.all
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
+  
+
+
   end
 
   def show

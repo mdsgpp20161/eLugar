@@ -80,26 +80,47 @@
                                             &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
         									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
                                             <div id="filter_form">
-                                                <br>
+                                            <br>
                                                 <div class="panel panel-default">
-                                                <div class="panel-heading"><left>Filtragem</left></div>
+                                                    <div class="panel-heading"><left>Filtragem</left></div>
                                                     <div class="panel-body">
-                                                        <table>
-                                                        <td>
-                                                        IDH:
-                                                        <br><%=radio_button_tag('idh', 'elevado', checked = false)%>Alto
-                                                        <br><%=radio_button_tag('idh', 'medio', checked = false)%>Médio
-                                                        <br><%=radio_button_tag('idh', 'baixo', checked = false)%>Baixo
-                                                        </td>
-                                                        <td>
-                                                        &nbsp;&nbsp;&nbsp;
-                                                        </td>
-                                                        <td><div style="border-left:1px solid #000;height:120px; border-color: #DDDDDD"></div></td>
-                                                        </table>
+                                                        População:<br>
+                                                        De: <%= text_field_tag :from_population, nil, size:'8'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_population, nil, size:'8'%>
+                                                        <hr>
+                                                        Densidade demográfica:<br>
+                                                        De: <%= text_field_tag :from_density, nil, size:'5'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_density, nil, size:'5'%>
+                                                        <hr>
+                                                        Área: <br>
+                                                        De: <%= text_field_tag :from_area, nil, size:'5'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_area, nil, size:'5'%>
+                                                        <hr>
+                                                        Frota: <br>
+                                                        De: <%= text_field_tag :from_fleet, nil, size:'8'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_fleet, nil, size:'8'%>
+                                                        <hr>
+                                                        IDH:<br>
+                                                        De: <%= text_field_tag :from_idh, nil, size:'5'%> &nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_idh, nil, size:'5'%>
+                                                        <hr>
+                                                        Gini: <br>
+                                                        De: <%= text_field_tag :from_gini, nil, size:'5'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_gini, nil, size:'5'%>
+                                                        <hr>
+                                                        Saude: <br>
+                                                        De: <%= text_field_tag :from_health, nil, size:'5'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_health, nil, size:'5'%>
+                                                        <hr>
+                                                        Violência: <br>
+                                                        De: <%= text_field_tag :from_violence, nil, size:'5'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :to_violence, nil, placeholder: 'até', size:'5'%>
+                                                        <hr>
+                                                        Uber? <%=check_box('uber_rb', 'uber_sim')%>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <% end %>
+                                        <% end %>   
                                     </li>
                                     <br><br><br>
                                     <li>
