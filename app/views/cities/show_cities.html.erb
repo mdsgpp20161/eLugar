@@ -126,8 +126,8 @@
                                     <li>
                                     	<table>
                                             <%cont = 0%>
-                                            <%= will_paginate @citiesPaginated%>
-                                            <%@citiesPaginated.each do |f| %>
+                                            
+                                            <%@cities.each do |f| %>
                                                 <%if cont<3 %>
                                                     <td>
                                                         <%=link_to city_path(f), :class=>'opacityit' do%>
@@ -152,6 +152,7 @@
                                                 <%end%>
                                                 <%cont=cont+1%>
                                             <%end%> 
+                                            <%= will_paginate @citiesPaginated%>
                                          </table>
                                     </li>
                                 </ul>
