@@ -152,7 +152,12 @@
                                                 <%end%>
                                                 <%cont=cont+1%>
                                             <%end%> 
-                                            <%= will_paginate @citiesPaginated%>
+                                            <%if @find%>
+                                                <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
+                                            <%else%>
+                                                <%= will_paginate @citiesPaginated %>
+                                                <%end%>
+
                                          </table>
                                     </li>
                                 </ul>

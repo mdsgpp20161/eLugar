@@ -4,9 +4,11 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
+   @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
   	if(params[:find])
+      @find = params[:find]
       @cities = City.where("name like ?", "%#{params[:find]}%")
+      @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
       if (params[:from_idh].present?) and (params[:to_idh].present?)
         @cities = @cities.where(idh: params[:from_idh].to_f .. params[:to_idh].to_f)
@@ -56,7 +58,7 @@ class CitiesController < ApplicationController
   		    @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
       end
     else
-  	  @cities = City.all
+  	  @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
   
