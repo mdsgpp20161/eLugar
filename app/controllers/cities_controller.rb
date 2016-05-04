@@ -35,7 +35,7 @@ class CitiesController < ApplicationController
         @cities = @cities.where(violence: params[:from_violence].to_f .. params[:to_violence].to_f)
       end
       if (params[:uber_rb])
-        @cities = @cities.where(uber: 'Sim')
+        @cities = @cities.where(uber: 'sim')
       end
 
       sorted_cities = params[:sort_cities]
@@ -122,8 +122,8 @@ class CitiesController < ApplicationController
   helper_method :get_emoji
   def get_emoji (attr_name, attr_value)
     if attr_name == 'uber'
-      return 5 if attr_value == 'Sim'
-      return 1 if attr_value == 'Não'
+      return 5 if attr_value == 'sim'
+      return 1 if attr_value == 'nao'
     end
     if attr_name == 'gini'
       attr_value = 1 - attr_value
