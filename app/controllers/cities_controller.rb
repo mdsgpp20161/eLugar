@@ -67,10 +67,10 @@ class CitiesController < ApplicationController
   end
 
   def show
-    get_hash
-    get_hash_text
     @oldID = params[:id]
     @city = City.find(@oldID)
+    get_hash
+    get_hash_text
   end
 
   def compare
@@ -117,5 +117,25 @@ class CitiesController < ApplicationController
     @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade. O valor deste atributo é:'
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber. O valor deste atributo é:'
   end
-
+  helper_method :get_emoji
+  def get_emoji (attr_name, attr_value)
+    if attr_name == 'idh'
+      return (attr_value*5).to_i
+    elsif attr_name == 'gini'
+      return ((1-attr_value)*5).to_i
+    end
+    
+    @average = City.all.map(&:violence).inject(0, &:+)/City.all.length
+    if (0...@average*0.6).include?(attr_value)
+      return 1
+    elsif (@average*0.6...@average*0.9).include?(attr_value)
+      return 2
+    elsif ((@average*0.9...@average*1.1).include?(attr_value))
+      return 3
+    elsif ((@average*1.1...@average*1.4).include?(attr_value))
+      return 4
+    else
+      return 5
+    end
+  end
 end
