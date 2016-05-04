@@ -67,10 +67,11 @@ class CitiesController < ApplicationController
   end
 
   def show
-    get_hash
-    get_hash_text
     @oldID = params[:id]
     @city = City.find(@oldID)
+    get_hash
+    get_hash_text
+    get_hash_values
   end
 
   def compare
@@ -107,7 +108,7 @@ class CitiesController < ApplicationController
 
   def get_hash_text
     @hashText = Hash.new
-    @hashText['population'] = 'Esse dado indica a quantidade de pessoas que habitavam na cidade no ano de 2015 (Censo mais atual). O valor deste atributo é: '
+    @hashText['population'] = "Esse dado indica a quantidade de pessoas que habitavam na cidade no ano de 2015 (Censo mais atual)."
     @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está. O valor deste atributo é:'
     @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados. O valor deste atributo é:'
     @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade. O valor deste atributo é:'
@@ -118,4 +119,16 @@ class CitiesController < ApplicationController
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber. O valor deste atributo é:'
   end
 
+  def get_hash_values
+    @hashValue = Hash.new
+    @hashValue['population'] = "Habitantes: #{@city.population}"
+    @hashValue['demographic_density'] = "Densidade: #{@city.demographic_density}"
+    @hashValue['area'] = "Área: #{@city.area}"
+    @hashValue['fleet'] = "Frota: #{@city.fleet}"
+    @hashValue['idh'] = "IDH: #{@city.idh}"
+    @hashValue['gini'] = "Gini: #{@city.gini}"
+    @hashValue['health'] = "Saúde: #{@city.health}"
+    @hashValue['violence'] = "Violência: #{@city.violence}"
+    @hashValue['uber'] = "Uber: #{@city.uber}"
+  end
 end
