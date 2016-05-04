@@ -4167,6 +4167,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.logo{
+  width: auto;
+  height: 80px;
+  margin-top: -30px;
+}
+
 .navbar {
   position: relative;
   min-height: 50px;
