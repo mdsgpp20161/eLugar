@@ -6776,8 +6776,8 @@ button.close {
   background: #303030;
   color: white;
   position: absolute;
-  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
-  transition: all 1.5s;
+  -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+  transition: all 0.3s;
 }
 
 .pop{
@@ -6807,23 +6807,22 @@ button.close {
   position: absolute;
 }
 
-
 .animation:hover .pop{
   height: 280px;
   display: block;
-}
+} 
 
-.teste{
+.cardboard{
   
 }
 
-.teste ul{
+.cardboard ul{
   margin: 0;
   padding: 0;
   width: 9999px;
 }
 
-.teste li{
+.cardboard li{
   position: relative;
   display: inline-block;
   list-style-type: none;
@@ -6831,4 +6830,44 @@ button.close {
   height: 280px;
   border: 1px solid #DDD;
   margin-right: 6px;
+}
+
+.flip-container:hover .back, .flip-container.hover .back {
+    transform: rotateY(0deg);
+}
+.flip-container:hover .front, .flip-container.hover .front {
+    transform: rotateY(180deg);
+}
+
+.flip-container, .front, .back {
+    height: 280px;
+    width: 200px;
+}
+.flipper {
+    position: relative;
+    transform: perspective(1000px);
+    transform-style: preserve-3d;
+    transition: all 0.6s ease 0s;
+}
+.front, .back {
+  backface-visibility: hidden;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transition: all 0.6s ease 0s;
+  font-family: sans-serif;
+  color:#fff;
+}
+.front {
+  color: white;
+  background: #405861;
+  z-index: 2;
+  font-family: sans-serif;
+}
+.back {
+    color: black;
+    background: #B1D4E0;
+    transform: rotateY(-180deg);
 }
