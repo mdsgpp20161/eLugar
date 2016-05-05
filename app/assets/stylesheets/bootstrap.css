@@ -1128,6 +1128,7 @@ img {
 }
 .img-rounded {
   border-radius: 50% !important;
+  border: black solid;
 }
 .img-thumbnail {
   display: inline-block;
@@ -4170,7 +4171,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .logo{
   width: auto;
-  height: 80px;
+  height: 90px;
   margin-top: -30px;
 }
 
@@ -4178,7 +4179,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  border: none !important;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -6777,47 +6778,11 @@ button.close {
   left:25%;
 }
 
-.animation{
-  width: 200px;
-  height: 100px;
-  background: #303030;
-  color: white;
-  position: absolute;
-  -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
-  transition: all 0.3s;
-}
-
-.pop{
-  width: 200px;
-  height: 100px;
-  display: none;
-  color: white;
-  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
-  transition: all 1.5s;
-}
-
-.cabecalho{
-  display: block;
-}
-
-.animation:hover{
-  height: 280px;
-}
-
-.animation:hover .cabecalho{
-  display:none;
-}
-
 .foto{
   height: 200em;
   width: 200em;
-  position: absolute;
 }
 
-.animation:hover .pop{
-  height: 280px;
-  display: block;
-} 
 
 .cardboard{
   
@@ -6835,7 +6800,6 @@ button.close {
   list-style-type: none;
   width: 200px;
   height: 280px;
-  border: 1px solid #DDD;
   margin-right: 6px;
 }
 
@@ -6858,8 +6822,8 @@ button.close {
 }
 .front, .back {
   backface-visibility: hidden;
-  left: 0;
   position: absolute;
+  left: 0;
   top: 0;
   transform: rotateY(0deg);
   transform-style: preserve-3d;

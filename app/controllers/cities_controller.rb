@@ -109,14 +109,14 @@ class CitiesController < ApplicationController
   def get_hash_text
     @hashText = Hash.new
     @hashText['population'] = "Esse dado indica a quantidade de pessoas que habitavam na cidade no ano de 2015 (Censo mais atual)."
-    @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está. O valor deste atributo é:'
-    @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados. O valor deste atributo é:'
-    @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade. O valor deste atributo é:'
-    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade. O valor deste atributo é:'
-    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade. O valor deste atributo é:'
-    @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade. O valor deste atributo é:'
-    @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade. O valor deste atributo é:'
-    @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber. O valor deste atributo é:'
+    @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está.'
+    @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados.'
+    @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade.'
+    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade.'
+    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade.'
+    @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
+    @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade.'
+    @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
   end
 
   helper_method :get_emoji

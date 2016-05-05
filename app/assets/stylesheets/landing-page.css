@@ -23,10 +23,14 @@ h6 {
 
 .topnav {
     font-size: 14px;
-    background: #ECECEC;
+    background: black;
 }
 
 .white{
+    color: white !important;
+}
+
+.white a{
     color: white !important;
 }
 
@@ -41,7 +45,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../assets/BrasiliaFundo.jpg) no-repeat center center;
+    background: url(../assets/fundo3.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -49,7 +53,7 @@ h6 {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
-    background-color: #F5F5F5;
+    background-color: #D0B4AE;
     color: black;
     background-size: cover;
 }
@@ -58,12 +62,13 @@ h6 {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
+    background-color: #D0B4AE;
     color: white;
 }
 
 .intro-message {
     position: relative;
-    padding-top: 20%;
+    padding-top: 5%;
     padding-bottom: 20%;
 }
 
