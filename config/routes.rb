@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'find' => 'cities#show_cities'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact_us'
+  get 'references' => 'static_pages#references'
+  get "static_pages/download_pdf"
 
 
   # Example of regular route:

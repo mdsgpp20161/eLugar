@@ -6,4 +6,15 @@ class StaticPagesController < ApplicationController
 	def contact_us
 	end
 
+	def references
+	end
+
+	def download_pdf
+		send_file(
+			"#{Rails.root}/public/Referências.pdf",
+			filename: "Referências.pdf",
+			type: "application/pdf"
+		)
+	end
+
 end
