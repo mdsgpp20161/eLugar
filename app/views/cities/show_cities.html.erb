@@ -76,7 +76,7 @@
                                         <%= form_tag(find_path, :method => :post) do %>
         									<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
                                             <b class="black">Ordenar por:</b>
-        									<%= select_tag :sort_cities, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini','Saude']),{include_blank: true}%>
+        									<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']),{include_blank: true}%>
                                             &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
         									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
                                             <div id="filter_form">
@@ -114,7 +114,8 @@
                                                         <hr>
                                                         Violência: <br>
                                                         De: <%= text_field_tag :from_violence, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_violence, nil, placeholder: 'até', size:'5'%>
+                                                        Até: <%= text_field_tag :to_violence, nil, size:'5'%>
+                                                        <hr>
                                                         Uber? <%=check_box('uber_rb', 'uber_sim')%>
                                                     </div>
                                                 </div>

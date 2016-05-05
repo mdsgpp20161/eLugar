@@ -40,24 +40,23 @@ class CitiesController < ApplicationController
       end
 
       sorted_cities = params[:sort_cities]
-      case sorted_cities
-        when "Populacao"
-          @cities = @cities.sort_by{|obj| obj.population}.reverse
-        when "Densidade"
-          @cities = @cities.sort_by{|obj| obj.demographic_density}.reverse
-        when "Area"
-          @cities = @cities.sort_by{|obj| obj.area}.reverse
-        when "Frota"
-          @cities = @cities.sort_by{|obj| obj.fleet}.reverse
-        when "IDH"
-          @cities = @cities.sort_by{|obj| obj.idh}.reverse
-        when "Gini"
-          @cities = @cities.sort_by {|obj| obj.gini}.reverse
-        when "Saude"
-          @cities = @cities.sort_by{|obj| obj.health}.reverse
-        else
-  		    @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      sorted = false
+
+      @cities.columns.each do |attr|
+        if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at')
+          next
+        end
+        if(sorted_cities == @hash[attr.name])
+          @cities = @cities.sort_by{|obj| obj.send(attr.name.to_sym)}.reverse
+          sorted = true
+          break
+        end
       end
+
+      if(!sorted)
+        @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      end
+      
     else
   	  @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
