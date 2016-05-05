@@ -61,8 +61,8 @@
 <div style="align: center"> 
 	<%#= form_tag(cities_show_path, :method => :get) do %>
 		<!-- <h1 style="text: left">
-		<%if @city1 %>
-			<%=@city1.name%>
+		<% if @city1 %>
+			<%= @city1.name %>
 		<% end %>
 		</h1> -->
 		</br>
@@ -70,10 +70,10 @@
 		</br>
 		<% if @city1 && @city2 %>
 			<h1 style="float: left">
-					<%=@city1.name%>
+					<%= @city1.name %>
 				</h1>		
 			<h1 style="text-align: right">
-					<%=@city2.name%>
+					<%= @city2.name %>
 				</h1>
 			<center>
 				<% @city1.attributes.each do |attr_name, attr_value| %>
@@ -82,7 +82,7 @@
 				<% end %>
 				<%= "#{@hash[attr_name]} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
 	    		<div class="progress" style="width: 1000px;">
-	    			<%if(attr_value > @city2.send(attr_name.to_sym))%>
+	    			<% if(attr_value > @city2.send(attr_name.to_sym)) %>
 			    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
 			    		<div class="progress-bar progress-bar-danger" style="width: <%= @city2.send(attr_name.to_sym)*100/(attr_value +@city2.send(attr_name.to_sym))%>%"></div>
 			    	<% else %>
@@ -91,12 +91,12 @@
 			    	<% end %>
 	    		</div>
     			<% end %>
-    			<%= link_to "Voltar", compare_path(:id => @oldID)%>		
+    			<%= link_to "Voltar", compare_path(:id => @oldID) %>
 			</center>
-    	<% elsif @city1%>
+    	<% elsif @city1 %>
     		<div style="width: 600px;">
 	    	<h1 style="text-align: left">
-				<%=@city1.name%>
+				<%= @city1.name %>
 			</h1>
 			</div>
 
@@ -111,31 +111,31 @@
 				    	<%= form_tag(compare_path(:id => @oldID)) do %>
 	    					<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
 	    					<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-	    					   'Saude']),{include_blank: true}%>
-	    					<%= submit_tag "Pesquisar"%>
+	    					   'Saude']),{include_blank: true} %>
+	    					<%= submit_tag "Pesquisar" %>
 	    				<% end %>
 
 				    	<table>
-				    			<%cont = 0%>
-				    			<%@cities.each do |f| %>
-				    				<%if cont<5 %>
+				    			<% cont = 0 %>
+				    			<% @cities.each do |f| %>
+				    				<% if cont<5 %>
 				    					<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
 				    					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				    				<%else%>
+				    				<% else %>
 										<tr>
 										</tr>
 										<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
 										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 										<%cont = 0%>
-				    				<%end%>
-				    				<%cont=cont+1%>
-				    			<%end%>	
+				    				<% end %>
+				    				<% cont = cont+1 %>
+				    			<% end %>	
 				    	</table>
 				    </div>
 				</div> 	
 			</div>
 			<center>
-				<%= link_to "Voltar", show_path(:id => @oldID)%>
+				<%= link_to "Voltar", show_path(:id => @oldID) %>
 			</center>	
 		<% end %>
 	<%# end %>

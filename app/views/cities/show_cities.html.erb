@@ -84,37 +84,15 @@
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading"><left>Filtragem</left></div>
                                                     <div class="panel-body">
-                                                        População:<br>
-                                                        De: <%= text_field_tag :from_population, nil, size:'8'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_population, nil, size:'8'%>
-                                                        <hr>
-                                                        Densidade demográfica:<br>
-                                                        De: <%= text_field_tag :from_density, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_density, nil, size:'5'%>
-                                                        <hr>
-                                                        Área: <br>
-                                                        De: <%= text_field_tag :from_area, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_area, nil, size:'5'%>
-                                                        <hr>
-                                                        Frota: <br>
-                                                        De: <%= text_field_tag :from_fleet, nil, size:'8'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_fleet, nil, size:'8'%>
-                                                        <hr>
-                                                        IDH:<br>
-                                                        De: <%= text_field_tag :from_idh, nil, size:'5'%> &nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_idh, nil, size:'5'%>
-                                                        <hr>
-                                                        Gini: <br>
-                                                        De: <%= text_field_tag :from_gini, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_gini, nil, size:'5'%>
-                                                        <hr>
-                                                        Saude: <br>
-                                                        De: <%= text_field_tag :from_health, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_health, nil, size:'5'%>
-                                                        <hr>
-                                                        Violência: <br>
-                                                        De: <%= text_field_tag :from_violence, nil, size:'5'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :to_violence, nil, size:'5'%>
+                                                        <% City.columns.each do |attr| %>
+                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name')%>
+                                                                <% next%>
+                                                            <%end%>
+                                                            <%= "#{@hash[attr.name]} :"%><br>
+                                                            De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8'%>
+                                                            <hr>
+                                                        <%end%>
                                                         <hr>
                                                         Uber? <%=check_box('uber_rb', 'uber_sim')%>
                                                     </div>
@@ -193,9 +171,7 @@
         <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
     <!-- /.container -->
 </body>

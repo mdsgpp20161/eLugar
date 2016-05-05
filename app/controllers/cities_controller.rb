@@ -11,41 +11,21 @@ class CitiesController < ApplicationController
       @cities = City.where("name like ?", "%#{params[:find]}%")
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
-      if (params[:from_idh].present?) and (params[:to_idh].present?)
-        @cities = @cities.where(idh: params[:from_idh].to_f .. params[:to_idh].to_f)
-      end
-      if (params[:from_population].present?) and (params[:to_population].present?)
-        @cities = @cities.where(population:params[:from_population].to_i .. params[:to_population].to_i)
-      end
-      if (params[:from_density].present?) and (params[:to_density].present?)
-        @cities = @cities.where(demographic_density: params[:from_density].to_f .. params[:to_density].to_f)
-      end
-      if (params[:from_area].present?) and (params[:to_area].present?)
-        @cities = @cities.where(area: params[:from_area].to_f .. params[:to_area].to_f)
-      end
-      if (params[:from_fleet].present?) and (params[:to_fleet].present?)
-        @cities = @cities.where(fleet: params[:from_fleet].to_f .. params[:to_fleet].to_f)
-      end
-      if (params[:from_gini].present?) and (params[:to_gini].present?)
-        @cities = @cities.where(gini: params[:from_gini].to_f .. params[:to_gini].to_f)
-      end
-      if (params[:from_health].present?) and (params[:to_health].present?)
-        @cities = @cities.where(health: params[:from_health].to_f .. params[:to_health].to_f)
-      end
-      if (params[:from_violence].present?) and (params[:to_violence].present?)
-        @cities = @cities.where(violence: params[:from_violence].to_f .. params[:to_violence].to_f)
-      end
-      if (params[:uber_rb])
-        @cities = @cities.where(uber: true)
+      @cities.columns.each do |attr|
+        if (attr.name == 'id' || attr.name == 'name' || attr.name == 'image' || attr.name == 'created.at' || attr.name == 'updated.at' || attr.name == 'uber')
+          next
+        end
+        if(params[:"from_#{attr.name}"].present?) and (params[:"to_#{attr.name}"].present?)
+          @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
+          sorted = true
+          break
+        end
       end
 
       sorted_cities = params[:sort_cities]
       sorted = false
 
       @cities.columns.each do |attr|
-        if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at')
-          next
-        end
         if(sorted_cities == @hash[attr.name])
           @cities = @cities.sort_by{|obj| obj.send(attr.name.to_sym)}.reverse
           sorted = true
