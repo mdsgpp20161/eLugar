@@ -141,15 +141,15 @@ class CitiesController < ApplicationController
     
     @average = City.all.map(&attr_name.to_sym).inject(0, &:+)/City.all.length
     if (0...@average*0.6).include?(attr_value)
-      return 1
+      if attr_name == 'health' then return 1 else return 5 end
     elsif (@average*0.6...@average*0.9).include?(attr_value)
-      return 2
+      if attr_name == 'health' then return 2 else return 4 end
     elsif ((@average*0.9...@average*1.1).include?(attr_value))
       return 3
     elsif ((@average*1.1...@average*1.4).include?(attr_value))
-      return 4
+      if attr_name == 'health' then return 4 else return 2 end
     elsif attr_value > @average*1.4
-      return 5
+      if attr_name == 'health' then return 5 else return 1 end
     end
   end
 
