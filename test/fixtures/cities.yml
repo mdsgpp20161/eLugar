@@ -10,16 +10,16 @@ brasilia:
   gini: 1.5
   health: 1.5
   violence: 1.5
-  uber: "sim"
+  uber: true
 
 ceara:
-  name: ""
-  population: 
-  demographic_density: 
-  area: 
-  fleet: 
-  idh: 
-  gini: 
-  health: 
-  violence:
-  uber: ""
+  name: "ceara"
+  population: 23
+  demographic_density: 1 
+  area: 2
+  fleet: 3
+  idh: 1
+  gini: 1
+  health: 6 
+  violence: 6
+  uber: false

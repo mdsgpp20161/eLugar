@@ -27,7 +27,7 @@
     <![endif]-->
 
 </head>
-<body>	
+<body>  
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,7 +40,7 @@
                 </button>
                 <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
             </div>
-            <!-- Collect the nav links, forms, and other content	 for toggling -->
+            <!-- Collect the nav links, forms, and other content     for toggling -->
             <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -57,9 +57,9 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>	
-	
-	<!-- Header -->
+    </nav>  
+    
+    <!-- Header -->
     <a name="about"></a>
     <div class="intro-header-show">
         <div class="container">
@@ -70,16 +70,16 @@
                         <h2>Análise da Cidade</h2>
                         <hr class="intro-divider">
                         <div class="list-inline intro-social-buttons black">
-	                        <ul class="cardboard">
-	                            <%= form_tag(cities_show_path, :method => :get) do %>
-									<h1>
-										<%=@city.name%>
-									</h1>
-									<% @city.attributes.each do |attr_name, attr_value| %>
-										<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
-										    <% next %>
-									    <% end %>
-										<li class="cardboard">
+                            <ul class="cardboard">
+                                <%= form_tag(cities_show_path, :method => :get) do %>
+                                    <h1>
+                                        <%=@city.name%>
+                                    </h1>
+                                    <% @city.attributes.each do |attr_name, attr_value| %>
+                                        <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
+                                            <% next %>
+                                        <% end %>
+                                        <li class="cardboard">
                                             <div class="flip-container">
                                                 <div class="flipper">
                                                     <div class="front">
@@ -95,11 +95,11 @@
                                                         <p><%=@hashValue[attr_name]%></p>
                                                     </div>
                                                 </div>
-                                            </div>	
-										</li>
-									<% end %>
-								<% end %>
-	                        </ul>
+                                            </div>  
+                                        </li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
                         </div>
                        <%= link_to "Compare", compare_path(:id => @oldID) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                        <%= link_to "Voltar", find_path(:id => nil) %>  

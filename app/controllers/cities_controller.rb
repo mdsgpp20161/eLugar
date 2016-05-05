@@ -4,9 +4,9 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    get_hash
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
-  	if(params[:find])
+        get_hash
+    if(params[:find])
       @find = params[:find]
       @cities = City.where("name like ?", "%#{params[:find]}%")
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
@@ -35,7 +35,7 @@ class CitiesController < ApplicationController
       if (params[:from_violence].present?) and (params[:to_violence].present?)
         @cities = @cities.where(violence: params[:from_violence].to_f .. params[:to_violence].to_f)
       end
-      if (params[:uber_rb])
+      if (params[:uber_rb] == 'uber_sim')
         @cities = @cities.where(uber: true)
       end
 
@@ -58,9 +58,9 @@ class CitiesController < ApplicationController
       end
       
     else
-  	  @cities = City.all.paginate(:page => params[:page], :per_page => 6)
+      @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
-  	end
+    end
   
 
 

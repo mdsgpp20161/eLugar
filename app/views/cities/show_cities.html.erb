@@ -62,7 +62,7 @@
         <!-- /.container -->
     </nav>  
     
-        	<!-- Header -->
+            <!-- Header -->
             <a name="about"></a>
             <div class="intro-header-find">
                 <div class="container">
@@ -73,12 +73,12 @@
                                 <hr class="intro-divider">
                                 <ul class="list-inline intro-social-buttons black">
                                     <li>
-                                        <%= form_tag(find_path, :method => :post) do %>
-        									<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
+                                        <%= form_tag(find_path, :method => :get) do %>
+                                            <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50'%><br>
                                             <b class="black">Ordenar por:</b>
-        									<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']),{include_blank: true}%>
+                                            <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']),{include_blank: true}%>
                                             &nbsp;&nbsp;<a href="#" id="show_filter_form" class = "btn btn-default btn-sm">+</a>
-        									<%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
+                                            <%= submit_tag "Pesquisar", class: "btn btn-default btn-sm"%>
                                             <div id="filter_form">
                                             <br>
                                                 <div class="panel panel-default">
@@ -124,7 +124,7 @@
                                     </li>
                                     <br><br><br>
                                     <li>
-                                    	<table>
+                                        <table>
                                             <%cont = 0%>
                                             
                                             <%@cities.each do |f| %>
