@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class CitiesControllerTest < ActionController::TestCase
-	fixtures :cities
+  fixtures :cities
 
   def setup
-	@cityBrasilia = cities(:brasilia)
+  @cityBrasilia = cities(:brasilia)
   @cityCeara = cities(:ceara)
   end
 
@@ -14,9 +14,9 @@ class CitiesControllerTest < ActionController::TestCase
   end
 
    test "should get city" do
-  	get :show, id: @cityBrasilia.id
+    get :show, id: @cityBrasilia.id
 
-  	assert_response :success
+    assert_response :success, "ssadas#{@cityBrasilia.id}"
 
   end
 
@@ -32,8 +32,8 @@ class CitiesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:cities)
   end 
 
-  test "should not save city without any attribute" do
-      assert_not @cityCeara.save
+  test "should save city" do
+      assert @cityCeara.save
   end
 
 test "should get compare" do

@@ -24,9 +24,12 @@ ActiveRecord::Schema.define(version: 20160428175332) do
     t.float    "health"
     t.float    "violence"
     t.boolean   "uber"
+    t.string   "image"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "image"
+
   end
 
 end
+
+

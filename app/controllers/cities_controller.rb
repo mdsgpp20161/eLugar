@@ -4,17 +4,14 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    get_hash
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
-  	if(params[:find])
+        get_hash
+    if(params[:find])
       @find = params[:find]
       @cities = City.where("name like ?", "%#{params[:find]}%")
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
       @cities.columns.each do |attr|
-        if (attr.name == 'id' || attr.name == 'name' || attr.name == 'image' || attr.name == 'created.at' || attr.name == 'updated.at' || attr.name == 'uber')
-          next
-        end
         if(params[:"from_#{attr.name}"].present?) and (params[:"to_#{attr.name}"].present?)
           @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
           sorted = true
@@ -38,12 +35,9 @@ class CitiesController < ApplicationController
       end
       
     else
-  	  @cities = City.all.paginate(:page => params[:page], :per_page => 6)
+      @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
   	end
-  
-
-
   end
 
   def show
@@ -95,7 +89,7 @@ class CitiesController < ApplicationController
     @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade.'
     @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade.'
     @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
-    @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade.'
+    @hashText['violence'] = 'Esse dado mostra a taxa de homícidios por armas de fogo na cidade entre os anos de 2010 e 2012.'
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
   end
 
