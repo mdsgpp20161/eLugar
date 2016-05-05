@@ -60,10 +60,7 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
-    end
-  
-
-
+  	end
   end
 
   def show
@@ -115,7 +112,7 @@ class CitiesController < ApplicationController
     @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade.'
     @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade.'
     @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
-    @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade.'
+    @hashText['violence'] = 'Esse dado mostra a taxa de homícidios por armas de fogo na cidade entre os anos de 2010 e 2012.'
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
   end
 
