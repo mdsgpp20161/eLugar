@@ -36,7 +36,7 @@ class CitiesController < ApplicationController
         @cities = @cities.where(violence: params[:from_violence].to_f .. params[:to_violence].to_f)
       end
       if (params[:uber_rb])
-        @cities = @cities.where(uber: 'Sim')
+        @cities = @cities.where(uber: true)
       end
 
       sorted_cities = params[:sort_cities]
@@ -68,9 +68,11 @@ class CitiesController < ApplicationController
   end
 
   def show
-    get_hash
     @oldID = params[:id]
     @city = City.find(@oldID)
+    get_hash
+    get_hash_text
+    get_hash_values   
   end
 
   def compare
@@ -102,6 +104,69 @@ class CitiesController < ApplicationController
     @hash['gini'] = 'Índice de Gini'
     @hash['health'] = 'Índice de Saúde'
     @hash['violence'] = 'Índice de Violência'
-    @hash['uber'] = 'Uber'
+    @hash['uber'] = 'Uber'   
+  end
+
+  def get_hash_text
+    @hashText = Hash.new
+    @hashText['population'] = "Esse dado indica a quantidade de pessoas que habitavam na cidade no ano de 2015 (Censo mais atual)."
+    @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está.'
+    @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados.'
+    @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade.'
+    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade.'
+    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade.'
+    @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
+    @hashText['violence'] = 'Esse dado mostra a quantidade de homícidios por armas de fogo na cidade.'
+    @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
+  end
+
+  helper_method :get_emoji
+  def get_emoji (attr_name, attr_value)
+    if attr_name == 'uber'
+      return 5 if attr_value
+      return 1 if !attr_value
+    end
+    if attr_name == 'gini'
+      attr_value = 1 - attr_value
+    end
+    if attr_name == 'idh' || attr_name == 'gini'
+      if attr_value < 0.3
+        return 1
+      elsif (0.3...0.4).include?(attr_value)
+        return 2
+      elsif (0.4...0.6).include?(attr_value)
+        return 3
+      elsif(0.6...0.7).include?(attr_value)
+        return 4
+      elsif attr_value > 0.7
+        return 5
+      end
+    end
+    
+    @average = City.all.map(&attr_name.to_sym).inject(0, &:+)/City.all.length
+    if (0...@average*0.6).include?(attr_value)
+      return 1
+    elsif (@average*0.6...@average*0.9).include?(attr_value)
+      return 2
+    elsif ((@average*0.9...@average*1.1).include?(attr_value))
+      return 3
+    elsif ((@average*1.1...@average*1.4).include?(attr_value))
+      return 4
+    elsif attr_value > @average*1.4
+      return 5
+    end
+  end
+
+  def get_hash_values
+    @hashValue = Hash.new
+    @hashValue['population'] = "Habitantes: #{@city.population}"
+    @hashValue['demographic_density'] = "Densidade: #{@city.demographic_density}"
+    @hashValue['area'] = "Área: #{@city.area}"
+    @hashValue['fleet'] = "Frota: #{@city.fleet}"
+    @hashValue['idh'] = "IDH: #{@city.idh}"
+    @hashValue['gini'] = "Gini: #{@city.gini}"
+    @hashValue['health'] = "Saúde: #{@city.health}"
+    @hashValue['violence'] = "Violência: #{@city.violence}"
+    @hashValue['uber'] = "Uber: " + if @city.uber then "Sim" else "Não" end 
   end
 end

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="sortcut icon" href="../assets/eLugarLogo.ico" type="image/x-icon" />
     <title>êLugar</title>
 
     <!-- Bootstrap Core CSS -->
@@ -38,10 +38,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="/">êLugar</a>
+                <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
             </div>
             <!-- Collect the nav links, forms, and other content	 for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/about">Sobre</a>
@@ -50,7 +50,7 @@
                         <a href="#services">Referências</a>
                     </li>
                     <li>
-                        <a href="#contact">Contato</a>
+                        <a href="/contact">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -67,27 +67,33 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message-show black">
-                        <h3>Análise da Cidade</h3>
+                        <h2>Análise da Cidade</h2>
                         <hr class="intro-divider">
                         <div class="list-inline intro-social-buttons black">
-	                        <ul class="teste">
+	                        <ul class="cardboard">
 	                            <%= form_tag(cities_show_path, :method => :get) do %>
 									<h1>
 										<%=@city.name%>
 									</h1>
 									<% @city.attributes.each do |attr_name, attr_value| %>
 										<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
-										<% next %>
-									<% end %>
-										<li class="teste">
-											<div class="animation">
-												<p class="cabecalho"><%= @hash[attr_name] %>
-													<img class=" img-responsive foto" style="border: none;" src="/assets/emot1.png" height="200em" width="200em"></img>
-												</p>
-												<div class="pop">
-													<p><%=attr_value%></p>
-												</div>	
-											</div>
+										    <% next %>
+									    <% end %>
+										<li class="cardboard">
+                                            <div class="flip-container">
+                                                <div class="flipper">
+                                                    <div class="front">
+                                                        <br><br><br><br><br>
+                                                        <p><%=@hash[attr_name]%></p>
+                                                        <img class=" img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>></img>
+                                                    </div>
+                                                    <div class="back">
+                                                        <br><br><br>
+                                                        <p><%=@hashText[attr_name]%></p>
+                                                        <p><%=@hashValue[attr_name]%></p>
+                                                    </div>
+                                                </div>
+                                            </div>	
 										</li>
 									<% end %>
 								<% end %>

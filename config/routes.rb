@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   get 'index' => 'cities#index'
   get 'find' => 'cities#show_cities'
   get 'cities/show'
+  get 'show' =>  'cities#show'
   get 'compare' => 'cities#compare'
   post 'compare' => 'cities#compare'
   post 'find' => 'cities#show_cities'
   get 'about' => 'static_pages#about'
+  get 'contact' => 'static_pages#contact_us'
 
 
   # Example of regular route:
