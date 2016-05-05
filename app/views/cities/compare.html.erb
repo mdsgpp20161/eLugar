@@ -41,7 +41,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content	 for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right ">
                     <li>
                         <a href="/about">Sobre</a>
                     </li>
@@ -58,7 +58,7 @@
         <!-- /.container -->
     </nav>	
 
-<div style="align: center"> 
+<div class ="intro-header-compare"> 
 	<%#= form_tag(cities_show_path, :method => :get) do %>
 		<!-- <h1 style="text: left">
 		<%if @city1 %>
@@ -94,13 +94,11 @@
     			<%= link_to "Voltar", compare_path(:id => @oldID)%>		
 			</center>
     	<% elsif @city1%>
-    		<div style="width: 600px;">
-	    	<h1 style="text-align: left">
-				<%=@city1.name%>
-			</h1>
+    		<div class="intro-header-compare">
+	    	<h1> <%=@city1.name%> </h1>
 			</div>
 
-    		<div style="width: 100%;margin-left: 200px;margin-top: -70px;height: 500px;">
+    		<div style="width: 83%;margin-left: 200px;margin-top: -70px;height: 500px;">
     			<div style="display: table-row">
 		    		<div style="width: 600px;padding: -100px;display: table-cell;">
 			    		
@@ -140,4 +138,8 @@
 		<% end %>
 	<%# end %>
 </div>
+	<footer style="background-color: #D0B4AE">
+        <div>
+        </div>
+    </footer>
 </body>

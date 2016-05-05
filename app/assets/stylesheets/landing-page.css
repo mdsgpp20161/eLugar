@@ -55,7 +55,16 @@ h6 {
     text-align: center;
     background-color: #D0B4AE;
     color: black;
-    background-size: cover;
+}
+
+.intro-header-compare{
+    text-align: center;
+    background-color: #D0B4AE;
+    color: black;
+}
+
+.intro-header-compare > h1{
+    text-align: left;
 }
 
 .intro-header-show{
