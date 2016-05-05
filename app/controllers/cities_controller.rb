@@ -4,7 +4,8 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-   @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
+    get_hash
+    @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
   	if(params[:find])
       @find = params[:find]
       @cities = City.where("name like ?", "%#{params[:find]}%")
