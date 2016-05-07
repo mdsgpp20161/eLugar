@@ -82,13 +82,8 @@
 				<% end %>
 				<%= "#{@hash[attr_name]} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
 	    		<div class="progress" style="width: 1000px;">
-	    			<% if(attr_value > @city2.send(attr_name.to_sym)) %>
-			    		<div class="progress-bar progress-bar-success" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
-			    		<div class="progress-bar progress-bar-danger" style="width: <%= @city2.send(attr_name.to_sym)*100/(attr_value +@city2.send(attr_name.to_sym))%>%"></div>
-			    	<% else %>
-			    		<div class="progress-bar progress-bar-danger" style="width: <%= attr_value*100/(attr_value +@city2.send(attr_name.to_sym))%>%;"></div>
-			    		<div class="progress-bar progress-bar-success" style="width: <%= @city2.send(attr_name.to_sym)*100/(attr_value +@city2.send(attr_name.to_sym))%>%"></div>
-			    	<% end %>
+		    		<div class="progress-bar progress-bar-success" style="width: <%= get_average(@city1, @city2, attr_name)%>%;"></div>
+		    		<div class="progress-bar progress-bar-danger" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%"></div>
 	    		</div>
     			<% end %>
     			<%= link_to "Voltar", compare_path(:id => @oldID) %>

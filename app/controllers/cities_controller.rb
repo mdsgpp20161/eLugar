@@ -142,4 +142,12 @@ class CitiesController < ApplicationController
     @hashValue['violence'] = "Violência: #{@city.violence}"
     @hashValue['uber'] = "Uber: " + if @city.uber then "Sim" else "Não" end 
   end
+
+  helper_method :get_average
+  def get_average (city1, city2, attr_name)
+    attr_value1 = city1.send(attr_name.to_sym)
+    attr_value2 = city2.send(attr_name.to_sym)
+
+    attr_value1*100/(attr_value1 + attr_value2)
+  end
 end
