@@ -59,31 +59,32 @@
     </nav>	
 
 <div class ="intro-header-compare"> 
-	<%#= form_tag(cities_show_path, :method => :get) do %>
-		<!-- <h1 style="text: left">
-		<% if @city1 %>
-			<%= @city1.name %>
-		<% end %>
-		</h1> -->
 		</br>
 		</br>
 		</br>
 		<% if @city1 && @city2 %>
-			<h1 style="float: left">
-					<%= @city1.name %>
-				</h1>		
-			<h1 style="text-align: right">
-					<%= @city2.name %>
-				</h1>
+			<div style="width: 100%">
+			 <div style="float: left; width: 50%;">
+			 	<h2><%=@city1.name %></h2>
+			 </div>
+			 <div style="float: left; width: 50%;">
+			 	<h2><%=@city2.name %></h2>
+			 </div>
+			 <br style="clear: left;" />
+			</div>
 			<center>
 				<% @city1.attributes.each do |attr_name, attr_value| %>
 					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
 					<% next %>
 				<% end %>
-				<%= "#{@hash[attr_name]} #{attr_value}/#{@city2.send(attr_name.to_sym)}" %>
+				<%= "#{@hash[attr_name]}" %>
 	    		<div class="progress" style="width: 1000px;">
-		    		<div class="progress-bar progress-bar-success" style="width: <%= get_average(@city1, @city2, attr_name)%>%;"></div>
-		    		<div class="progress-bar progress-bar-danger" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%"></div>
+		    		<div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
+		    			<%= attr_value%>
+		    		</div>
+		    		<div class="progress-bar progress-bar-success" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
+		    			<%= @city2.send(attr_name.to_sym) %>
+		    		</div>
 	    		</div>
     			<% end %>
     			<%= link_to "Voltar", compare_path(:id => @oldID) %>
@@ -133,10 +134,9 @@
 				<%= link_to "Voltar", show_path(:id => @oldID) %>
 			</center>	
 		<% end %>
-	<%# end %>
 </div>
-	<footer style="background-color: #D0B4AE">
+<!-- 	<footer style="background-color: #D0B4AE">
         <div>
         </div>
-    </footer>
+    </footer> -->
 </body>
