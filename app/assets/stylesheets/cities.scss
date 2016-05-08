@@ -4,3 +4,14 @@
 #filter_form{
 	display:none
 }
+
+.shadow {
+	text-shadow: 1px 1px 3px #666, -1px -1px 3px #fff, 1px
+1px #666, -1px -1px #fff;
+	color: #171717;
+	font-weight: normal;
+}
+
+.form_order{
+	position: center
+}
