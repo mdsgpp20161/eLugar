@@ -8,10 +8,13 @@
 .shadow {
 	text-shadow: 1px 1px 3px #666, -1px -1px 3px #fff, 1px
 1px #666, -1px -1px #fff;
-	color: #171717;
-	font-weight: normal;
+	font-color: #171717;
 }
 
 .form_order{
 	position: center
+}
+
+p.normal {
+    font-style: normal;
 }
