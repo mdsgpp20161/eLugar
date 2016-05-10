@@ -86,7 +86,10 @@
                                                         <br><br><br><br><br>
                                                         <p><%=@hash[attr_name]%></p>
                                                         <center>
-                                                            <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> </img>
+                                                            <%if(attr_name == 'population' || attr_name == 'area')%>                                              
+                                                            <%else%>
+                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> </img>
+                                                            <%end%>
                                                         </center>
                                                     </div>
                                                     <div class="back">

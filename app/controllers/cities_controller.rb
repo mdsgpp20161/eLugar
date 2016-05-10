@@ -28,19 +28,24 @@ class CitiesController < ApplicationController
 
       @cities.columns.each do |attr|
         if(sorted_cities == @hash[attr.name])
-          @cities = @cities.sort_by{|obj| obj.send(attr.name.to_sym)}.reverse
+          if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+            attr.name == 'fleet')
+            @cities = @cities.order(:"#{attr.name}")
+          else
+            @cities = @cities.order("#{attr.name}": :desc)
+          end
           sorted = true
           break
         end
       end
 
       if(!sorted)
-        @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+        @cities = @cities.order(:name)
       end
       
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
-      @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      @cities = @cities.order(:name)
   	end
   end
 
@@ -91,8 +96,8 @@ class CitiesController < ApplicationController
     @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está.'
     @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados.'
     @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade.'
-    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Combinado com o índice de Gini, trás uma análise importante sobre a condição da cidade.'
-    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Combinado com o IDH, trás uma análise importante sobre a condição da cidade.'
+    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Quanto maior o número, mais desenvolvida ela está.'
+    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Quanto maior o número, maior a desiguldade.'
     @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
     @hashText['violence'] = 'Esse dado mostra a taxa de homícidios por armas de fogo na cidade entre os anos de 2010 e 2012.'
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
@@ -137,14 +142,14 @@ class CitiesController < ApplicationController
 
   def get_hash_values
     @hashValue = Hash.new
-    @hashValue['population'] = "Habitantes: #{@city.population}"
-    @hashValue['demographic_density'] = "Densidade: #{@city.demographic_density}"
-    @hashValue['area'] = "Área: #{@city.area}"
-    @hashValue['fleet'] = "Frota: #{@city.fleet}"
+    @hashValue['population'] = "Habitantes: #{@city.population} Hab"
+    @hashValue['demographic_density'] = "Densidade: #{@city.demographic_density} Hab/Km²"
+    @hashValue['area'] = "Área: #{@city.area} Km²"
+    @hashValue['fleet'] = "Frota: #{@city.fleet} Hab/Onibus"
     @hashValue['idh'] = "IDH: #{@city.idh}"
     @hashValue['gini'] = "Gini: #{@city.gini}"
-    @hashValue['health'] = "Saúde: #{@city.health}"
-    @hashValue['violence'] = "Violência: #{@city.violence}"
+    @hashValue['health'] = "Saúde: #{@city.health} Hospitais/Densidade"
+    @hashValue['violence'] = "Violência: #{@city.violence} homícidios"
     @hashValue['uber'] = "Uber: " + if @city.uber then "Sim" else "Não" end 
   end
 
