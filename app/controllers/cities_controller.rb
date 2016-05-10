@@ -24,19 +24,24 @@ class CitiesController < ApplicationController
 
       @cities.columns.each do |attr|
         if(sorted_cities == @hash[attr.name])
-          @cities = @cities.sort_by{|obj| obj.send(attr.name.to_sym)}.reverse
+          if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+            attr.name == 'fleet')
+            @cities = @cities.order(:"#{attr.name}")
+          else
+            @cities = @cities.order("#{attr.name}": :desc)
+          end
           sorted = true
           break
         end
       end
 
       if(!sorted)
-        @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+        @cities = @cities.order(:name)
       end
       
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
-      @cities = @cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      @cities = @cities.order(:name)
   	end
   end
 
