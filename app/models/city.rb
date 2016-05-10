@@ -8,4 +8,5 @@ class City < ActiveRecord::Base
 	validates :gini, presence: true
 	validates :health, presence: true
 	validates :violence, presence: true
+	validates :image, presence: true
 end
