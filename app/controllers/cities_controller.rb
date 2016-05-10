@@ -3,12 +3,16 @@ class CitiesController < ApplicationController
     
   end
 
+  def search_cities
+    return City.where("name like ?", "%#{params[:find]}%")
+  end
+
   def show_cities
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
-        get_hash
+    get_hash
     if(params[:find])
       @find = params[:find]
-      @cities = City.where("name like ?", "%#{params[:find]}%")
+      @cities = search_cities
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
       @cities.columns.each do |attr|
@@ -40,6 +44,7 @@ class CitiesController < ApplicationController
   	end
   end
 
+
   def show
     @oldID = params[:id]
     @city = City.find(@oldID)
@@ -60,7 +65,7 @@ class CitiesController < ApplicationController
       @population = @city1.population*100/(@city1.population + @city2.population)
     end
     if(params[:find])
-      @cities = City.where("name like ?", "%#{params[:find]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      @cities = search_cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
     else
       @cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
     end

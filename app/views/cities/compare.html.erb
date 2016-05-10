@@ -100,15 +100,48 @@
             </center>
             </div>
             <div style="float: right;width: 50%;height: 50%;"> 
-                <h1>Escolha mais uma cidade!</h1>
-                        <%= form_tag(compare_path(:id => @oldID)) do %>
-                            <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
-                            <%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-                               'Saude']),{include_blank: true} %>
-                            <%= submit_tag "Pesquisar" %>
-                        <% end %>
+            	
+                <h1>Escolha mais uma cidade!</h1><br>
+                <ul style="margin-left: 90px; margin-right: 120px;">
+                <%= form_tag(compare_path(:id => @oldID)) do %>
+                                            <div class="input-group">
+                                                <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
+
+                                                <span class="input-group-btn">
+                                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                <% end %>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Ordenar por:</span>
+                                                <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
+                                                <span class="input-group-btn">
+                                                <a href="#" id="show_filter_form" class = "btn btn-default">+</a>
+                                                </span>
+                                            </div>
+                                            <div id="filter_form">
+                                            <br>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading"><left>Filtragem</left></div>
+                                                    <div class="panel-body">
+                                                        <% City.columns.each do |attr| %>
+                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name')%>
+                                                                <% next%>
+                                                            <%end%>
+                                                            <%= "#{@hash[attr.name]} :"%><br>
+                                                            De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
+                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8'%>
+                                                            <hr>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                        </ul>
                         <br>
-                        <ul style="margin-left: 200px;">
+                        <ul style="margin-left: 90px;">
                         		<table>
                                 <% cont = 0 %>
                                 <% @cities.each do |f| %>
@@ -155,12 +188,7 @@
                     <div style="display: table-cell;width: 50%;height: 50%;">
                         <h1>Cidades</h1>
                         reutu
-                        <%= form_tag(compare_path(:id => @oldID)) do %>
-                            <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
-                            <%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-                               'Saude']),{include_blank: true} %>
-                            <%= submit_tag "Pesquisar" %>
-                        <% end %>
+	                       
 
                         <table>
                                 <% cont = 0 %>
@@ -185,6 +213,20 @@
                 <%= link_to "Voltar", show_path(:id => @oldID) %>
             </center>    -->
         <% end %>
+<script>
+        var count = 0;
+            $("#show_filter_form").click(function(){
+                $("#filter_form").toggle("slow");
+                if(count == 0){
+                    $("#show_filter_form").text("-");
+                    count = 1;
+                }else{
+                    $("#show_filter_form").text("+");
+                    count = 0;
+                }
+            });
+    </script>
+
 </div>
 <!--    <footer style="background-color: #D0B4AE">
         <div>
