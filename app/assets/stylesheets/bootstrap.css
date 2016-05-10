@@ -1133,9 +1133,8 @@ img {
   height: auto;
 }
 .img-rounded {
-  border-radius: 50% !important;
-  border: black solid;
-  border-width: 1px;
+  border-radius: 2% !important;
+  
 }
 .img-thumbnail {
   display: inline-block;
