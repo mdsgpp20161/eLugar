@@ -244,3 +244,7 @@ p.copyright {
     -ms-filter: blur(2px);
     filter: blur(2px);
 }
+
+.smallerImage{
+    width: 150px;
+}

@@ -26,7 +26,7 @@
 
 </head>
 
-<body>	
+<body>  
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,7 +39,7 @@
                 </button>
                 <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
             </div>
-            <!-- Collect the nav links, forms, and other content	 for toggling -->
+            <!-- Collect the nav links, forms, and other content     for toggling -->
             <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right ">
                     <li>
@@ -56,86 +56,137 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>	
+    </nav>  
 
 <div class ="intro-header-compare"> 
-		</br>
-		</br>
-		</br>
-		<% if @city1 && @city2 %>
-			<div style="width: 100%">
-			 <div style="float: left; width: 50%;">
-			 	<h2><%=@city1.name %></h2>
-			 </div>
-			 <div style="float: left; width: 50%;">
-			 	<h2><%=@city2.name %></h2>
-			 </div>
-			 <br style="clear: left;" />
-			</div>
-			<center>
-				<% @city1.attributes.each do |attr_name, attr_value| %>
-					<% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
-					<% next %>
-				<% end %>
-				<%= "#{@hash[attr_name]}" %>
-	    		<div class="progress" style="width: 1000px;">
-		    		<div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
-		    			<%= attr_value%>
-		    		</div>
-		    		<div class="progress-bar progress-bar-success" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
-		    			<%= @city2.send(attr_name.to_sym) %>
-		    		</div>
-	    		</div>
-    			<% end %>
-    			<%= link_to "Voltar", compare_path(:id => @oldID) %>
-			</center>
-    	<% elsif @city1 %>
-    		<div style="width: 600px;">
-	    	<h1 style="text-align: left">
-				<%= @city1.name %>
-			</h1>
-			</div>
+        </br>
+        </br>
+        </br>
+        <% if @city1 && @city2 %>
+            <div style="width: 100%">
+             <div style="float: left; width: 50%;">
+                <h2><%=@city1.name %></h2>
+             </div>
+             <div style="float: left; width: 50%;">
+                <h2><%=@city2.name %></h2>
+             </div>
+             <br style="clear: left;" />
+            </div>
+            <center>
+                <% @city1.attributes.each do |attr_name, attr_value| %>
+                    <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
+                    <% next %>
+                <% end %>
+                <%= "#{@hash[attr_name]}" %>
+                <div class="progress" style="width: 1000px;">
+                    <div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
+                        <%= attr_value%>
+                    </div>
+                    <div class="progress-bar progress-bar-success" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
+                        <%= @city2.send(attr_name.to_sym) %>
+                    </div>
+                </div>
+                <% end %>
+                <%= link_to "Voltar", compare_path(:id => @oldID) %>
+            </center>
+        <% elsif @city1 %>
+            <div style="width: 50%;height: 300px;float: left;">
+            <center style="margin-top: 300px;">
+                <h1>
+                <%=@city1.name%>
+                </h1>
+                <hr class="intro-divider">
 
-    		<div style="width: 83%;margin-left: 200px;margin-top: -70px;height: 500px;">
-    			<div style="display: table-row">
-		    		<div style="width: 600px;padding: -100px;display: table-cell;">
-			    		
-			    	</div>
-		    		<div style="display: table-cell;width: 50%;height: 50%;">
-				    	<h1>Cidades</h1>
-				    	
-				    	<%= form_tag(compare_path(:id => @oldID)) do %>
-	    					<%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
-	    					<%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
-	    					   'Saude']),{include_blank: true} %>
-	    					<%= submit_tag "Pesquisar" %>
-	    				<% end %>
+            </center>
+            </div>
+            <div style="float: right;width: 50%;height: 50%;"> 
+                <h1>Escolha mais uma cidade!</h1>
+                        <%= form_tag(compare_path(:id => @oldID)) do %>
+                            <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
+                            <%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
+                               'Saude']),{include_blank: true} %>
+                            <%= submit_tag "Pesquisar" %>
+                        <% end %>
+                        <br>
+                        <ul style="margin-left: 200px;">
+                        		<table>
+                                <% cont = 0 %>
+                                <% @cities.each do |f| %>
+                                    <% if cont<3 %>
+                                        <td style="width: 100px;">
+                                            <%=link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do%>
+                                                <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
+                                            <% end %>
+                                             <%=f.name%>
+                                            </td>
 
-				    	<table>
-				    			<% cont = 0 %>
-				    			<% @cities.each do |f| %>
-				    				<% if cont<5 %>
-				    					<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
-				    					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				    				<% else %>
-										<tr>
-										</tr>
-										<td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
-										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<%cont = 0%>
-				    				<% end %>
-				    				<% cont = cont+1 %>
-				    			<% end %>	
-				    	</table>
-				    </div>
-				</div> 	
-			</div>
-			<center>
-				<%= link_to "Voltar", show_path(:id => @oldID) %>
-			</center>	
-		<% end %>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <% else %>
+                                        <tr>
+                                        </tr>
+                                        <td style="width: 100px;">
+                                            <%=link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do%>
+                                                <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
+                                            <% end %>
+                                             <%=f.name%>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <%cont = 0%>
+                                    <% end %>
+                                    <% cont = cont+1 %>
+                                <% end %>
+                                </ul>   
+                                </table>
+
+                       
+            </div>
+            
+            <!-- <div style="width: 600px;">
+            <h1 style="text-align: left">
+                <%= @city1.name %>
+            </h1>
+            </div>
+
+            <div style="width: 83%;margin-left: 200px;margin-top: -70px;height: 500px;">
+                <div style="display: table-row">
+                    <div style="width: 600px;padding: -100px;display: table-cell;">
+                        
+                    </div>
+                    <div style="display: table-cell;width: 50%;height: 50%;">
+                        <h1>Cidades</h1>
+                        reutu
+                        <%= form_tag(compare_path(:id => @oldID)) do %>
+                            <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...'%>
+                            <%= select_tag :order, options_for_select(['Populacao','Densidade','Area','Frota','IDH','Gini',
+                               'Saude']),{include_blank: true} %>
+                            <%= submit_tag "Pesquisar" %>
+                        <% end %>
+
+                        <table>
+                                <% cont = 0 %>
+                                <% @cities.each do |f| %>
+                                    <% if cont<5 %>
+                                        <td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <% else %>
+                                        <tr>
+                                        </tr>
+                                        <td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <%cont = 0%>
+                                    <% end %>
+                                    <% cont = cont+1 %>
+                                <% end %>   
+                        </table>
+                    </div>
+                </div>  
+            </div>
+            <center>
+                <%= link_to "Voltar", show_path(:id => @oldID) %>
+            </center>    -->
+        <% end %>
 </div>
-<!-- 	<footer style="background-color: #D0B4AE">
+<!--    <footer style="background-color: #D0B4AE">
         <div>
         </div>
     </footer> -->
