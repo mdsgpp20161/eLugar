@@ -48,6 +48,7 @@ class CitiesController < ApplicationController
   def show
     @oldID = params[:id]
     @city = City.find(@oldID)
+    fix_attr(@city)
     get_hash
     get_hash_text
     get_hash_values   
@@ -58,11 +59,13 @@ class CitiesController < ApplicationController
     if(params[:id])
       @oldID = params[:id]
       @city1 = City.find(@oldID)
+      fix_attr(@city1)
     end
     if(params[:newID])
       @newID = params[:newID]
       @city2 = City.find(@newID)
-      @population = @city1.population*100/(@city1.population + @city2.population)
+      #@population = @city1.population*100/(@city1.population + @city2.population)
+      fix_attr(@city2)
     end
     if(params[:find])
       @cities = City.where("name like ?", "%#{params[:find]}%").sort{ |a,b| a.name.downcase <=> b.name.downcase }
@@ -154,5 +157,10 @@ class CitiesController < ApplicationController
     attr_value2 = city2.send(attr_name.to_sym)
 
     attr_value1*100/(attr_value1 + attr_value2)
+  end
+
+  def fix_attr city
+    city.fleet = (city.population/city.fleet).round(2)
+    city.health = (city.population/city.health).round(2)
   end
 end

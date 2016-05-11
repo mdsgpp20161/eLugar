@@ -78,14 +78,23 @@
                     <% next %>
                 <% end %>
                 <%= "#{@hash[attr_name]}" %>
-                <div class="progress" style="width: 1000px;">
-                    <div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
-                        <%= attr_value%>
+                <%if get_average(@city1, @city2, attr_name) >= 50%>
+                    <div style="float: left; position: absolute; margin-left: 100px; margin-top: -10px;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
-                    <div class="progress-bar progress-bar-success" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
-                        <%= @city2.send(attr_name.to_sym) %>
+                <%end%>
+                <div class="progress" style="width: 1000px; position:relative">
+
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
+                    </div>
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
                     </div>
                 </div>
+                <% if get_average(@city1, @city2, attr_name) <= 50 %>
+                    <div style="position: absolute; margin-left: 1170px; margin-top: -50px;float: right;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
+                    </div>
+                <% end %>
                 <% end %>
                 <%= link_to "Voltar", compare_path(:id => @oldID) %>
             </center>
