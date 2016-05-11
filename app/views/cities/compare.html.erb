@@ -77,17 +77,33 @@
                     <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber') %>
                     <% next %>
                 <% end %>
-                <%= "#{@hash[attr_name]}" %>
-                <div class="progress" style="width: 1000px;">
-                    <div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name) %>%;">
-                        <%= attr_value %>
+
+                <%= "#{@hash[attr_name]} #{@hashMetric[attr_name]}" %>
+                <%if get_average(@city1, @city2, attr_name) >= 50%>
+                    <div style="float: left; position: absolute; margin-left: 100px; margin-top: -10px;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
-                    <div class="progress-bar progress-bar-success" style="width: <%= 100- get_average(@city1, @city2, attr_name) %>%">
-                        <%= @city2.send(attr_name.to_sym) %>
+                <%end%>
+                <div class="progress" style="width: 1000px; position:relative">
+
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
+                        <% if(get_average(@city1, @city2, attr_name) > 10) %>
+                            <%= attr_value%>
+                        <% end %>
+                    </div>
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
+                        <% if(get_average(@city1, @city2, attr_name) < 90) %>
+                            <%= @city2.send(attr_name.to_sym) %>
+                        <% end %>
                     </div>
                 </div>
+                <% if get_average(@city1, @city2, attr_name) <= 50 %>
+                    <div style="position: absolute; margin-left: 1170px; margin-top: -50px;float: right;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
+                    </div>
                 <% end %>
-                <%= link_to "Voltar", compare_path(:id => @oldID) %>
+                <% end %>
+                <%= link_to "Voltar", compare_path(:id => @oldID), :class => "btn btn-default" %>
             </center>
         <% elsif @city1 %>
             <div style="width: 50%;height: 300px;float: left;">
@@ -107,7 +123,7 @@
                     <div class="input-group">
                 	    <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
 	                        <span class="input-group-btn">
-                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 <% end %>
                             </span>
@@ -118,10 +134,10 @@
                         <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
                      </div>
                 <% end %>
-                                        </ul>
+                </ul>
                         <br>
                         <ul style="margin-left: 90px;">
-                        		<table>
+                        	<table>
                                 <% cont = 0 %>
                                 <% @cities.each do |f| %>
                                     <% if cont<3 %>
@@ -147,10 +163,8 @@
                                     <% end %>
                                     <% cont = cont+1 %>
                                 <% end %>
-                                </ul>   
-                                </table>
-
-                       
+                            </table>
+                        </ul>
             </div>
             
             <!-- <div style="width: 600px;">

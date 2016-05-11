@@ -104,8 +104,8 @@
                                 <% end %>
                             </ul>
                         </div>
-                       <%= link_to "Compare", compare_path(:id => @oldID) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <%= link_to "Voltar", find_path(:id => nil) %>  
+                       <%= link_to "Voltar", find_path(:id => nil), :class => "btn btn-default" %>&nbsp;&nbsp;
+                       <%= link_to "Compare", compare_path(:id => @oldID), :class => "btn btn-primary" %>  
                     </div>
                 </div>
             </div>
