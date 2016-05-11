@@ -65,24 +65,24 @@
         <% if @city1 && @city2 %>
             <div style="width: 100%">
              <div style="float: left; width: 50%;">
-                <h2><%=@city1.name %></h2>
+                <h2><%= @city1.name %></h2>
              </div>
              <div style="float: left; width: 50%;">
-                <h2><%=@city2.name %></h2>
+                <h2><%= @city2.name %></h2>
              </div>
              <br style="clear: left;" />
             </div>
             <center>
                 <% @city1.attributes.each do |attr_name, attr_value| %>
-                    <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber')%>
+                    <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber') %>
                     <% next %>
                 <% end %>
                 <%= "#{@hash[attr_name]}" %>
                 <div class="progress" style="width: 1000px;">
-                    <div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
-                        <%= attr_value%>
+                    <div class="progress-bar progress-bar-danger" style="width: <%= get_average(@city1, @city2, attr_name) %>%;">
+                        <%= attr_value %>
                     </div>
-                    <div class="progress-bar progress-bar-success" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
+                    <div class="progress-bar progress-bar-success" style="width: <%= 100- get_average(@city1, @city2, attr_name) %>%">
                         <%= @city2.send(attr_name.to_sym) %>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
             <div style="width: 50%;height: 300px;float: left;">
             <center style="margin-top: 300px;">
                 <h1>
-                <%=@city1.name%>
+                <%= @city1.name %>
                 </h1>
                 <hr class="intro-divider">
 
@@ -104,41 +104,20 @@
                 <h1>Escolha mais uma cidade!</h1><br>
                 <ul style="margin-left: 90px; margin-right: 120px;">
                 <%= form_tag(compare_path(:id => @oldID)) do %>
-                                            <div class="input-group">
-                                                <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
-
-                                                <span class="input-group-btn">
-                                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                                <% end %>
-                                                </span>
-                                            </div>
-                                            <br>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Ordenar por:</span>
-                                                <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
-                                                <span class="input-group-btn">
-                                                <a href="#" id="show_filter_form" class = "btn btn-default">+</a>
-                                                </span>
-                                            </div>
-                                            <div id="filter_form">
-                                            <br>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading"><left>Filtragem</left></div>
-                                                    <div class="panel-body">
-                                                        <% City.columns.each do |attr| %>
-                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name')%>
-                                                                <% next%>
-                                                            <%end%>
-                                                            <%= "#{@hash[attr.name]} :"%><br>
-                                                            De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8'%>
-                                                            <hr>
-                                                        <%end%>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <% end %>
+                    <div class="input-group">
+                	    <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
+	                        <span class="input-group-btn">
+                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                <% end %>
+                            </span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">Ordenar por:</span>
+                        <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
+                     </div>
+                <% end %>
                                         </ul>
                         <br>
                         <ul style="margin-left: 90px;">
@@ -147,7 +126,7 @@
                                 <% @cities.each do |f| %>
                                     <% if cont<3 %>
                                         <td style="width: 100px;">
-                                            <%=link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do%>
+                                            <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do %>
                                                 <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
                                             <% end %>
                                              <%=f.name%>
@@ -158,13 +137,13 @@
                                         <tr>
                                         </tr>
                                         <td style="width: 100px;">
-                                            <%=link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do%>
+                                            <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do %>
                                                 <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
                                             <% end %>
                                              <%=f.name%>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <%cont = 0%>
+                                        <% cont = 0 %>
                                     <% end %>
                                     <% cont = cont+1 %>
                                 <% end %>
@@ -201,7 +180,7 @@
                                         </tr>
                                         <td><%= link_to f.name, compare_path(:id => @oldID, :newID => f) %></td>
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <%cont = 0%>
+                                        <% cont = 0 %>
                                     <% end %>
                                     <% cont = cont+1 %>
                                 <% end %>   
@@ -213,19 +192,6 @@
                 <%= link_to "Voltar", show_path(:id => @oldID) %>
             </center>    -->
         <% end %>
-<script>
-        var count = 0;
-            $("#show_filter_form").click(function(){
-                $("#filter_form").toggle("slow");
-                if(count == 0){
-                    $("#show_filter_form").text("-");
-                    count = 1;
-                }else{
-                    $("#show_filter_form").text("+");
-                    count = 0;
-                }
-            });
-    </script>
 
 </div>
 <!--    <footer style="background-color: #D0B4AE">

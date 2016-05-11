@@ -88,7 +88,7 @@
                                             <br>
                                             <div class="input-group">
                                                 <span class="input-group-addon">Ordenar por:</span>
-                                                <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
+                                                <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control" %>
                                                 <span class="input-group-btn">
                                                 <a href="#" id="show_filter_form" class = "btn btn-default">+</a>
                                                 </span>
@@ -99,14 +99,14 @@
                                                     <div class="panel-heading"><left>Filtragem</left></div>
                                                     <div class="panel-body">
                                                         <% City.columns.each do |attr| %>
-                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name')%>
-                                                                <% next%>
-                                                            <%end%>
-                                                            <%= "#{@hash[attr.name]} :"%><br>
+                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name') %>
+                                                                <% next %>
+                                                            <% end %>
+                                                            <%= "#{@hash[attr.name]} :" %><br>
                                                             De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8'%>
+                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8' %>
                                                             <hr>
-                                                        <%end%>
+                                                        <% end %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,39 +115,38 @@
                                     <br><br><br>
                                     <li>
                                         <table>
-                                            <%cont = 0%>
+                                            <% cont = 0 %>
                                             
-                                            <%@cities.each do |f| %>
-                                                <%if cont<3 %>
+                                            <% @cities.each do |f| %>
+                                                <% if cont<3 %>
                                                     <td>
-                                                        <%=link_to city_path(f), :class=>'opacityit' do%>
+                                                        <%= link_to city_path(f), :class=>'opacityit' do %>
                                                             <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
                                                         <% end %>
-                                                        <h4><%=f.name%></h4>
+                                                        <h4><%= f.name %></h4>
                                                     </td>
                                                     
                                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                <%else%>
+                                                <% else %>
                                                 <tr>
                                                 </tr>
                                                  <td>
-                                                        <%=link_to city_path(f), :class=>'opacityit' do%>
-                                                            <img class="img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
+                                                        <%= link_to city_path(f), :class=>'opacityit' do %>
+                                                            <img class="img-responsive img-rounded"src= <%= "/assets/#{f.image}.jpg" %> heigth="300" width="300">
                                                         <% end %>
-                                                        <h4><%=f.name%></h4>
+                                                        <h4><%= f.name %></h4>
                                                     </td>
                                                     
                                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                    <%cont = 0%>
-                                                <%end%>
-                                                <%cont=cont+1%>
-                                            <%end%> 
-                                            <%if @find%>
+                                                    <% cont = 0 %>
+                                                <% end %>
+                                                <% cont=cont+1 %>
+                                            <% end %> 
+                                            <% if @find %>
                                                 <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
-                                            <%else%>
+                                            <% else %>
                                                 <%= will_paginate @citiesPaginated %>
-                                                <%end%>
-
+                                                <% end %>
                                          </table>
                                     </li>
                                 </ul>

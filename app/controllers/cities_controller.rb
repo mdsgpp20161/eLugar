@@ -4,7 +4,29 @@ class CitiesController < ApplicationController
   end
 
   def search_cities
-    return City.where("name like ?", "%#{params[:find]}%")
+    @cities = City.where("name like ?", "%#{params[:find]}%")
+  end
+
+  def order_cities
+    sorted_cities = params[:sort_cities]
+    sorted = false
+
+    @cities.columns.each do |attr|
+      if(sorted_cities == @hash[attr.name])
+        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+          attr.name == 'fleet')
+          @cities = @cities.order(:"#{attr.name}")
+        else
+          @cities = @cities.order("#{attr.name}": :desc)
+        end
+          sorted = true
+          break
+        end
+      end
+
+      if(!sorted)
+        @cities = @cities.order(:name)
+      end
   end
 
   def show_cities
@@ -12,7 +34,7 @@ class CitiesController < ApplicationController
     get_hash
     if(params[:find])
       @find = params[:find]
-      @cities = search_cities
+      search_cities
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
       @cities.columns.each do |attr|
@@ -23,25 +45,7 @@ class CitiesController < ApplicationController
         end
       end
 
-      sorted_cities = params[:sort_cities]
-      sorted = false
-
-      @cities.columns.each do |attr|
-        if(sorted_cities == @hash[attr.name])
-          if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
-            attr.name == 'fleet')
-            @cities = @cities.order(:"#{attr.name}")
-          else
-            @cities = @cities.order("#{attr.name}": :desc)
-          end
-          sorted = true
-          break
-        end
-      end
-
-      if(!sorted)
-        @cities = @cities.order(:name)
-      end
+      order_cities
       
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
@@ -70,7 +74,8 @@ class CitiesController < ApplicationController
       @population = @city1.population*100/(@city1.population + @city2.population)
     end
     if(params[:find])
-      @cities = search_cities.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      search_cities
+      order_cities
     else
       @cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
     end
