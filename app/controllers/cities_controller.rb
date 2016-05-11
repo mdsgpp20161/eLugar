@@ -56,6 +56,7 @@ class CitiesController < ApplicationController
 
   def compare
     get_hash
+    get_hash_metrics
     if(params[:id])
       @oldID = params[:id]
       @city1 = City.find(@oldID)
@@ -99,6 +100,16 @@ class CitiesController < ApplicationController
     @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
     @hashText['violence'] = 'Esse dado mostra a taxa de homícidios por armas de fogo na cidade entre os anos de 2010 e 2012.'
     @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
+  end
+
+  def get_hash_metrics
+    @hashMetric = Hash.new
+    @hashMetric['population'] = '(Número de habitantes)'
+    @hashMetric['demographic_density'] = '(Habitantes/Km²)'
+    @hashMetric['area'] = '(Km²)'
+    @hashMetric['fleet'] = '(Habitantes/Quatidade de onibus)'
+    @hashMetric['health'] = '(Densidade/Estabelecimentos de saúde)'
+    @hashMetric['violence'] = '(Quantidade de homicídios)'
   end
 
   helper_method :get_emoji
