@@ -11,7 +11,13 @@ html {
 }
 body {
   margin: 0;
+  background-color: #E7EDDD !important;
 }
+
+footer{
+   background-color: #E7EDDD !important;
+}
+
 article,
 aside,
 details,
@@ -180,6 +186,7 @@ optgroup {
   font-weight: bold;
 }
 table {
+  text-align: center;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -263,8 +270,8 @@ th {
 @font-face {
   font-family: 'Glyphicons Halflings';
 
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../assets/glyphicons-halflings-regular.woff2') format('woff2'), url('../assets/glyphicons-halflings-regular.woff') format('woff'), url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -1126,7 +1133,8 @@ img {
   height: auto;
 }
 .img-rounded {
-  border-radius: 6px;
+  border-radius: 2% !important;
+  
 }
 .img-thumbnail {
   display: inline-block;
@@ -2550,7 +2558,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 200px;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -3528,19 +3536,19 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 12px 16px;
   margin: 2px 0 0;
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #f9f9f9;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .175);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .175);
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -4166,11 +4174,18 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.logo{
+  width: auto;
+  height: 90px;
+  margin-top: -30px;
+}
+
 .navbar {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  border: none !important;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -6758,3 +6773,104 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.text-left{
+  text-align: left;
+}
+
+.text-left td{
+  position: relative;
+  width:250px;
+  left:25%;
+}
+
+.foto{
+  height: 50px !important;
+  width: 50px !important;
+}
+
+
+.cardboard{
+  
+}
+
+.cardboard ul{
+  margin: 0;
+  padding: 0;
+  width: 9999px;
+}
+
+.cardboard li{
+  position: relative;
+  display: inline-block;
+  list-style-type: none;
+  width: 200px;
+  height: 280px;
+  margin-right: 6px;
+}
+
+.flip-container:hover .back, .flip-container.hover .back {
+    transform: rotateY(0deg);
+}
+.flip-container:hover .front, .flip-container.hover .front {
+    transform: rotateY(180deg);
+}
+
+.flip-container, .front, .back {
+    height: 280px;
+    width: 200px;
+}
+.flipper {
+    position: relative;
+    transform: perspective(1000px);
+    transform-style: preserve-3d;
+    transition: all 0.6s ease 0s;
+}
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transition: all 0.6s ease 0s;
+  font-family: sans-serif;
+  color:#fff;
+}
+.front {
+  color: white;
+  background: #405861;
+  z-index: 2;
+  font-family: sans-serif;
+}
+.back {
+    color: black;
+    background: #B1D4E0;
+    transform: rotateY(-180deg);
+}
+
+.emote{
+  width: 50px;
+  height: 50px;
+}
+
+
+.dropdownTeste {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownTeste-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdownTeste:hover .dropdownTeste-content {
+    display: block;
+
+}

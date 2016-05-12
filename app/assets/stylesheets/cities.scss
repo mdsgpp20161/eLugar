@@ -1,3 +1,13 @@
 // Place all the styles related to the Cities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#filter_form{
+	display:none
+}
+
+.shadow {
+	text-shadow: 1px 1px 3px #666, -1px -1px 3px #fff, 1px
+1px #666, -1px -1px #fff;
+	font-color: #171717;
+}
