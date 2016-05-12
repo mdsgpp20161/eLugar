@@ -80,11 +80,11 @@
 
                 <%= "#{@hash[attr_name]} #{@hashMetric[attr_name]}" %>
                 <%if (get_average(@city1, @city2, attr_name) <= 50 && (attr_name == 'fleet' || attr_name == 'gini' || attr_name == 'violence' || attr_name == 'demographic_density')) %>
-                    <div style="float: left; position: absolute; margin-left: 100px; margin-top: -10px;">
+                    <div style="float: left; position: absolute; margin-left: 8%; margin-top: -10px;">
                         <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
                 <% elsif (get_average(@city1, @city2, attr_name) >= 50 && (attr_name != 'fleet' && attr_name != 'gini' && attr_name != 'violence' && attr_name != 'demographic_density')) %>
-                    <div style="float: left; position: absolute; margin-left: 100px; margin-top: -10px;">
+                    <div style="float: left; position: absolute; margin-left: 8%; margin-top: -10px;">
                         <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
                 <%end%>
@@ -102,11 +102,11 @@
                     </div>
                 </div>
                 <%if (get_average(@city1, @city2, attr_name) >= 50 && (attr_name == 'fleet' || attr_name == 'gini' || attr_name == 'violence' || attr_name == 'demographic_density')) %>
-                    <div style="position: absolute; margin-left: 1170px; margin-top: -50px;float: right;">
+                    <div style="position: absolute; margin-left: 90%; margin-top: -50px;float: right;">
                         <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
                 <% elsif (get_average(@city1, @city2, attr_name) <= 50 && (attr_name != 'fleet' && attr_name != 'gini' && attr_name != 'violence' && attr_name != 'demographic_density')) %>
-                    <div style="position: absolute; margin-left: 1170px; margin-top: -50px;float: right;">
+                    <div style="position: absolute; margin-left: 90%; margin-top: -50px;float: right;">
                         <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
                     </div>
                 <% end %>
