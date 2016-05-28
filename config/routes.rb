@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +10,8 @@ Rails.application.routes.draw do
   resources :cities
   resources :users
   root 'cities#index'
-
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
   get 'index' => 'cities#index'
   get 'find' => 'cities#show_cities'
   get 'cities/show'
@@ -20,6 +23,9 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact_us'
   get 'references' => 'static_pages#references'
   get "static_pages/download_pdf"
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
 
   # Example of regular route:
