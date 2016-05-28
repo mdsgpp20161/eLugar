@@ -36,6 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'factory_girl_rails'
 end
 
 gem 'simplecov', :require => false, :group => :test
@@ -43,6 +44,7 @@ gem 'simplecov', :require => false, :group => :test
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem "rspec"
 
   gem 'bootstrap-sass', '~>3.2.0'
   gem 'autoprefixer-rails'
@@ -50,3 +52,5 @@ group :development do
   gem 'spring'
 end
 
+gem "rspec-rails", :group => [:development, :test]
+gem 'devise'
