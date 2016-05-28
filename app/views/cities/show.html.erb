@@ -105,7 +105,38 @@
                             </ul>
                         </div>
                        <%= link_to "Voltar", find_path(:id => nil), :class => "btn btn-default" %>&nbsp;&nbsp;
-                       <%= link_to "Compare", compare_path(:id => @oldID), :class => "btn btn-primary" %>  
+                       <%= link_to "Compare", compare_path(:id => @oldID), :class => "btn btn-primary" %>
+
+                        <h2>Comments</h2>
+                        <% @city.comments.each do |comment| %>
+                        <p>
+                            <strong>Commenter:</strong>
+                            <%= comment.commenter %>
+                        </p>
+                    
+                        <p>
+                            <strong>Comment:</strong>
+                            <%= comment.body %>
+                            </p>
+                        <% end %>
+
+                        <h2>Add a comment:</h2>
+                        <%= form_for([@city, @city.comments.build]) do |f| %>
+                          <p>
+                            <%= f.label :commenter %><br>
+                            <%= f.text_field :commenter %>
+                          </p>
+                          <p>
+                            <%= f.label :body %><br>
+                            <%= f.text_area :body %>
+                          </p>
+                          <p>
+                            <%= f.submit %>
+                          </p>
+                        <% end %>
+                         
+                        <%= link_to 'Edit', edit_city_path(@city) %> |
+                        <%= link_to 'Back', city_path %>
                     </div>
                 </div>
             </div>
@@ -113,8 +144,8 @@
         <!-- /.container -->
     </div>
         <!-- Footer -->
-    <footer style="background-color: #D0B4AE">
+    <!-- <footer style="background-color: #D0B4AE">
         <div>
         </div>
-    </footer>
+    </footer> -->
 </body>
