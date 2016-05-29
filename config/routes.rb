@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  #get 'sessions/new'
 
-  get 'users/new'
+  #get 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   resources :cities
-  resources :users
+  
   root 'cities#index'
+  #get 'edit' => 'sessions#current_user'
   get 'signup' => 'users#new'
   post 'signup' => 'users#create'
   get 'index' => 'cities#index'
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
   get "static_pages/download_pdf"
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  delete 'logout'  => 'sessions#destroy' 
+  resources :users 
 
 
   # Example of regular route:
