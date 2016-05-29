@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   root 'cities#index'
   #get 'edit' => 'sessions#current_user'
+  get 'auth/:provider/callback', to: "sessions#create_face"
+  delete 'sign_out', to: "sessions#destroy_face", as: 'sign_out'
   get 'signup' => 'users#new'
   post 'signup' => 'users#create'
   get 'index' => 'cities#index'
