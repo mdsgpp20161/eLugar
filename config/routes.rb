@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'cities/show'
   get 'show' =>  'cities#show'
   get 'compare' => 'cities#compare'
+	get 'ranking' => 'cities#ranking'
   post 'compare' => 'cities#compare'
   post 'find' => 'cities#show_cities'
   get 'about' => 'static_pages#about'

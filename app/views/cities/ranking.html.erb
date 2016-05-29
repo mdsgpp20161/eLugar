@@ -1,0 +1,91 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="sortcut icon" href="../assets/eLugarLogo.ico" type="image/x-icon" />
+    <title>êLugar</title>
+
+		    <!-- Bootstrap Core CSS -->
+		    <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
+
+				    <!-- Custom CSS -->
+				    <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
+
+						    <!-- Custom Fonts -->
+						    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+						    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+								    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+								    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+								    <!--[if lt IE 9]>
+								        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+								        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+								    <![endif]-->
+
+										</head>
+
+										<body>  
+										    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+										        <div class="container topnav">
+										            <!-- Brand and toggle get grouped for better mobile display -->
+										            <div class="navbar-header">
+										                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+										                    <span class="sr-only">Toggle navigation</span>
+										                    <span class="icon-bar"></span>
+										                    <span class="icon-bar"></span>
+										                    <span class="icon-bar"></span>
+										                </button>
+										                <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
+										            </div>
+										            <!-- Collect the nav links, forms, and other content     for toggling -->
+										            <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
+										                <ul class="nav navbar-nav navbar-right ">
+										                    <li>
+										                        <a href="/about">Sobre</a>
+										                    </li>
+										                    <li>
+										                        <a href="/references">Referências</a>
+										                    </li>
+										                    <li>
+										                        <a href="/contact">Contato</a>
+										                    </li>
+										                </ul>
+										            </div>
+										            <!-- /.navbar-collapse -->
+										        </div>
+										        <!-- /.container -->
+										    </nav>  
+
+<div class="ranking">
+<%= form_tag(ranking_path, :method => :get) do %>
+
+	<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control" %>
+
+	<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+		Visualizar
+	<% end %>
+
+<% end %>
+
+<% if params[:sort_cities]%>
+	<table class = "table table-striped table-hover">
+		<% cont = 1 %>
+		<tr>
+			<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
+		</tr>
+		<% @cities.each do |f| %>
+		<tr>
+						<td><%= cont %></td>
+						<td><%= link_to city_path(f) do %>
+							<%= f.name %>
+						<% end %></td>
+						<td><%= @attr_rendered.at(cont) %></td>
+			</tr>
+			<% cont = cont+1 %>
+			<tr></tr>
+	<% end %>
+<% end %>
+</div>
+</body>

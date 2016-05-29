@@ -8,6 +8,7 @@ class CitiesController < ApplicationController
   end
 
   def order_cities
+		get_hash
     sorted_cities = params[:sort_cities]
     sorted = false
 
@@ -28,6 +29,25 @@ class CitiesController < ApplicationController
         @cities = @cities.order(:name)
       end
   end
+
+	def ranking
+		@cities = City.all
+		order_cities
+		if params[:sort_cities]
+			@list = @hash.keys
+			@list.each do |l|
+				if @hash[l] == params[:sort_cities]
+					@attr_name = l
+					break
+				end
+			end
+			@attr_rendered = Array.new(1)
+			@cities.each do |c|
+				aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
+				@attr_rendered.push(aux)
+			end
+		end
+	end
 
   def show_cities
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
