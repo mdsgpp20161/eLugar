@@ -12,6 +12,11 @@ class CommentsController < ApplicationController
 	    redirect_to city_path(@city)
   	end
 
+  	def edit
+  		@comment = Comment.find(params[:id])
+  		@city = City.find(params[:city_id])
+  	end
+
 private
    	def comment_params
    		params.require(:comment).permit(:commenter, :body)

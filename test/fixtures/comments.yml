@@ -3,9 +3,9 @@
 one:
   commenter: MyString
   body: MyText
-  city_id: 
+  city_id: 1
 
 two:
   commenter: MyString
   body: MyText
-  city_id: 
+  city_id: 2
