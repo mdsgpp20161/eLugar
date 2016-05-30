@@ -8,4 +8,4 @@ one:
 two:
   commenter: MyString
   body: MyText
-  city_id: 2
+  city_id: 1

@@ -5,17 +5,17 @@ class CommentsController < ApplicationController
 	    redirect_to city_path(@city)
  	end
 
- 	def destroy
-	    @city = City.find(params[:city_id])
-	    @comment = @city.comments.find(params[:id])
-	    @comment.destroy
-	    redirect_to city_path(@city)
-  	end
-
-  	def edit
-  		@comment = Comment.find(params[:id])
-  		@city = City.find(params[:city_id])
-  	end
+# 	def destroy
+#	    @city = City.find(params[:city_id])
+#	    @comment = @city.comments.find(params[:id])
+#	    @comment.destroy
+#	    redirect_to city_path(@city)
+#  	end
+#
+#  	def edit
+#  		@comment = Comment.find(params[:id])
+#  		@city = City.find(params[:city_id])
+#  	end
 
 private
    	def comment_params
