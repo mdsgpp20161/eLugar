@@ -41,7 +41,10 @@
 										            </div>
 										            <!-- Collect the nav links, forms, and other content     for toggling -->
 										            <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
-										                <ul class="nav navbar-nav navbar-right ">
+																				<ul class="nav navbar-nav navbar-right ">
+																				<li>
+																					<a href="/ranking">Ranking</a>
+																				</li>
 										                    <li>
 										                        <a href="/about">Sobre</a>
 										                    </li>
@@ -59,33 +62,38 @@
 										    </nav>  
 
 <div class="ranking">
-<%= form_tag(ranking_path, :method => :get) do %>
-
-	<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control" %>
-
-	<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-		Visualizar
-	<% end %>
-
-<% end %>
-
-<% if params[:sort_cities]%>
-	<table class = "table table-striped table-hover">
-		<% cont = 1 %>
-		<tr>
-			<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
-		</tr>
-		<% @cities.each do |f| %>
-		<tr>
-						<td><%= cont %></td>
-						<td><%= link_to city_path(f) do %>
-							<%= f.name %>
-						<% end %></td>
-						<td><%= @attr_rendered.at(cont) %></td>
+	<%= form_tag(ranking_path, :method => :get) do %>
+		<div class="input-group">
+			<span class="input-group-addon">Ordenar por:</span>
+			<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), class: "form-control" %>
+			<span class="input-group-btn">
+			<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+				Visualizar
+			<% end %>
+			</span>
+		<% end %>
+	</div>
+</div>
+	<% if params[:sort_cities]%>
+		<div class = "rank-table">
+		<table class = "table table-striped table-hover table-bordered">
+			<% cont = 1 %>
+			<tr class = "active">
+				<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
 			</tr>
-			<% cont = cont+1 %>
-			<tr></tr>
+			<% @cities.each do |f| %>
+				<tr>
+					<td><%= (@cities.current_page-1)*10 + cont %></td>
+					<td><%= link_to city_path(f) do %>
+						<%= f.name %>
+					<% end %></td>
+					<td><%= @attr_rendered.at(cont) %></td>
+				</tr>
+				<% cont = cont+1 %>
+			<% end %>
+			<center>
+				<%= will_paginate @cities %>
+			</center>
 	<% end %>
-<% end %>
 </div>
 </body>

@@ -33,14 +33,9 @@ class CitiesController < ApplicationController
 	def ranking
 		@cities = City.all
 		order_cities
+		@cities = @cities.paginate(:page => params[:page], :per_page => 10)
 		if params[:sort_cities]
-			@list = @hash.keys
-			@list.each do |l|
-				if @hash[l] == params[:sort_cities]
-					@attr_name = l
-					break
-				end
-			end
+			@attr_name = @hash.index(params[:sort_cities])
 			@attr_rendered = Array.new(1)
 			@cities.each do |c|
 				aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
