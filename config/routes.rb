@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   get 'references' => 'static_pages#references'
   get "static_pages/download_pdf"
 
+  resources :cities do
+    resources :comments
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

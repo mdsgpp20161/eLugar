@@ -111,6 +111,16 @@
                              </center>
                            <%end%>
                        </div>
+
+                        <h2>Comentários</h2>
+                        <% @city.comments.each_slice(2) do |f| %>
+                            <%= render f[0]%>
+                        <% end %>
+
+                        <h2>Adicionar um comentário:</h2>
+                        <%= render 'comments/form' %>
+
+                        <%= link_to 'Top', city_path %>
                     </div>
                 </div>
             </div>
@@ -118,7 +128,4 @@
         <!-- /.container -->
     </div>
         <!-- Footer -->
-    <footer style="background-color: #D0B4AE">
-    </footer>
-
 </body>
