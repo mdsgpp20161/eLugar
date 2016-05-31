@@ -1,6 +1,12 @@
 module SessionsHelper
 	def log_in(user)
-    session[:user_id] = user.id
+    if user.uid == nil
+      session[:user_id] = user.id
+      current_user = user
+      @current_user = user
+    else
+      session[:user_id] = user.id
+    end
   end
 
   def current_user
@@ -17,6 +23,7 @@ module SessionsHelper
   def log_out
     session.delete(:user_id)
     @current_user = nil
+    current_user = nil
   end
 
  
