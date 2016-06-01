@@ -16,7 +16,7 @@ describe UsersController, "creating a new user" do
     @user1.password = "1234567"
     @user1.password_confirmation = "1234567"
   end
-  #render_views
+
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
@@ -40,10 +40,10 @@ describe UsersController, "creating a new user" do
       get :edit, id: @user
       expect(response).to redirect_to(login_url)                        
     end
-  #   it "should redirect edit when logged in as wrong user"do
-  #     log_in(@user1)
-  #     get :edit, id: @user
-  #     expect(response).to redirect_to(root_url)
-  # end
+    it "should redirect edit when logged in as wrong user"do
+    #  log_in(@user1)
+      get :update, id: @user
+      expect(response).to redirect_to(root_url)
+  end
  end
 

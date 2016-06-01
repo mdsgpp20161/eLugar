@@ -9,9 +9,11 @@ class SessionsController < ApplicationController
         log_in user
         redirect_to user
       else
+        flash[:error] = "Login não foi efetuado com sucesso."
         render'new'
       end
     else
+      flash[:error] = "Login não foi efetuado com sucesso."
       render 'new'
     end
   end
