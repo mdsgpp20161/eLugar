@@ -12,9 +12,12 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-      log_in @user
-  		redirect_to @user
+      flash[:notice] = "Registrado com sucesso"
+      render 'sessions/new'
+      #log_in @user
+  		#redirect_to @user
   	else
+      flash[:error] = "Cadastro inválido"
   		render 'new'
   	end
   end
