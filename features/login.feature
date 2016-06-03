@@ -10,6 +10,19 @@ Feature: User wants to sign in
 		Then I should see Perfil
 		When I press "Log out"
 		Then I should see Login
+	Scenario: Signs in successfully and deletes account sccessfully
+		Given I am on the root page
+		When I press Login link
+		And I will be redirect to Login page
+		And I fill in Email with bianquinhaa@hotmail.com
+		And I fill in Password with 123456
+		When I press "Log in"
+		Then I should see Perfil
+		When I press "Deletar conta"
+		# Then I should see Você tem certeza?
+		When I press "OK" button
+		Then I should be in root page
+
 	Scenario: Signs in unsuccessfully
 		Given I am on the root page
 		When I press Login link

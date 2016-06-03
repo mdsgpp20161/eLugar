@@ -40,7 +40,7 @@ rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
 
-#Capybara.default_driver = :selenium
+Capybara.default_driver = :selenium
 # Capybara.register_driver :selenium do |app| 
 #    profile = Selenium::WebDriver::Firefox::Profile.new 
 #    Capybara::Selenium::Driver.new( app, :browser => :firefox, :profile => profile ) 

@@ -19,5 +19,3 @@ Feature: Viewer wants to sign up
         And I fill in Confirmation with 123456
         When I press "Create my account"
         Then I should see Cadastro inválido
-
-
