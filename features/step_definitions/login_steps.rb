@@ -1,30 +1,29 @@
-# Given (/^I am on the main page$/) do
-# 	visit root_path
+Given "I am on the $n page" do |arg1|
+  visit send("#{arg1}_path")
+  # puts "#{arg1}_path"
+end
+
+When "I press $n link" do |arg1|
+  click_link_or_button(arg1)
+end
+
+When(/^I press "([^"]*)"$/) do |arg1|
+  click_link_or_button(arg1)
+end
+
+
+# When /I press "[^"]*"/ do |arg1|
+#   click_link_or_button(arg1)
 # end
-When (/^I press "Login" link$/) do
-	click_link("Login")
+
+And "I will be redirect to $n page" do |arg1|
+  expect(page).to have_content(arg1)
 end
-And (/^I will be redirect to login page$/) do
-	expect(page).to have_content("Login")
+
+And "I fill in $n with $n" do |arg1,arg2|
+  fill_in arg1, :with => arg2
 end
-# And (/^I fill in "Email" with "pedro@gmail.com"$/) do
-# 	fill_in 'Email', :with => 'pedro@gmail.com'
-# end
-# And (/^I fill in "Password" with "123456"$/) do
-# 	fill_in 'Password', :with => '123456'
-# end
-And (/^I fill in "Email" with "pedro123@,com"$/) do
-	fill_in 'Email', :with => 'pedro123@,com'
-end
-And (/^I fill in "Password" with "1234"$/) do
-	fill_in 'Password', :with => '1234'
-end
-When (/^I press "Log in"$/) do
-	click_button("Log in")
-end
-Then (/^I should see "Perfil"$/) do
-	expect(page).to have_content("Perfil")
-end
-Then (/^I should see "Login não foi efetuado com sucesso."$/) do
-	expect(page).to have_content("Login")
+
+Then "I should see $n" do |arg1|
+  expect(page).to have_content(arg1)
 end
