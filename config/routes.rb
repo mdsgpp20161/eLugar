@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get "static_pages/download_pdf"
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
-  get 'logout'  => 'sessions#destroy'
+  delete 'logout'  => 'sessions#destroy'
   get 'edit' => 'users#edit'
   post 'edit' => 'users#update' 
   resources :users 
