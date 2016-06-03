@@ -67,7 +67,7 @@
 			<span class="input-group-addon">Ordenar por:</span>
 			<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), class: "form-control" %>
 			<span class="input-group-btn">
-			<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+			<%= button_tag(type: "submit", class: "btn btn-primary",id:"View Ranking") do %>
 				Visualizar
 			<% end %>
 			</span>
