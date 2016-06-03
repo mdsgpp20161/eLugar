@@ -150,7 +150,7 @@ class CitiesController < ApplicationController
         return 2
       elsif (0.4...0.6).include?(attr_value)
         return 3
-      elsif(0.6...0.7).include?(attr_value)
+      elsif(0.6..0.7).include?(attr_value)
         return 4
       elsif attr_value > 0.7
         return 5
