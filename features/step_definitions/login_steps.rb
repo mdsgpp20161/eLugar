@@ -11,11 +11,6 @@ When(/^I press "([^"]*)"$/) do |arg1|
   click_link_or_button(arg1)
 end
 
-
-# When /I press "[^"]*"/ do |arg1|
-#   click_link_or_button(arg1)
-# end
-
 And "I will be redirect to $n page" do |arg1|
   expect(page).to have_content(arg1)
 end

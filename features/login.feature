@@ -1,6 +1,6 @@
 Feature: User wants to sign in
 	
-	Scenario: Signs in successfully
+	Scenario: Signs in successfully and signs out successfully
 		Given I am on the root page
 		When I press Login link
 		And I will be redirect to Login page
@@ -8,6 +8,8 @@ Feature: User wants to sign in
 		And I fill in Password with 123456
 		When I press "Log in"
 		Then I should see Perfil
+		When I press "Log out"
+		Then I should see Login
 	Scenario: Signs in unsuccessfully
 		Given I am on the root page
 		When I press Login link
