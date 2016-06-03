@@ -1,9 +1,11 @@
 user:
-  name: "harrison"
-  email: "hpedro1195@gmail.com"
+  id: 1
+  name: "pedro"
+  email: "pedro1195@gmail.com"
   password_digest: "sdgsdfgsdfgsd"
 
 other_user:
+  id: 2
   name: "felioe"
   email: "viado@gmail.com"
   password_digest: "sdgsdfgsdfgsdsdasf"

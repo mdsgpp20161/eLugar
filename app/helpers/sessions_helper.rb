@@ -5,7 +5,7 @@ module SessionsHelper
       current_user = user
       @current_user = user
     else
-      session[:user_id] = user.id
+      #session[:user_id] = user.id
     end
   end
 
