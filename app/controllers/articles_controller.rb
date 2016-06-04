@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
     @articles = ["#{@city1.name}", "#{@city2.name}"]
 
     respond_to do |format|
-      format.html
 
       format.pdf do
         render :pdf => "Relatório de Comparação"
