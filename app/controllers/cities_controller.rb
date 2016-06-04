@@ -1,33 +1,8 @@
 class CitiesController < ApplicationController
+  include CitiesHelper
+
   def index
     
-  end
-
-  def search_cities
-    @cities = City.where("name like ?", "%#{params[:find]}%")
-  end
-
-  def order_cities
-		get_hash
-    sorted_cities = params[:sort_cities]
-    sorted = false
-
-    @cities.columns.each do |attr|
-      if(sorted_cities == @hash[attr.name])
-        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
-          attr.name == 'fleet')
-          @cities = @cities.order(:"#{attr.name}")
-        else
-          @cities = @cities.order("#{attr.name}": :desc)
-        end
-          sorted = true
-          break
-        end
-      end
-
-      if(!sorted)
-        @cities = @cities.order(:name)
-      end
   end
 
 	def ranking
@@ -35,12 +10,7 @@ class CitiesController < ApplicationController
 		order_cities
 		@cities = @cities.paginate(:page => params[:page], :per_page => 10)
 		if params[:sort_cities]
-			@attr_name = @hash.index(params[:sort_cities])
-			@attr_rendered = Array.new(1)
-			@cities.each do |c|
-				aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
-				@attr_rendered.push(aux)
-			end
+		  attr_to_erb
 		end
 	end
 
@@ -150,7 +120,7 @@ class CitiesController < ApplicationController
         return 2
       elsif (0.4...0.6).include?(attr_value)
         return 3
-      elsif(0.6..0.7).include?(attr_value)
+      elsif(0.6...0.7).include?(attr_value)
         return 4
       elsif attr_value > 0.7
         return 5
