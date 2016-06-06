@@ -92,6 +92,30 @@ test "should calculate valid average" do
 
 end
 
+test "get_emoji should return 1 when uber condition is false" do
+  controler= CitiesController.new
+  valor = controler.get_emoji('uber', !@cityBrasilia.uber)
+  
+  assert (valor==1)
+end
+
+test "get_emoji should return 3 when attr_name is health with some params" do
+  controler= CitiesController.new
+  @cityBrasilia.health = 3.75
+  valor = controler.get_emoji('health', @cityBrasilia.health)
+
+  assert (valor==3)
+end
+
+
+test "get_emoji should return 5 when attr_name is health with some params" do
+  controler= CitiesController.new
+  valor = controler.get_emoji('health', @cityCeara.health)
+
+  assert (valor==5)
+end
+
+
 #test "should get compare from show" do
 #  get :compare, id: @cityBrasilia.id
 #  assert_response :success
