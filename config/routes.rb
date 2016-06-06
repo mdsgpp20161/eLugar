@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   post 'edit' => 'users#update' 
   resources :users 
 
+  resources :cities do
+    resources :comments
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
