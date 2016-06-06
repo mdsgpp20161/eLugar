@@ -15,4 +15,3 @@ Feature: User wants to update account
 		And I fill in Senha with 123456
 		And I fill in Confirmação with 123456
 		Then I should see Perfil
-		# Then I should see valid@hotmail.com

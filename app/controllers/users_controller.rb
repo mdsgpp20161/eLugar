@@ -14,11 +14,13 @@ class UsersController < ApplicationController
   	if @user.save
       flash[:notice] = "Registrado com sucesso"
       render 'sessions/new'
+      flash[:error] = nil
       #log_in @user
   		#redirect_to @user
   	else
       flash[:error] = "Cadastro inválido"
   		render 'new'
+      flash[:error] = nil
   	end
   end
 
