@@ -11,6 +11,7 @@ brasilia:
   health: 1.5
   violence: 1.5
   uber: true
+  id: 1
 
 ceara:
   name: "ceara"
@@ -24,3 +25,4 @@ ceara:
   violence: 6
   uber: false
   image: "Ceara"
+  id: 2
