@@ -1,49 +1,53 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 brasilia:
+  id: 0
   name: "brasilia"
   population: 1
   demographic_density: 1.5
   area: 1.5
   fleet: 1.5
-  idh: 1.5
+  idh: 1
   gini: 1.5
   health: 1.5
   violence: 1.5
   uber: true
 
 ceara:
+  id: 1
   name: "ceara"
   population: 23
-  demographic_density: 1 
+  demographic_density: 1
   area: 2
   fleet: 3
-  idh: 1
+  idh: 0.95
   gini: 1
-  health: 6 
+  health: 6
   violence: 6
   uber: false
   image: "Ceara"
 
 
 goiania:
+  id: 2
   name: "goiania"
   population: 300
-  demographic_density: 20 
+  demographic_density: 20
   area: 25
   fleet: 120
   idh: 0.5
   gini: 0.5
-  health: 12 
+  health: 12
   violence: 30
   uber: false
   image: "Goiania"
 
 
 florianopolis:
+  id: 3
   name: "florianopolis"
   population: 230
-  demographic_density: 18 
+  demographic_density: 18
   area: 230
   fleet: 300
   idh: 0.9
@@ -55,20 +59,22 @@ florianopolis:
 
 
 cuiaba:
+  id: 4
   name: "cuiaba"
   population: 14
-  demographic_density: 380 
+  demographic_density: 380
   area: 220
   fleet: 301
   idh: 0.87
   gini: 0.3
-  health: 4 
+  health: 4
   violence: 60
   uber: true
   image: "Cuiaba"
 
 
 recife:
+  id: 5
   name: "recife"
   population: 143
   demographic_density: 320
@@ -80,4 +86,3 @@ recife:
   violence: 2
   uber: true
   image: "recife"
-

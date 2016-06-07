@@ -42,6 +42,7 @@ class CitiesController < ApplicationController
   def show
     @oldID = params[:id]
     @city = City.find(@oldID)
+		top3
     get_hash
     get_hash_text
     get_hash_values   

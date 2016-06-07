@@ -36,4 +36,14 @@ module CitiesHelper
 		end
 	end
 
+	def top3
+		@top = Hash.new
+		#@top['demographic_density'] = City.order(demograhic_density: :desc).first(3)
+		@top['gini'] = City.order(:gini).first(3)
+		@top['violence'] = City.order(:violence).first(3)
+		@top['fleet'] = City.order(:fleet).first(3)
+		@top['idh'] = City.order(idh: :desc).first(3)
+		@top['health'] = City.order(health: :desc).first(3)
+	end
+
 end
