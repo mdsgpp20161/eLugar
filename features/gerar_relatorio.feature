@@ -1,5 +1,6 @@
 Feature: User wants to generate a compare's report
 
+
 Scenario: Report successfully generated
 	Given I am on the root page
 	When I press "Ver Cidades" button
