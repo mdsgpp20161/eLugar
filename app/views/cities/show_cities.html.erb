@@ -90,7 +90,7 @@
                                             <% @cities.each do |f| %>
                                                 <% if cont<3 %>
                                                     <td>
-                                                        <%= link_to city_path(f), :class=>'opacityit' do %>
+                                                        <%= link_to city_path(f), :class=>'opacityit', id:"#{f.id}" do %>
                                                             <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
                                                         <% end %>
                                                         <h4><%= f.name %></h4>

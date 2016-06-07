@@ -15,6 +15,8 @@ Then "I should see $n" do |arg1|
 end
 
 And "I will press first city" do
-	 city = City.order(:name)
-	 click_link_or_button(city[0].id)
+	city = City.order(:name)
+	click_link_or_button(city[0].id)
+	# puts page.html
+	#click_link("1")
 end

@@ -34,7 +34,7 @@
                     <% @cities.each do |f| %>
                         <% if cont<3 %>
                             <td style="width: 100px;">
-                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do %>
+                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' ,id:"#{f.id}" do %>
                                     <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
                                 <% end %>
                                  <%=f.name%>
@@ -45,7 +45,7 @@
                             <tr>
                             </tr>
                             <td style="width: 100px;">
-                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' do %>
+                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' , id:"#{f.id}" do %>
                                     <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
                                 <% end %>
                                  <%=f.name%>
