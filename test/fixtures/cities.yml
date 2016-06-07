@@ -24,3 +24,60 @@ ceara:
   violence: 6
   uber: false
   image: "Ceara"
+
+
+goiania:
+  name: "goiania"
+  population: 300
+  demographic_density: 20 
+  area: 25
+  fleet: 120
+  idh: 0.5
+  gini: 0.5
+  health: 12 
+  violence: 30
+  uber: false
+  image: "Goiania"
+
+
+florianopolis:
+  name: "florianopolis"
+  population: 230
+  demographic_density: 18 
+  area: 230
+  fleet: 300
+  idh: 0.9
+  gini: 0.8
+  health: 4
+  violence: 1
+  uber: false
+  image: "Florianopolis"
+
+
+cuiaba:
+  name: "cuiaba"
+  population: 14
+  demographic_density: 380 
+  area: 220
+  fleet: 301
+  idh: 0.87
+  gini: 0.3
+  health: 4 
+  violence: 60
+  uber: true
+  image: "Cuiaba"
+
+
+recife:
+  name: "recife"
+  population: 143
+  demographic_density: 320
+  area: 2015
+  fleet: 200
+  idh: 0.7
+  gini: 0.43
+  health: 2
+  violence: 2
+  uber: true
+  image: "recife"
+
