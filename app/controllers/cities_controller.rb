@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
   include CitiesHelper
 
   def index
-    
+
   end
 
 	def ranking
@@ -31,7 +31,7 @@ class CitiesController < ApplicationController
       end
 
       order_cities
-      
+
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.order(:name)
@@ -41,11 +41,11 @@ class CitiesController < ApplicationController
 
   def show
     @oldID = params[:id]
-    @city = City.find(@oldID)
+    @city = City.find(@oldID.to_i)
 		top3
     get_hash
     get_hash_text
-    get_hash_values   
+    get_hash_values
   end
 
   def compare
@@ -79,7 +79,7 @@ class CitiesController < ApplicationController
     @hash['gini'] = 'Índice de Gini'
     @hash['health'] = 'Índice de Saúde'
     @hash['violence'] = 'Índice de Violência'
-    @hash['uber'] = 'Uber'   
+    @hash['uber'] = 'Uber'
   end
 
   def get_hash_text
@@ -127,7 +127,7 @@ class CitiesController < ApplicationController
         return 5
       end
     end
-    
+
     @average = City.all.map(&attr_name.to_sym).inject(0, &:+)/City.all.length
     if (0...@average*0.6).include?(attr_value)
       if attr_name == 'health' then return 1 else return 5 end
@@ -152,7 +152,7 @@ class CitiesController < ApplicationController
     @hashValue['gini'] = "Gini: #{@city.gini}"
     @hashValue['health'] = "Saúde: #{@city.health} Hospitais/Densidade"
     @hashValue['violence'] = "Violência: #{@city.violence} homícidios"
-    @hashValue['uber'] = "Uber: " + if @city.uber then "Sim" else "Não" end 
+    @hashValue['uber'] = "Uber: " + if @city.uber then "Sim" else "Não" end
   end
 
   helper_method :get_average
