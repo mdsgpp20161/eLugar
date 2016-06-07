@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
 
       format.pdf do
         render :pdf => "Relatório de Comparação"
-        # ,footer: {center: "[page] of [topage]"}
       end
     end
   end

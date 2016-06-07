@@ -25,13 +25,9 @@ end
 And "I will press first city" do
 	city = City.order(:name)
 	click_link_or_button(city[0].id)
-	# puts page.html
-	#click_link("1")
 end
 
 Then "I see pdf" do
 	convert_pdf_to_page
 	page.should have_content('Relatório de Comparação')
-	# response.should be_success
-	# response.should be render_template('articles')
 end
