@@ -1,3 +1,11 @@
+def convert_pdf_to_page
+  temp_pdf = Tempfile.new('articles')
+  temp_pdf << page.source.force_encoding('UTF-8')
+  reader = PDF::Reader.new(temp_pdf)
+  pdf_text = reader.pages.map(&:text)
+  page.driver.response.instance_variable_set('@body', pdf_text)
+end
+
 Given "I am on the $n page" do |arg1|
   visit send("#{arg1}_path")
 end
@@ -19,4 +27,11 @@ And "I will press first city" do
 	click_link_or_button(city[0].id)
 	# puts page.html
 	#click_link("1")
+end
+
+Then "I see pdf" do
+	convert_pdf_to_page
+	page.should have_content('Relatório de Comparação')
+	# response.should be_success
+	# response.should be render_template('articles')
 end

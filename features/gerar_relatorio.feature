@@ -8,4 +8,4 @@ Scenario: Report successfully generated
 	And I press "Compare" button
 	And I will press first city
 	When I press "Relatório de Comparação" button
-	Then I should see Relatório de Comparação
+	Then I see pdf
