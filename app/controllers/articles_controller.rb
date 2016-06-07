@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  def index
+  def generate_report
     get_hash
     get_hash_metrics
     @city1 = City.find(params[:city1])
