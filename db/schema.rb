@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 20160529113751) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
-    create_table "comments", force: :cascade do |t|
+
+  create_table "comments", force: :cascade do |t|
     t.string   "commenter"
     t.text     "body"
     t.integer  "city_id"

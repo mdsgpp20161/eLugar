@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
       else
         flash[:error] = "Login não foi efetuado com sucesso."
         render'new'
+        flash[:error] = nil
       end
     else
       flash[:error] = "Login não foi efetuado com sucesso."
       render 'new'
+      flash[:error] = nil
     end
   end
 
