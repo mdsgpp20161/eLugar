@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
+  #get 'sessions/new'
+
+  #get 'users/new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   resources :cities
-
+  
   root 'cities#index'
-
+  #get 'edit' => 'sessions#current_user'
+  get 'auth/:provider/callback', to: "sessions#create_face"
+  delete 'sign_out', to: "sessions#destroy_face", as: 'sign_out'
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
   get 'index' => 'cities#index'
   get 'find' => 'cities#show_cities'
   get 'cities/show'
@@ -18,6 +26,12 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact_us'
   get 'references' => 'static_pages#references'
   get "static_pages/download_pdf"
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+  get 'edit' => 'users#edit'
+  post 'edit' => 'users#update' 
+  resources :users 
 
   resources :cities do
     resources :comments
