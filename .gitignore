@@ -1,10 +1,4 @@
-## Floobits
-.floo
-.flooignore
-
-
 ##Rails
-
 *.rbc
 capybara-*.html
 .rspec
