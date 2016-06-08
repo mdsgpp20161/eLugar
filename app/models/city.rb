@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
+	has_many :comments
 	validates :name, presence: true
 	validates :population, presence: true
 	validates :demographic_density, presence: true

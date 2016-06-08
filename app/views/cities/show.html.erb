@@ -19,46 +19,14 @@
     <!-- Custom Fonts -->
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://www.facebook.com/assets.php/pt_BR/sdk.js" async></script>
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content     for toggling -->
-            <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/about">Sobre</a>
-                    </li>
-                    <li>
-                        <a href="/references">Referências</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contato</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+
+  <div id="fb-root"></div>
+  <%=render 'cities/script_face'%>
+  <%=render 'layouts/navbar'%>
 
     <!-- Header -->
     <a name="about"></a>
@@ -89,18 +57,19 @@
                                                         <center>
                                                             <%if(attr_name == 'population' || attr_name == 'area')%>
                                                             <% else %>
-                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> </img>
-																												<% end %>
-																												<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
-																															<% case @top[attr_name].index(@city) %>
-																																<% when 0 %>
-																																	<img class="img-responsive foto" src="/assets/gold_medal.png">
-																																<% when 1 %>
-																																	<img class="img-responsive foto" src="/assets/silver_medal.png">
-																																<% when 2 %>
-																																	<img class="img-responsive foto" src="/assets/bronze_medal.png">
-																															<% end %>
-																														<% end %>
+                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
+                                                                </img>
+                							<% end %>
+                							<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
+                										<% case @top[attr_name].index(@city) %>
+                											<% when 0 %>
+                												<img class="img-responsive foto" src="/assets/gold_medal.png">
+                											<% when 1 %>
+                												<img class="img-responsive foto" src="/assets/silver_medal.png">
+                											<% when 2 %>
+                												<img class="img-responsive foto" src="/assets/bronze_medal.png">
+                										<% end %>
+                									<% end %>
                                                         </center>
                                                     </div>
                                                     <div class="back">
@@ -115,17 +84,29 @@
                                 <% end %>
                             </ul>
                         </div>
-                       <%= link_to "Voltar", find_path(:id => nil), :class => "btn btn-default" %>&nbsp;&nbsp;
-                       <%= link_to "Compare", compare_path(:id => @oldID), :class => "btn btn-primary" %>
+                        <div>
+                         <%= link_to "Voltar", find_path(:id => nil), :class => "btn btn-default" %>&nbsp;&nbsp;
+                         <%= link_to "Compare", compare_path(:id => @oldID), :class => "btn btn-primary" %>
+                           <%= form_tag(cities_show_path, :method => :get) do %>
+                             <center>
+                                <br><br><br><div class="fb-like" data-href ="/cities/<%=@city.id%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                             </center>
+                           <%end%>
+                       </div>
+
+                        <h2>Comentários</h2>
+                        <% @city.comments.each_slice(2) do |f| %>
+                            <%= render f[0]%>
+                        <% end %>
+
+                        <h2>Adicionar um comentário:</h2>
+                        <%= render 'comments/form' %>
+
+                        <%= link_to 'Top', city_path %>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.container -->
     </div>
-        <!-- Footer -->
-    <footer style="background-color: #D0B4AE">
-        <div>
-        </div>
-    </footer>
 </body>

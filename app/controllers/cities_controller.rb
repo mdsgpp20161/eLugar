@@ -2,7 +2,6 @@ class CitiesController < ApplicationController
   include CitiesHelper
 
   def index
-
   end
 
 	def ranking
@@ -13,6 +12,28 @@ class CitiesController < ApplicationController
 		  attr_to_erb
 		end
 	end
+
+  def order_cities
+    sorted_cities = params[:sort_cities]
+    sorted = false
+
+    @cities.columns.each do |attr|
+      if(sorted_cities == @hash[attr.name])
+        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
+          attr.name == 'fleet')
+          @cities = @cities.order(:"#{attr.name}")
+        else
+          @cities = @cities.order("#{attr.name}": :desc)
+        end
+          sorted = true
+          break
+        end
+      end
+
+      if(!sorted)
+        @cities = @cities.order(:name)
+      end
+  end
 
   def show_cities
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
@@ -100,7 +121,7 @@ class CitiesController < ApplicationController
     @hashMetric['population'] = '(Número de habitantes)'
     @hashMetric['demographic_density'] = '(Habitantes/Km²)'
     @hashMetric['area'] = '(Km²)'
-    @hashMetric['fleet'] = '(Habitantes/Quatidade de onibus)'
+    @hashMetric['fleet'] = '(Habitantes/Quantidade de onibus)'
     @hashMetric['health'] = '(Densidade/Estabelecimentos de saúde)'
     @hashMetric['violence'] = '(Quantidade de homicídios)'
   end
