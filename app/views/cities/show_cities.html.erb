@@ -1,3 +1,4 @@
+<link href="styles/ihover.css" rel="stylesheet">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,6 +37,7 @@
             <a name="about"></a>
             <div class="intro-header-find">
                 <div class="container">
+                <div class="row">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="intro-message-find">
@@ -84,34 +86,16 @@
                                     </li>
                                     <br><br><br>
                                     <li>
-                                        <table>
-                                            <% cont = 0 %>
-
-                                            <% @cities.each do |f| %>
-                                                <% if cont<3 %>
-                                                    <td>
-                                                        <%= link_to city_path(f), :class=>'opacityit', id:"#{f.id}" do %>
-                                                            <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="300" width="300">
-                                                        <% end %>
-                                                        <h4><%= f.name %></h4>
-                                                    </td>
-
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <table>                                            
+                                            <% @cities.each_with_index do |f, cont| %>
+                                                <% if cont%3!=0 %> 
+                                                    <%= render :partial => 'city_image', :locals => { :f => f} %>
                                                 <% else %>
-                                                <tr>
-                                                </tr>
-                                                 <td>
-                                                        <%= link_to city_path(f), :class=>'opacityit' do %>
-                                                            <img class="img-responsive img-rounded"src= <%= "/assets/#{f.image}.jpg" %> heigth="300" width="300">
-                                                        <% end %>
-                                                        <h4><%= f.name %></h4>
-                                                    </td>
-
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                    <tr>
+                                                    <%= render :partial => 'city_image', :locals => { :f => f} %>
                                                     <% cont = 0 %>
                                                 <% end %>
-                                                <% cont=cont+1 %>
-                                            <% end %>
+                                            <% end %> 
                                             <% if @find %>
                                                 <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
                                             <% else %>

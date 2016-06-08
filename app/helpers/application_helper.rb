@@ -1,5 +1,5 @@
-module 	ApplicationHelper
-	def flash_message
+module ApplicationHelper
+  def flash_message
     messages = ""
     [:notice, :info, :warning, :error].each {|type|
       if flash[type]
