@@ -1,5 +1,4 @@
-	source 'https://rubygems.org'
-
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -32,7 +31,7 @@ gem 'wkhtmltopdf-binary'
 
 gem 'wicked_pdf'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
   
@@ -70,6 +69,8 @@ group :development do
   gem 'autoprefixer-rails'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+	gem 'spring-commands-rspec'
+	gem 'spring-commands-cucumber'
 end
 
 group :test, :cucumber do

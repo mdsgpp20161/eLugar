@@ -10,10 +10,11 @@
     <title>êLugar</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
 
+    <%=stylesheet_link_tag "/assets/bootstrap.min.css"%>
     <!-- Custom CSS -->
-    <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
+    <%=stylesheet_link_tag "/assets/landing-page.css"%>
+
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -55,9 +56,20 @@
                                                         <p><%=@hash[attr_name]%></p>
                                                         <center>
                                                             <%if(attr_name == 'population' || attr_name == 'area')%>
-                                                            <%else%>
-                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> </img>
-                                                            <%end%>
+                                                            <% else %>
+                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
+                                                                </img>
+                							<% end %>
+                							<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
+                										<% case @top[attr_name].index(@city) %>
+                											<% when 0 %>
+                												<img class="img-responsive foto" src="/assets/gold_medal.png">
+                											<% when 1 %>
+                												<img class="img-responsive foto" src="/assets/silver_medal.png">
+                											<% when 2 %>
+                												<img class="img-responsive foto" src="/assets/bronze_medal.png">
+                										<% end %>
+                									<% end %>
                                                         </center>
                                                     </div>
                                                     <div class="back">
@@ -97,5 +109,4 @@
         </div>
         <!-- /.container -->
     </div>
-        <!-- Footer -->
 </body>

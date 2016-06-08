@@ -1,11 +1,21 @@
 class CitiesController < ApplicationController
+  include CitiesHelper
+
   def index
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0dbcf43f3b28e03afd41f838157036f81efbed55
   end
 
-  def search_cities
-    @cities = City.where("name like ?", "%#{params[:find]}%")
-  end
+	def ranking
+		@cities = City.all
+		order_cities
+		@cities = @cities.paginate(:page => params[:page], :per_page => 10)
+		if params[:sort_cities]
+		  attr_to_erb
+		end
+	end
 
   def order_cities
     sorted_cities = params[:sort_cities]
@@ -57,6 +67,7 @@ class CitiesController < ApplicationController
   def show
     @oldID = params[:id]
     @city = City.find(@oldID)
+		top3
     get_hash
     get_hash_text
     get_hash_values
@@ -135,7 +146,7 @@ class CitiesController < ApplicationController
         return 2
       elsif (0.4...0.6).include?(attr_value)
         return 3
-      elsif(0.6...0.7).include?(attr_value)
+      elsif(0.6..0.7).include?(attr_value)
         return 4
       elsif attr_value > 0.7
         return 5
