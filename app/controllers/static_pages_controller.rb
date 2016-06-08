@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+	include PdfHelper
 
 	def about
 	end
@@ -16,5 +17,4 @@ class StaticPagesController < ApplicationController
 			type: "application/pdf"
 		)
 	end
-
 end

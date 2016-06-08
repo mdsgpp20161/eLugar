@@ -26,28 +26,37 @@ gem 'bootstrap-will_paginate', '0.0.10'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem "prawn", "0.8.4"
+
+gem 'wkhtmltopdf-binary'
+
+gem 'wicked_pdf'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+  
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mocha'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
 end
 
-group :test do
-  gem 'cucumber-rails', :require => false
-  # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner'
-end
+# group :test do
+  # gem 'cucumber-rails', :require => false
+#   # database_cleaner is not required, but highly recommended
+#   gem 'database_cleaner'
+
+#   gem 'rspec'
+
+# end
 
 gem 'simplecov', :require => false, :group => :test
 gem 'selenium-webdriver'
@@ -60,9 +69,11 @@ group :development do
   gem 'bootstrap-sass', '~>3.2.0'
   gem 'autoprefixer-rails'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'	
+  gem 'spring'
 end
 
-gem "rspec-rails", :group => [:development, :test]
+group :test, :cucumber do
+	gem 'pdf-reader'
+end
 gem 'devise'
 gem "js-routes"

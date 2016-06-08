@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 brasilia:
+  id: 1
   name: "brasilia"
   population: 1
   demographic_density: 1.5
@@ -14,14 +15,15 @@ brasilia:
   id: 1
 
 ceara:
+  id: 2
   name: "ceara"
   population: 23
-  demographic_density: 1 
+  demographic_density: 1
   area: 2
   fleet: 3
   idh: 1
   gini: 1
-  health: 6 
+  health: 6
   violence: 6
   uber: false
   image: "Ceara"

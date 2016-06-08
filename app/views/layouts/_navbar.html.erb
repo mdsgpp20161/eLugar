@@ -1,0 +1,63 @@
+    
+        <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+            <div class="container topnav">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content     for toggling -->
+                <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if logged_in? %>
+                       <li>
+                            <a href ="/signup"> Cadastro </a>
+                        </li>
+                        <li>
+                            <%= link_to "Perfil", current_user %>
+                        </li>
+                        <li>
+                            <%= link_to "Log out", logout_path, method: "delete" %>
+                        </li>
+                        <!-- <li>
+                            <a href ="/login"> Login </a>
+                        </li> -->
+                        <li>
+                            <a href="/about">Sobre</a>
+                        </li>
+                        <li>
+                            <a href="/references">Referências</a>
+                        </li>
+                        <li>
+                            <a href="contact">Contato</a>
+                        </li>
+                <% else %>
+                        
+                        <li>
+                             <a href ="/signup"> Cadastro </a>
+                         </li>
+                         <li>
+                             <a href ="/login"> Login </a>
+                         </li>
+                         <li>
+                             <a href="/about">Sobre</a>
+                         </li>
+                         <li>
+                             <a href="/references">Referências</a>
+                         </li>
+                         <li>
+                             <a href="contact">Contato</a>
+                         </li>
+                    <% end %>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </nav>

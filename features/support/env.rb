@@ -41,10 +41,7 @@ rescue NameError
 end
 
 Capybara.default_driver = :selenium
-# Capybara.register_driver :selenium do |app| 
-#    profile = Selenium::WebDriver::Firefox::Profile.new 
-#    Capybara::Selenium::Driver.new( app, :browser => :firefox, :profile => profile ) 
-# end
+
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
 #
