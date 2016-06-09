@@ -6,6 +6,7 @@ class CitiesControllerTest < ActionController::TestCase
   def setup
   @cityBrasilia = cities(:brasilia)
   @cityCeara = cities(:ceara)
+  @cityGoiania = cities(:goiania)
   end
 
   test "should get index" do
@@ -101,18 +102,18 @@ end
 
 test "get_emoji should return 3 when attr_name is health with some params" do
   controler= CitiesController.new
-  @cityBrasilia.health = 3.75
+  @cityBrasilia.health = 5
   valor = controler.get_emoji('health', @cityBrasilia.health)
 
-  assert (valor==3)
+  assert (valor==3),  "valor = #{valor}"
 end
 
 
 test "get_emoji should return 5 when attr_name is health with some params" do
   controler= CitiesController.new
-  valor = controler.get_emoji('health', @cityCeara.health)
+  valor = controler.get_emoji('health', @cityGoiania.health)
 
-  assert (valor==5)
+  assert (valor==5),  "valor = #{valor}"
 end
 
 

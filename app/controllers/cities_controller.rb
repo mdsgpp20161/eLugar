@@ -13,28 +13,6 @@ class CitiesController < ApplicationController
 		end
 	end
 
-  def order_cities
-    sorted_cities = params[:sort_cities]
-    sorted = false
-
-    @cities.columns.each do |attr|
-      if(sorted_cities == @hash[attr.name])
-        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
-          attr.name == 'fleet')
-          @cities = @cities.order(:"#{attr.name}")
-        else
-          @cities = @cities.order("#{attr.name}": :desc)
-        end
-          sorted = true
-          break
-        end
-      end
-
-      if(!sorted)
-        @cities = @cities.order(:name)
-      end
-  end
-
   def show_cities
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
     get_hash
@@ -62,11 +40,13 @@ class CitiesController < ApplicationController
 
   def show
     @oldID = params[:id]
-    @city = City.find(@oldID)
+		if @oldID != nil
+    	@city = City.find(@oldID)
+    	get_hash_values
+		end
 		top3
     get_hash
     get_hash_text
-    get_hash_values
   end
 
   def compare
