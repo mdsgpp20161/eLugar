@@ -52,7 +52,7 @@ class UsersControllerTest < ActionController::TestCase
                                       email: "foo@invalid",
                                       password:              "foo",
                                       password_confirmation: "bar" }
-      assert_not_equal "", User.find(users(:user)).name
+      assert_not_equal "", User.find(users(:user).id).name
     end
 
     test "should update user" do
@@ -63,7 +63,7 @@ class UsersControllerTest < ActionController::TestCase
                                       email: "foo@invalid.com",
                                       password:              "foobar",
                                       password_confirmation: "foobar" }
-      assert_equal "Pedrinho", User.find(users(:user)).name
+      assert_equal "Pedrinho", User.find(users(:user).id).name
       assert_redirected_to @user
     end
 
