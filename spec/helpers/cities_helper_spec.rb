@@ -15,7 +15,6 @@ class CitiesHelperTest < ActionController::TestCase
 				let!(:top_hash) { Hash.new }
 				it "match hash array" do
 					get :show
-					assign(:oldID, 1)
 					top_hash = City.all.order(idh: :desc).first(3)
 					expect(assigns(:top)['idh']).to match_array(top_hash)
 				end
