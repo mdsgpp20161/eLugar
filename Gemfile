@@ -25,8 +25,6 @@ gem 'bootstrap-will_paginate', '0.0.10'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'selenium-webdriver'
-
 gem "prawn", "0.8.4"
 
 gem 'wkhtmltopdf-binary'
@@ -43,6 +41,7 @@ gem 'mocha'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
@@ -59,6 +58,7 @@ end
 # end
 
 gem 'simplecov', :require => false, :group => :test
+gem 'selenium-webdriver'
 gem 'launchy'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
