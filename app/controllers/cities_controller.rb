@@ -2,10 +2,6 @@ class CitiesController < ApplicationController
   include CitiesHelper
 
   def index
-<<<<<<< HEAD
-=======
-
->>>>>>> 0dbcf43f3b28e03afd41f838157036f81efbed55
   end
 
 	def ranking
