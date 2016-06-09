@@ -1,6 +1,6 @@
 <td>
-	<%= link_to city_path(f), :class=>'opacityit' do %>
-		<div class="ih-item circle effect13 from_left_and_right">
+	<%= link_to city_path(f), id: "#{f.id}" do %>
+		<div class="ih-item circle effect13 from_left_and_right" id=<%= "#{f.id}" %>>
 		   	<div class="img"><img src=<%="/assets/#{f.image}.jpg"%> alt="img"></div>
 		   	<div class="info">
 			    <div class="info-back">

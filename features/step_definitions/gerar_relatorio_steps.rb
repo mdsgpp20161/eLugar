@@ -10,8 +10,8 @@ Given "I am on the $n page" do |arg1|
   visit send("#{arg1}_path")
 end
 
-When(/^I press "([^"]*)" button$/) do |arg1|
-	click_link_or_button(arg1)
+When(/^I press "([^"]*)"$/) do |arg1|
+  	click_link_or_button(arg1)
 end
 
 And "I will press $n link" do |arg1|
@@ -29,5 +29,5 @@ end
 
 Then "I see pdf" do
 	convert_pdf_to_page
-	page.should have_content('Relatório de Comparação')
+	expect(page).to have_content('Relatório de Comparação')
 end
