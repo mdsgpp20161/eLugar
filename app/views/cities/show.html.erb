@@ -4,7 +4,6 @@
     <a name="about"></a>
     <div class="intro-header-show">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message-show black">
@@ -13,46 +12,8 @@
                         <div class="list-inline intro-social-buttons black">
                             <ul class="cardboard">
                                 <%= form_tag(cities_show_path, :method => :get) do %>
-                                    <h1>
-                                        <%=@city.name%>
-                                    </h1>
-                                    <% @city.attributes.each do |attr_name, attr_value| %>
-                                        <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at')%>
-                                            <% next %>
-                                        <% end %>
-                                        <li class="cardboard">
-                                            <div class="flip-container">
-                                                <div class="flipper">
-                                                    <div class="front">
-                                                        <br><br><br><br><br>
-                                                        <p><%=@hash[attr_name]%></p>
-                                                        <center>
-                                                            <%if(attr_name == 'population' || attr_name == 'area')%>
-                                                            <% else %>
-                                                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
-                                                                </img>
-                							<% end %>
-                							<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
-                										<% case @top[attr_name].index(@city) %>
-                											<% when 0 %>
-                												<img class="img-responsive foto" src="/assets/gold_medal.png">
-                											<% when 1 %>
-                												<img class="img-responsive foto" src="/assets/silver_medal.png">
-                											<% when 2 %>
-                												<img class="img-responsive foto" src="/assets/bronze_medal.png">
-                										<% end %>
-                									<% end %>
-                                                        </center>
-                                                    </div>
-                                                    <div class="back">
-                                                        <br><br><br>
-                                                        <p><%=@hashText[attr_name]%></p>
-                                                        <p><%=@hashValue[attr_name]%></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    <% end %>
+                                    <h1>  <%= @city.name %> </h1>   
+                                    <%= render 'cardboard' %>
                                 <% end %>
                             </ul>
                         </div>
