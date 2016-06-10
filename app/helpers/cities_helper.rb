@@ -46,4 +46,31 @@ module CitiesHelper
 		@top['health'] = City.order(health: :desc).first(3)
 	end
 
+	def valid_attributes
+		valid_attributes = Hash.new
+		valid_attributes = {
+			'population' => true,
+			'demographic_density' => true,
+			'area' => true,
+			'fleet' => true,
+			'idh' => true,
+			'gini' => true,
+			'health' => true,
+			'violence' => true
+		}
+	end
+
+	def get_hash_text
+    @hashText = Hash.new
+    @hashText['population'] = "Esse dado indica a quantidade de pessoas que habitavam na cidade no ano de 2015 (Censo mais atual)."
+    @hashText['demographic_density'] = 'Esse dado indica a quantidade de pessoas por quilômetro quadrado na cidade. Indica o quão cheia a cidade está.'
+    @hashText['area'] = 'Esse dado indica o tamanho da cidade em quilômetros quadrados.'
+    @hashText['fleet'] = 'Esse dado indica a quantidade de pessoas por veículos de transporte público,mostrando a cobertura do transporte público dentro da cidade.'
+    @hashText['idh'] = 'Esse dado indica o quão desenvolvida a cidade se encontra. Quanto maior o número, mais desenvolvida ela está.'
+    @hashText['gini'] = 'Esse dado indica o nível de desigualdade existente na cidade. Quanto maior o número, maior a desiguldade.'
+    @hashText['health'] = 'Esse dado indica a cobertura total de estabelecimentos de saúde em relação a quantidade de pessoas e ao tamanho da cidade.'
+    @hashText['violence'] = 'Esse dado mostra a taxa de homícidios por armas de fogo na cidade entre os anos de 2010 e 2012.'
+    @hashText['uber'] = 'Esse dado indica se a cidade possui ou não cobertura do serviço de caronas Uber.'
+  end
+
 end

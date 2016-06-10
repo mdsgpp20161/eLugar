@@ -1,0 +1,26 @@
+<div class="input-group">
+    <span class="input-group-addon">Ordenar por:</span>
+    <%= select_tag :sort_cities, options_for_select(@hash.values), prompt: "Ordem alfabética" , class: "form-control" %>
+    <span class="input-group-btn">
+        <%= link_to '+', '#', :id => "show_filter_form", :class => "btn btn-default" %> 
+    </span>
+    </div>
+<div id="filter_form">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading"><left>Filtragem</left></div>
+        <div class="panel-body">
+            <% valid_attributes %>
+            <% City.columns.each do |attr| %>
+                <% if valid_attributes[attr.name] %>
+                    <%= "#{@hash[attr.name]} :" %><br>
+                    De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
+                    Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8' %>
+                    <hr>
+                <% else %>                     
+                    <!-- Do nothing -->
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
