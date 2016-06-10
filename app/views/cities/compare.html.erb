@@ -15,8 +15,13 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 <body>
-    <%=render 'layouts/navbar' %>
+
+  <%=render 'layouts/navbar' %>
   <div class ="intro-header-compare">
           </br>
           </br>
@@ -27,5 +32,67 @@
               <%=render 'cities/compare2'%>
           <% end %>
 
-  </div>
-</body>
+	</div>
+
+  <div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+
+  <script>
+
+  $(function () {
+
+  $('#container').highcharts({
+
+      chart: {
+          backgroundColor: '#E7EDDD',
+          polar: true,
+          type: 'line'
+      },
+
+      title: {
+          text: 'Belo Horizonte vs Aracaju',
+          x: -80
+      },
+
+      pane: {
+          size: '80%'
+      },
+
+      xAxis: {
+          categories: ['População', 'Densidade demográfica', 'Tamanho da Cidade', 'Transporte',
+                  'IDH', 'Gini', 'Saúde', 'Violência'],
+          tickmarkPlacement: 'on',
+          lineWidth: 0
+      },
+
+      yAxis: {
+          gridLineInterpolation: 'polygon',
+          lineWidth: 0,
+          min: 0
+      },
+
+      tooltip: {
+          shared: true,
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+      },
+
+      legend: {
+          align: 'right',
+          verticalAlign: 'top',
+          y: 70,
+          layout: 'vertical'
+      },
+
+      series: [{
+          name: 'Allocated Budget',
+          data: [1, 2, 3, 3, 4, 5, 6, 7],
+          pointPlacement: 'on'
+      }, {
+          name: 'Actual Spending',
+          data: [3, 4, 5, 12, 13, 14, 20, 15],
+          pointPlacement: 'on'
+      }]
+
+  });
+});
+  </script>
