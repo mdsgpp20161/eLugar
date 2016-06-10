@@ -39,14 +39,12 @@
 
   <script>
 
-  <%= @array1 = [@city1.population, @city1.demographic_density, @city1.area, @city1.fleet, @city1.idh, @city1.gini, @city1.health, @city1.violence] %>
-
-	<%= @array2 = [@city2.population, @city2.demographic_density, @city2.area, @city2.fleet, @city2.idh, @city2.gini, @city2.health, @city2.violence] %>
-
+  // <%= array1 = [@city1.population, @city1.demographic_density, @city1.area, @city1.fleet, @city1.idh, @city1.gini, @city1.health, @city1.violence] %>
+	// <%= array2 = [@city2.population, @city2.demographic_density, @city2.area, @city2.fleet, @city2.idh, @city2.gini, @city2.health, @city2.violence] %>
   $(function () {
 
-		var values1 = [<%= raw @array1.to_json %>];
-		var values2 = [<%= raw @array2.to_json %>];
+		var values1 = [<%= @city1.population %>, <%= @city1.demographic_density %>, <%= @city1.area %>, <%= @city1.fleet %>, <%= @city1.idh %>, <%= @city1.gini %>, <%= @city1.health %>, <%=@city1.violence %>];
+		var values2 = [<%= @city2.population %>, <%= @city2.demographic_density %>, <%= @city2.area %>, <%= @city2.fleet %>, <%= @city2.idh %>, <%= @city2.gini %>, <%= @city2.health %>, <%=@city2.violence %>];
 		var name1 = [<%= raw @city1.name.to_json %>];
 		var name2 = [<%= raw @city2.name.to_json %>];
 
@@ -82,7 +80,7 @@
 
       tooltip: {
           shared: true,
-          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
       },
 
       legend: {
