@@ -34,7 +34,7 @@
 
 	</div>
 
-  <div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+  <div id="container" style="min-width: 400px; max-width: 1000px; height: 600px; margin: 0 auto"></div>
 
 
   <script>
@@ -73,7 +73,7 @@
 
       tooltip: {
           shared: true,
-          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
       },
 
       legend: {
@@ -84,11 +84,11 @@
       },
 
       series: [{
-          name: 'Allocated Budget',
+          name: 'Cidade 1',
           data: [1, 2, 3, 3, 4, 5, 6, 7],
           pointPlacement: 'on'
       }, {
-          name: 'Actual Spending',
+          name: 'Cidade 2',
           data: [3, 4, 5, 12, 13, 14, 20, 15],
           pointPlacement: 'on'
       }]
