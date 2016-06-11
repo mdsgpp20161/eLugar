@@ -1,0 +1,93 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style=" width: 1000px; height: 400px; margin: 0 auto;"></div>
+
+<table id="datatable" style="display: none;">
+    <thead>
+        <tr>
+            <th></th>
+            <th><%= @city1.name %></th>
+            <th><%= @city2.name %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>mi</th>
+            <td><%= @city1.population/1000000.0 %></td>
+            <td><%= @city2.population/1000000.0 %></td>
+        </tr>
+        <tr>
+            <th>mil km²</th>
+            <td>15.956</td>
+            <td>11.423</td>
+        </tr>
+        <tr>
+            <th>centenas (Habitantes/Quantidade de onibus)</th>
+            <td><%= @city1.fleet/100 %></td>
+            <td><%= @city2.fleet/100 %></td>
+        </tr>
+        <tr>
+            <th>IDH</th>
+            <td><%= @city1.idh %></td>
+            <td><%= @city2.idh %></td>
+        </tr>
+        <tr>
+            <th>Gini</th>
+            <td><%= @city1.gini %></td>
+            <td><%= @city2.gini %></td>
+        </tr>
+        <tr>
+            <th>(Densidade/Estabelecimentos de saúde)</th>
+            <td><%= @city1.health*10 %></td>
+            <td><%= @city2.health*10 %></td>
+        </tr>
+        <tr>
+            <th>(Quantidade de homicídios)</th>
+            <td><%= @city1.violence %></td>
+            <td><%= @city2.violence %></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script>
+
+  $(function () {
+    var name1 = [<%= raw @city1.name.to_json %>];
+    var name2 = [<%= raw @city2.name.to_json %>];
+    $('#container').highcharts({
+        data: {
+            table: 'datatable'
+        },
+        chart: {
+          backgroundColor: '#E7EDDD',
+          type: 'column'
+        },
+        title: {
+            text: 'Grafico de comparacao',
+        },
+
+         xAxis: {
+            categories: ['População', 'Tamanho da Cidade', 'Transporte','IDH', 'Gini', 'Índice de Saúde', 'Índice de Violência']
+        },
+
+        yAxis: {
+            allowDecimals: true,
+            title: {
+                text: '@êLugar'
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name;
+            }
+        }
+    });
+});
+</script>
+
+<%= link_to "Voltar", compare_path(:id => @oldID), :class => "btn btn-default" %>
+<%= link_to "Relatório de Comparação", articles_path(format: :pdf,:city1 => @city1.id, :city2 => @city2.id), target: "_blank", :class => "btn btn-default"%>
