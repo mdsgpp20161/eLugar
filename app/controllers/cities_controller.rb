@@ -52,6 +52,8 @@ class CitiesController < ApplicationController
     if(params[:newID])
       @newID = params[:newID]
       @city2 = City.find(@newID)
+      @medals = Hash.new
+      @medals = set_medals(@city1, @city2)
     end
     if(params[:find])
       search_cities

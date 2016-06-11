@@ -72,6 +72,48 @@ module CitiesHelper
 		}
 	end
 
+	# Attributes that gets better when it gets higher
+	def valid_attributes_compare_up
+		valid_attributes = Hash.new
+		valid_attributes = {
+			'population' => true,
+			'area' => true,
+			'idh' => true,
+			'health' => true
+		}
+	end
+
+	# Attributes that gets worse when it gets higher
+	def valid_attributes_compare_down
+		valid_attributes = Hash.new
+		valid_attributes = {
+			'demographic_density' => true,
+			'fleet' => true,
+			'gini' => true,
+			'violence' => true,
+		}
+	end
+
+	def set_medals (city1, city2)
+		medals = Hash.new
+		City.columns.each do |attr|
+			if(valid_attributes_compare_up[attr.name])
+				if(get_average(city1, city2, attr.name) > 50)
+					medals[attr.name] = true
+				else
+					medals[attr.name] = false
+				end
+			elsif(valid_attributes_compare_down[attr.name])
+				if(get_average(city1, city2, attr.name) < 50)
+					medals[attr.name] = true
+				else
+					medals[attr.name] = false
+				end
+			end
+		end
+		medals
+	end
+
 	def valid_attributes_ranking
 		valid_attributes = Hash.new
 		valid_attributes = {

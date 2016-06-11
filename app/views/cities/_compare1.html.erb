@@ -9,44 +9,35 @@
 </div>
 <center>
     <% @city1.attributes.each do |attr_name, attr_value| %>
-        <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber') %>
-        <% next %>
-    <% end %>
+        <% if valid_attributes_show_cities[attr_name] %>
+            <%= "#{attribute_to_text[attr_name]} #{attribute_to_metric[attr_name]}" %>
+                <%if @medals[attr_name] %>
+                    <div style="float: left; position: absolute; margin-left: 8%; margin-top: -10px;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
+                        </div>
+                <%end%>
 
-    <%= "#{attribute_to_text[attr_name]} #{attribute_to_metric[attr_name]}" %>
-    <%if (get_average(@city1, @city2, attr_name) <= 50 && (attr_name == 'fleet' || attr_name == 'gini' || attr_name == 'violence' || attr_name == 'demographic_density')) %>
-        <div style="float: left; position: absolute; margin-left: 8%; margin-top: -10px;">
-            <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
-        </div>
-    <% elsif (get_average(@city1, @city2, attr_name) >= 50 && (attr_name != 'fleet' && attr_name != 'gini' && attr_name != 'violence' && attr_name != 'demographic_density')) %>
-        <div style="float: left; position: absolute; margin-left: 8%; margin-top: -10px;">
-            <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
-        </div>
-    <%end%>
-    <div class="progress" style="width: 1000px; position:relative">
+                <div class="progress" style="width: 1000px; position:relative">
 
-        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
-            <% if(get_average(@city1, @city2, attr_name) > 10) %>
-                <%= attr_value%>
-            <% end %>
-        </div>
-        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
-            <% if(get_average(@city1, @city2, attr_name) < 90) %>
-                <%= @city2.send(attr_name.to_sym) %>
-            <% end %>
-        </div>
-    </div>
-    <%if (get_average(@city1, @city2, attr_name) >= 50 && (attr_name == 'fleet' || attr_name == 'gini' || attr_name == 'violence' || attr_name == 'demographic_density')) %>
-        <div style="position: absolute; margin-left: 90%; margin-top: -50px;float: right;">
-            <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
-        </div>
-    <% elsif (get_average(@city1, @city2, attr_name) <= 50 && (attr_name != 'fleet' && attr_name != 'gini' && attr_name != 'violence' && attr_name != 'demographic_density')) %>
-        <div style="position: absolute; margin-left: 90%; margin-top: -50px;float: right;">
-            <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
-        </div>
-    <% end %>
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: <%= get_average(@city1, @city2, attr_name)%>%;">
+                        <% if(get_average(@city1, @city2, attr_name) > 10) %>
+                            <%= attr_value%>
+                        <% end %>
+                    </div>
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: <%=100- get_average(@city1, @city2, attr_name) %>%">
+                        <% if(get_average(@city1, @city2, attr_name) < 90) %>
+                            <%= @city2.send(attr_name.to_sym) %>
+                        <% end %>
+                    </div>
+                </div>
+
+                 <%if !@medals[attr_name] %>
+                    <div style="position: absolute; margin-left: 90%; margin-top: -50px;float: right;">
+                        <img class=" img-responsive img-rounded" src="/assets/medal.png" style="width: 25px;">
+                        </div>
+                <% end %>
+        <% end %>
     <% end %>
     <%= link_to "Voltar", compare_path(:id => @oldID), :class => "btn btn-default" %>
     <%= link_to "Relatório de Comparação", articles_path(format: :pdf,:city1 => @city1.id, :city2 => @city2.id), target: "_blank", :class => "btn btn-default"%>
-
 </center>
