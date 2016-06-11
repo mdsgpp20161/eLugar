@@ -52,6 +52,7 @@ class CitiesController < ApplicationController
   def compare
     get_hash
     get_hash_metrics
+    top3
     if(params[:id])
       @oldID = params[:id]
       @city1 = City.find(@oldID)

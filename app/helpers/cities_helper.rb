@@ -11,7 +11,7 @@ module CitiesHelper
 
     	@cities.columns.each do |attr|
       		if(sorted_cities == @hash[attr.name])
-        		if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+        		if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
           attr.name == 'fleet')
           			@cities = @cities.order(:"#{attr.name}")
         		else
@@ -41,9 +41,10 @@ module CitiesHelper
 		#@top['demographic_density'] = City.order(demograhic_density: :desc).first(3)
 		@top['gini'] = City.order(:gini).first(3)
 		@top['violence'] = City.order(:violence).first(3)
-		@top['fleet'] = City.order(:fleet).first(3)
+		@top['fleet'] = City.order(fleet: :desc).first(3) #in refactoring in merge it will have to be fixed
 		@top['idh'] = City.order(idh: :desc).first(3)
 		@top['health'] = City.order(health: :desc).first(3)
 	end
+
 
 end
