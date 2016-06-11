@@ -6,6 +6,7 @@ class CitiesController < ApplicationController
 
 	def ranking
 		@cities = City.all
+    order_cities
 		@cities = @cities.paginate(:page => params[:page], :per_page => 10)
 		if params[:sort_cities]
 		  attr_to_erb
@@ -51,7 +52,6 @@ class CitiesController < ApplicationController
     if(params[:newID])
       @newID = params[:newID]
       @city2 = City.find(@newID)
-      #@population = @city1.population*100/(@city1.population + @city2.population)
     end
     if(params[:find])
       search_cities
@@ -59,6 +59,4 @@ class CitiesController < ApplicationController
       @cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
     end
   end
-
-  
 end

@@ -6,28 +6,25 @@ module CitiesHelper
 
 	def order_cities
     	sorted_cities = params[:sort_cities]
-    	sorted = false
 
     	@cities.columns.each do |attr|
-      		if(sorted_cities == @hash[attr.name])
+      		if(sorted_cities == attribute_to_text[attr.name])
         		if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
           attr.name == 'fleet')
           			@cities = @cities.order(:"#{attr.name}")
         		else
           			@cities = @cities.order("#{attr.name}": :desc)
         		end
-	          	sorted = true
-    	      	break
 	        end
     	  end
 
-    	if(!sorted)
+    	if(!params[:sort_cities])
         	@cities = @cities.order(:name)
       	end
 	end
 
 	def attr_to_erb
-		@attr_name = @hash.index(params[:sort_cities])
+		@attr_name = attribute_to_text.index(params[:sort_cities])
 		@attr_rendered = Array.new(1)
 		@cities.each do |c|
 			aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
@@ -72,6 +69,20 @@ module CitiesHelper
 			'health' => true,
 			'violence' => true,
 			'uber' => true
+		}
+	end
+
+	def valid_attributes_ranking
+		valid_attributes = Hash.new
+		valid_attributes = {
+			'population' => 'População Estimada 2015',
+			'demographic_density' => 'Densidade Demográfica',
+			'area' => 'Tamanho da Cidade',
+			'fleet' => 'Transporte',
+			'idh' => 'IDH',
+			'gini' => 'Índice de Gini',
+			'health' => 'Índice de Saúde',
+			'violence' => 'Índice de Violência'
 		}
 	end
 
