@@ -1,13 +1,12 @@
 <body>
   <div class ="intro-header-compare">
-          </br>
-          </br>
-          </br>
+          <% 3.times do %>
+            <%= tag(:br) %>
+          <% end %>
           <% if @city1 && @city2 %>
               <%= render 'cities/compare1'%>
           <% elsif @city1 %>
               <%=render 'cities/compare2'%>
           <% end %>
-
   </div>
 </body>

@@ -11,12 +11,10 @@
 </div>
 
 <%= @user.name %>, <%= @user.email %>
-<% if @current_user %>
-     <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
-
-  <% end %>
-<%#= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
-<% if @current_user %>
-    | <%= link_to "Deletar conta", @user, method: :delete,
+<% if current_user %>
+     <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %> | 
+<% end %>
+<% if current_user %>
+    <%= link_to "Deletar conta", @user, method: :delete,
                                   data: { confirm: "Você tem certeza?" } %>
-  <% end %>
+<% end %>

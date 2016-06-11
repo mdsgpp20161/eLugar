@@ -13,21 +13,21 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@user) do |city| %>
 
-      <%= f.label :name, "Nome" %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= city.label :name, "Nome" %>
+      <%= city.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email, "Email" %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= city.label :email, "Email" %>
+      <%= city.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password, "Senha" %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= city.label :password, "Senha" %>
+      <%= city.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmação" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= city.label :password_confirmation, "Confirmação" %>
+      <%= city.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.submit "Atualizar", class: "btn btn-primary" %>
+      <%= city.submit "Atualizar", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

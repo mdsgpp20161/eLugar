@@ -49,29 +49,30 @@
                 <ul class="nav navbar-nav navbar-right">
                     <% if logged_in? %>
                         <li>
+                            <%= link_to "Perfil", current_user %>
+                        </li>
+                        <li>
                             <%= link_to "Log out", logout_path, method: "delete" %>
                         </li>
                     <% else %>
                         <li>
-                            <a href ="/signup"> Cadastro </a>
+                            <%= link_to "Cadastro", signup_path %>
                         </li>
                         <li>
-                            <a href ="/login"> Login </a>
+                            <%= link_to "Login", login_path %>
+                        </li>
                     <% end %>
                     <li>
                         <%= link_to "Ranking", ranking_path %>
                     </li>
                     <li>
-                        <%= link_to "Perfil", current_user %>
+                        <%= link_to "Sobre", about_path %>
                     </li>
                     <li>
-                        <a href="/about">Sobre</a>
+                        <%= link_to "Referências", references_path %>
                     </li>
                     <li>
-                        <a href="/references">Referências</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contato</a>
+                        <%= link_to "Contato", contact_path %>
                     </li>
                 </ul>
             </div>
