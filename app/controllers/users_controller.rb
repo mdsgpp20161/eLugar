@@ -6,7 +6,20 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])	
+  	@user = User.find(params[:id])
+    #@user.answer_quiz = [1,1,1]
+    if params[:answer_quiz]
+      @gv = @user.answer_quiz
+      @gv.push params[:answer_quiz].to_i
+      @user.answer_quiz = []
+      @user.save!
+      @user.answer_quiz = @gv
+      @user.save!
+    end
+    if !@user.answer_quiz.to_a.empty?
+      
+      #redirect_to root_path
+    end
   end
 
   def create
@@ -47,7 +60,7 @@ class UsersController < ApplicationController
 
    def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :answer_quiz)
    end
 
    
@@ -64,3 +77,5 @@ class UsersController < ApplicationController
     end
 
 end
+
+

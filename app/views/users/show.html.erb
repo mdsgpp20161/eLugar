@@ -45,6 +45,22 @@
 </div>
 
 <%= @user.name %>, <%= @user.email %>
+<%if params[:answer_quiz]%>
+    <%=@gv%>
+    <%end%>
+<center>
+<%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
+<p>
+<%= radio_button_tag :answer_quiz, 1 %>Sim
+<%#= label_tag(:age_child, 1) %>
+<%= radio_button_tag :answer_quiz, 0 %>Nao
+<%#= label_tag(:age_adult, 2) %>
+</p>
+<p>
+<%= submit_tag "Confirmar" %>
+</p>
+</center>
+<%end%>
 <% if @current_user %>
      <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
 
