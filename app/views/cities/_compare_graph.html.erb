@@ -21,8 +21,8 @@
 
         <tr>
             <th> Transporte </th>
-            <td><%= @city1.fleet/@top['fleet'].first.fleet %></td>
-            <td><%= @city2.fleet/@top['fleet'].first.fleet %></td>
+            <td><%= @top['fleet'].first.fleet/@city1.fleet %></td>
+            <td><%= @top['fleet'].first.fleet/@city2.fleet %></td>
         </tr>
         <tr>
             <th>IDH</th>
