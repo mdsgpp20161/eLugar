@@ -195,41 +195,55 @@ module CitiesHelper
   end
 
   def get_emoji (attr_name, attr_value)
+    emoji = 0
     if attr_name == 'uber'
-      return 5 if attr_value
-      return 1 if !attr_value
+    	if attr_value then emoji = 5 else emoji = 0 end
+    elsif attr_name == 'gini' || attr_name == 'idh'
+      emoji = get_emoji_idh_gini(attr_name,attr_value)
+    else
+  	  emoji = get_emoji_others(attr_name, attr_value)
     end
-    if attr_name == 'gini'
-      attr_value = 1 - attr_value
-    end
-    if attr_name == 'idh' || attr_name == 'gini'
-      if attr_value < 0.3
-        return 1
-      elsif (0.3...0.4).include?(attr_value)
-        return 2
-      elsif (0.4...0.6).include?(attr_value)
-        return 3
-      elsif(0.6..0.7).include?(attr_value)
-        return 4
-      elsif attr_value > 0.7
-        return 5
-      end
-    end
-
-    @average = City.all.map(&attr_name.to_sym).inject(0, &:+) / City.all.length
-    if (0...@average * 0.6).include?(attr_value)
-      if attr_name == 'health' then return 1 else return 5 end
-    elsif (@average * 0.6...@average * 0.9).include?(attr_value)
-      if attr_name == 'health' then return 2 else return 4 end
-    elsif (@average * 0.9...@average * 1.1).include?(attr_value)
-      return 3
-    elsif (@average * 1.1...@average * 1.4).include?(attr_value)
-      if attr_name == 'health' then return 4 else return 2 end
-    elsif attr_value > @average * 1.4
-      if attr_name == 'health' then return 5 else return 1 end
-    end
+    emoji
   end
 
+  def get_emoji_others (attr_name, attr_value)
+  	emoji = 0
+  	if valid_attributes_show_cities[attr_name]
+	  	average = City.all.map(&attr_name.to_sym).inject(0, &:+) / City.all.length
+	  	case true
+	  	when (0...average * 0.6).include?(attr_value)
+	      if attr_name == 'health' then emoji = 1 else emoji = 5 end
+	    when (average * 0.6...average * 0.9).include?(attr_value)
+	      if attr_name == 'health' then emoji = 2 else emoji = 4 end
+	    when (average * 0.9...average * 1.1).include?(attr_value)
+	      emoji = 3
+	    when (average * 1.1...average * 1.4).include?(attr_value)
+	      if attr_name == 'health' then emoji = 4 else emoji = 2 end
+	    when attr_value > average * 1.4
+	      if attr_name == 'health' then emoji = 5 else emoji = 1 end
+	    end
+	  end
+    emoji
+  end
+
+  def get_emoji_idh_gini (attr_name, attr_value)
+  	emoji = 0
+  	if attr_name == 'gini'
+      attr_value = 1 - attr_value
+    end
+    if attr_value < 0.3
+      emoji = 1
+    elsif (0.3...0.4).include?(attr_value)
+      emoji = 2
+    elsif (0.4...0.6).include?(attr_value)
+      emoji = 3
+    elsif(0.6..0.7).include?(attr_value)
+      emoji = 4
+    elsif attr_value > 0.7
+      emoji = 5
+    end
+    emoji
+  end
 
   def get_average (city1, city2, attr_name)
     attr_value1 = city1.send(attr_name.to_sym)

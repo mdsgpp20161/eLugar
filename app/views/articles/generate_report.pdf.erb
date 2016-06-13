@@ -18,24 +18,24 @@
         </td>
       </tr>
       <% @city1.attributes.each do |attr_name, attr_value| %>
-          <% if (attr_name == 'id' || attr_name == 'name' || attr_name == 'image' || attr_name == 'created_at' || attr_name == 'updated_at' || attr_name == 'uber') %>
-            <% next %>
-          <% end %>
+          <% if (valid_attributes[attr_name]) %>
           <tr height="40">
             <td width="50">
               <%= attr_value%>
             </td>
             <td width="500">
               <center>
-                <%= "#{@hash[attr_name]} #{@hashMetric[attr_name]}" %>
+                <%= "#{attribute_to_text[attr_name]} #{attribute_to_text[attr_name]}" %>
               </center>
             </td>
             <td>
               <%= @city2.send(attr_name.to_sym) %>
             </td>
           </tr>
+          <% else %>
+          <!-- Do nothing -->
+          <% end %>
       <%end%>
-
     </table>
   </center>
 </body>
