@@ -112,7 +112,7 @@ class CitiesController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @profileQuiz.id = @current_user.profileQuiz_id
     @profileQuiz = ProfileQuiz.find_by(id: @profileQuiz.id)
-
+    #verificar controler users..
     if attr_name == 'uber'
       if @profileQuiz.answer1 == 1 || @profileQuiz.id == nil
         return 5 if attr_value
