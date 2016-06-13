@@ -4,14 +4,14 @@ class CitiesController < ApplicationController
   def index
   end
 
-	def ranking
-		@cities = City.all
+  def ranking
+    @cities = City.all
     order_cities
-		@cities = @cities.paginate(:page => params[:page], :per_page => 10)
-		if params[:sort_cities]
-		  attr_to_erb
-		end
-	end
+    @cities = @cities.paginate(:page => params[:page], :per_page => 10)
+    if params[:sort_cities]
+      attr_to_erb
+    end
+  end
 
   def show_cities
     @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
@@ -22,7 +22,7 @@ class CitiesController < ApplicationController
       @cities = @cities.paginate(:page => params[:page], :per_page => 6)
 
       @cities.columns.each do |attr|
-        if(params[:"from_#{attr.name}"].present?) and (params[:"to_#{attr.name}"].present?)
+        if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
           @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
           sorted = true
           break
@@ -32,16 +32,16 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 6)
       @cities = @cities.order(:name)
-  	end
+    end
   end
 
 
   def show
     @oldID = params[:id]
-		if @oldID != nil
-    	@city = City.find(@oldID)
-		end
-		top3
+    if @oldID != nil
+      @city = City.find(@oldID)
+    end
+    top3
   end
 
   def compare
@@ -58,7 +58,7 @@ class CitiesController < ApplicationController
     if(params[:find])
       search_cities
     else
-      @cities = City.all.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+      @cities = City.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
-  end
+    end
 end

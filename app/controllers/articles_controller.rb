@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-
   def generate_report
     get_hash
     get_hash_metrics
@@ -9,7 +8,6 @@ class ArticlesController < ApplicationController
     @articles = ["#{@city1.name}", "#{@city2.name}"]
 
     respond_to do |format|
-
       format.pdf do
         render :pdf => "Relatório de Comparação"
       end
