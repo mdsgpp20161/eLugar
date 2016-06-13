@@ -1,11 +1,11 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-	
+  
   fixtures :users
   include SessionsHelper
   def setup
-  	@user       = users(:user)
+    @user       = users(:user)
     @other_user = users(:other_user)
   end
 
@@ -21,9 +21,9 @@ class UsersControllerTest < ActionController::TestCase
     get :new
     assert_difference 'User.count', 1 do
       post :create, user: { name:  "Example User",
-                                            email: "user@example.com",
-                                            password:              "password",
-                                            password_confirmation: "password" }
+                            email: "user@example.com",
+                            password:              "password",
+                            password_confirmation: "password" }
     end
     assert_template 'sessions/new'
   end
@@ -49,9 +49,9 @@ class UsersControllerTest < ActionController::TestCase
       get :edit, id: @user.id
       assert_template 'edit'
       put :update, :id => users(:user), user: { name:  "",
-                                      email: "foo@invalid",
-                                      password:              "foo",
-                                      password_confirmation: "bar" }
+                                                email: "foo@invalid",
+                                                password:              "foo",
+                                                password_confirmation: "bar" }
       assert_not_equal "", User.find(users(:user).id).name
     end
 
@@ -60,9 +60,9 @@ class UsersControllerTest < ActionController::TestCase
       get :edit, id: @user.id
       assert_template 'edit'
       put :update, :id => users(:user), user: { name:  "Pedrinho",
-                                      email: "foo@invalid.com",
-                                      password:              "foobar",
-                                      password_confirmation: "foobar" }
+                                                email: "foo@invalid.com",
+                                                password:              "foobar",
+                                                password_confirmation: "foobar" }
       assert_equal "Pedrinho", User.find(users(:user).id).name
       assert_redirected_to @user
     end
@@ -78,9 +78,7 @@ class UsersControllerTest < ActionController::TestCase
       get :show, :id => users(:other_user)
       assert_template 'show'
       assert_difference 'User.count', -1 do
-      delete :destroy, :id => users(:other_user)
+        delete :destroy, :id => users(:other_user)
       end
     end
-
-
 end
