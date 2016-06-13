@@ -45,22 +45,12 @@
 </div>
 
 <%= @user.name %>, <%= @user.email %>
-<%if params[:answer_quiz]%>
-    <%=@gv%>
-    <%end%>
-<center>
-<%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
-<p>
-<%= radio_button_tag :answer_quiz, 1 %>Sim
-<%#= label_tag(:age_child, 1) %>
-<%= radio_button_tag :answer_quiz, 0 %>Nao
-<%#= label_tag(:age_adult, 2) %>
-</p>
-<p>
-<%= submit_tag "Confirmar" %>
-</p>
-</center>
+<%if params[:answer1]%>
+    <%= @profile_quiz.answer1%>
+    <%= @profile_quiz.answer2%>
 <%end%>
+
+
 <% if @current_user %>
      <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
 
@@ -70,3 +60,38 @@
     | <%= link_to "Deletar conta", @user, method: :delete,
                                   data: { confirm: "Você tem certeza?" } %>
   <% end %>
+
+  <div style="float: left">
+    <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
+    <p>
+    <%= label_tag :answer1, 'Você apoia o UBER?' %>
+    <%= radio_button_tag :answer1, 1 %>Sim
+    <%#= label_tag(:age_child, 1) %>
+    <%= radio_button_tag :answer1, 0 %>Não
+    <%#= label_tag(:age_adult, 2) %>
+
+    <br>
+    <%= label_tag :answer2, 'Você prefere cidade mais movimentada?'%>
+    <%= radio_button_tag :answer2, 1 %>Sim
+    <%#= label_tag(:age_child, 1) %>
+    <%= radio_button_tag :answer2, 0 %>Nao
+
+    <br>
+    <%= radio_button_tag :answer3, 1 %>Sim
+    <%#= label_tag(:age_child, 1) %>
+    <%= radio_button_tag :answer3, 0 %>Nao
+
+    <%= radio_button_tag :answer4, 1 %>Sim
+    <%#= label_tag(:age_child, 1) %>
+    <%= radio_button_tag :answer4, 0 %>Nao
+
+    </p>
+    <p>
+    <%= submit_tag "Confirmar" %>
+    </p>
+
+<%end%>
+
+
+
+  </div>

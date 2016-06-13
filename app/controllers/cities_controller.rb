@@ -108,9 +108,19 @@ class CitiesController < ApplicationController
 
   helper_method :get_emoji
   def get_emoji (attr_name, attr_value)
+    @profileQuiz = ProfileQuiz.new
+    @current_user = User.find_by(id: session[:user_id])
+    @profileQuiz.id = @current_user.profileQuiz_id
+    @profileQuiz = ProfileQuiz.find_by(id: @profileQuiz.id)
+
     if attr_name == 'uber'
-      return 5 if attr_value
-      return 1 if !attr_value
+      if @profileQuiz.answer1 == 1 || @profileQuiz.id == nil
+        return 5 if attr_value
+        return 1 if !attr_value
+      else
+        return 1 if attr_value
+        return 5 if !attr_value
+      end
     end
     if attr_name == 'gini'
       attr_value = 1 - attr_value

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611183852) do
+ActiveRecord::Schema.define(version: 20160613215705) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -39,7 +39,30 @@ ActiveRecord::Schema.define(version: 20160611183852) do
 
   add_index "comments", ["city_id"], name: "index_comments_on_city_id"
 
-# Could not dump table "users" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "profile_quizzes", force: :cascade do |t|
+    t.integer  "answer1"
+    t.integer  "answer2"
+    t.integer  "answer3"
+    t.integer  "answer4"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "users_id"
+  end
+
+  add_index "profile_quizzes", ["users_id"], name: "index_profile_quizzes_on_users_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.integer  "profileQuiz_id"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["profileQuiz_id"], name: "index_users_on_profileQuiz_id"
 
 end

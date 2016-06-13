@@ -7,19 +7,20 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    #@user.answer_quiz = [1,1,1]
-    if params[:answer_quiz]
-      @gv = @user.answer_quiz
-      @gv.push params[:answer_quiz].to_i
-      @user.answer_quiz = []
-      @user.save!
-      @user.answer_quiz = @gv
-      @user.save!
+    @profile_quiz = ProfileQuiz.new
+    
+    if params[:answer1] && params[:answer2] && params[:answer3] && params[:answer4]
+          @profile_quiz.answer1 = params[:answer1].to_i
+          @profile_quiz.answer2 = params[:answer2].to_i
+          @profile_quiz.answer3 = params[:answer3].to_i
+          @profile_quiz.answer4 = params[:answer4].to_i
+          @profile_quiz.users_id = params[:id].to_i    
+          @profile_quiz.save!
     end
-    if !@user.answer_quiz.to_a.empty?
+
+    @user.profileQuiz_id = @profile_quiz.id
+    @user.save!
       
-      #redirect_to root_path
-    end
   end
 
   def create
