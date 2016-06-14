@@ -197,7 +197,7 @@ module CitiesHelper
   def get_emoji (attr_name, attr_value)
     emoji = 0
     if attr_name == 'uber'
-    	if attr_value then emoji = 5 else emoji = 0 end
+    	if attr_value then emoji = 5 else emoji = 1 end
     elsif attr_name == 'gini' || attr_name == 'idh'
       emoji = get_emoji_idh_gini(attr_name,attr_value)
     else
