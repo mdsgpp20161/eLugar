@@ -112,7 +112,6 @@ class CitiesController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @profileQuiz.id = @current_user.profileQuiz_id
     @profileQuiz = ProfileQuiz.find_by(id: @profileQuiz.id)
-    #verificar controler users..
     if attr_name == 'uber'
       if @profileQuiz.answer1 == 1 || @profileQuiz.id == nil
         return 5 if attr_value
@@ -141,14 +140,26 @@ class CitiesController < ApplicationController
 
     @average = City.all.map(&attr_name.to_sym).inject(0, &:+)/City.all.length
     if (0...@average*0.6).include?(attr_value)
+      if attr_name == 'demographic_density'
+        if @profileQuiz.answer2 == 1 then return 1 else return 5 end
+      end
       if attr_name == 'health' then return 1 else return 5 end
     elsif (@average*0.6...@average*0.9).include?(attr_value)
+      if attr_name == 'demographic_density'
+        if @profileQuiz.answer2 == 1 then return 2 else return 4 end
+      end
       if attr_name == 'health' then return 2 else return 4 end
     elsif ((@average*0.9...@average*1.1).include?(attr_value))
       return 3
     elsif ((@average*1.1...@average*1.4).include?(attr_value))
+      if attr_name == 'demographic_density'
+        if @profileQuiz.answer2 == 1 then return 4 else return 2 end
+      end
       if attr_name == 'health' then return 4 else return 2 end
     elsif attr_value > @average*1.4
+      if attr_name == 'demographic_density'
+        if @profileQuiz.answer2 == 1 then return 5 else return 1 end
+      end
       if attr_name == 'health' then return 5 else return 1 end
     end
   end

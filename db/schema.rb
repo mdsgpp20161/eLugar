@@ -44,11 +44,13 @@ ActiveRecord::Schema.define(version: 20160613215705) do
     t.integer  "answer2"
     t.integer  "answer3"
     t.integer  "answer4"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "users_id"
   end
 
+  add_index "profile_quizzes", ["user_id"], name: "index_profile_quizzes_on_user_id"
   add_index "profile_quizzes", ["users_id"], name: "index_profile_quizzes_on_users_id"
 
   create_table "users", force: :cascade do |t|

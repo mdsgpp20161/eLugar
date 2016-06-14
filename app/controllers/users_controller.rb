@@ -8,19 +8,21 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @profile_quiz = ProfileQuiz.new
-    
-    if params[:answer1] && params[:answer2] && params[:answer3] && params[:answer4]
-          @profile_quiz.answer1 = params[:answer1].to_i
-          @profile_quiz.answer2 = params[:answer2].to_i
-          @profile_quiz.answer3 = params[:answer3].to_i
-          @profile_quiz.answer4 = params[:answer4].to_i
-          @profile_quiz.users_id = params[:id].to_i    
-          @profile_quiz.save!
+    if @user.profileQuiz_id == nil 
+      if params[:answer1] && params[:answer2] && params[:answer3] && params[:answer4]
+            @profile_quiz.answer1 = params[:answer1].to_i
+            @profile_quiz.answer2 = params[:answer2].to_i
+            @profile_quiz.answer3 = params[:answer3].to_i
+            @profile_quiz.answer4 = params[:answer4].to_i
+            @profile_quiz.users_id = params[:id].to_i    
+            @profile_quiz.save!
+
+      end
+      @user.profileQuiz_id = @profile_quiz.id
+      @user.save!
     end
 
-    @user.profileQuiz_id = @profile_quiz.id
-    @user.save!
-      
+    
   end
 
   def create
