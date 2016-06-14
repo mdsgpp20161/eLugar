@@ -57,8 +57,17 @@
                                                         <center>
                                                             <%#if(attr_name == 'population' || attr_name == 'area')%>
                                                             <%# else %>
+                                                            <% if logged_in? && @current_user.profileQuiz_id != nil %>
+                                        
                                                                 <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
                                                                 </img>
+                                                            <% else%>
+                                                                <%if(attr_name == 'population' || attr_name == 'area')%>
+                                                                <% else %>
+                                                                    <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
+                                                                </img>
+                                                                <% end %>
+                                                            <% end%>
                 							<%# end %>
                 							<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
                 										<% case @top[attr_name].index(@city) %>
