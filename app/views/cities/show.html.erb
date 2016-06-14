@@ -55,11 +55,11 @@
                                                         <br><br><br><br><br>
                                                         <p><%=@hash[attr_name]%></p>
                                                         <center>
-                                                            <%if(attr_name == 'population' || attr_name == 'area')%>
-                                                            <% else %>
+                                                            <%#if(attr_name == 'population' || attr_name == 'area')%>
+                                                            <%# else %>
                                                                 <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attr_name, attr_value)}.png"%>> 
                                                                 </img>
-                							<% end %>
+                							<%# end %>
                 							<% if attr_name != 'population' && attr_name != 'demographic_density' && attr_name != 'uber' && attr_name != 'area' %>
                 										<% case @top[attr_name].index(@city) %>
                 											<% when 0 %>

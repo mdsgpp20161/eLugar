@@ -77,13 +77,14 @@
     <%= radio_button_tag :answer2, 0 %>Nao
 
     <br>
-    <%= radio_button_tag :answer3, 1 %>Sim
+    <%= label_tag :answer3, 'Você prefere cidade grande ou pequena?'%>
+    <%= radio_button_tag :answer3, 1 %>Grande
     <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer3, 0 %>Nao
-
-    <%= radio_button_tag :answer4, 1 %>Sim
+    <%= radio_button_tag :answer3, 0 %>Pequena
+    <%= label_tag :answer4, 'Você prefere cidade mais populosa ou menos populosa?'%>
+    <%= radio_button_tag :answer4, 1 %>Mais
     <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer4, 0 %>Nao
+    <%= radio_button_tag :answer4, 0 %>Menos
 
     </p>
     <p>
