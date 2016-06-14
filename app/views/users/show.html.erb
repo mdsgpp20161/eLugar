@@ -45,16 +45,10 @@
 </div>
 
 <%= @user.name %>, <%= @user.email %>
-<%if params[:answer1]%>
-    <%= @profile_quiz.answer1%>
-    <%= @profile_quiz.answer2%>
-<%end%>
-
 
 <% if @current_user %>
-     <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
-
-  <% end %>
+    <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+<% end %>
 <%#= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
 <% if @current_user %>
     | <%= link_to "Deletar conta", @user, method: :delete,
@@ -63,36 +57,42 @@
 
   <div style="float: left">
     <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
-    <p>
-    <%= label_tag :answer1, 'Você apoia o UBER?' %>
-    <%= radio_button_tag :answer1, 1 %>Sim
-    <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer1, 0 %>Não
-    <%#= label_tag(:age_adult, 2) %>
-
-    <br>
-    <%= label_tag :answer2, 'Você prefere cidade mais movimentada?'%>
-    <%= radio_button_tag :answer2, 1 %>Sim
-    <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer2, 0 %>Nao
-
-    <br>
-    <%= label_tag :answer3, 'Você prefere cidade grande ou pequena?'%>
-    <%= radio_button_tag :answer3, 1 %>Grande
-    <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer3, 0 %>Pequena
-    <%= label_tag :answer4, 'Você prefere cidade mais populosa ou menos populosa?'%>
-    <%= radio_button_tag :answer4, 1 %>Mais
-    <%#= label_tag(:age_child, 1) %>
-    <%= radio_button_tag :answer4, 0 %>Menos
-
-    </p>
-    <p>
-    <%= submit_tag "Confirmar" %>
-    </p>
-
-<%end%>
-
-
-
+  <center>
+  <br><br>
+    <%if @current_user.profileQuiz_id == nil%>
+        <table class="table">
+            <legend>Questionário</legend>
+            <tr>
+                <td><%= label_tag :answer1, 'Você apoia o UBER?' %></td>
+                <td><%= radio_button_tag :answer1, 1 %>Sim</td>
+        <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :answer1, 0 %>Não</td>
+        <%#= label_tag(:age_adult, 2) %>
+            </tr>
+        
+            <tr>
+                <td><%= label_tag :answer2, 'Você prefere cidade mais movimentada?'%></td>
+                <td><%= radio_button_tag :answer2, 1 %>Sim</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :answer2, 0 %>Não</td>
+            </tr>
+            <tr>
+                <td><%= label_tag :answer3, 'Você prefere cidade grande ou pequena?'%></td>
+                <td><%= radio_button_tag :answer3, 1 %>Grande</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :answer3, 0 %>Pequena</td>
+            </tr>
+            <tr>
+                <td><%= label_tag :answer4, 'Você prefere cidade mais populosa ou menos populosa?'%></td>
+                <td><%= radio_button_tag :answer4, 1 %>Mais</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :answer4, 0 %>Menos</td>
+            </tr>
+            <tr><td></td><td><%= submit_tag "Confirmar" %></td></tr>
+            <tr><td><font color="red">*Você poderá responder apenas uma vez.</font></td></tr>
+        </table>
+    
+    </center>
+    <%end%>
+    <%end%>
   </div>
