@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'index' => 'cities#index'
   get 'find' => 'cities#show_cities'
   get 'cities/show'
-  get 'show' =>  'cities#show'
+  get 'show' => 'cities#show'
   get 'compare' => 'cities#compare'
 	get 'ranking' => 'cities#ranking'
   post 'compare' => 'cities#compare'
