@@ -2,11 +2,11 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   include SessionsHelper
-	def setup
-		@user = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456")
-	end
+  def setup
+    @user = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456")
+  end
 
-	test "login with invalid information" do
+  test "login with invalid information" do
     get :new
     assert_template 'sessions/new'
     post :create, session: { email: "", password: "" }

@@ -21,8 +21,8 @@
 
         <tr>
             <th> Transporte </th>
-            <td><%= @top['fleet'].first.fleet/@city1.fleet %></td>
-            <td><%= @top['fleet'].first.fleet/@city2.fleet %></td>
+            <td><%= top3['fleet'].first.fleet/@city1.fleet %></td>
+            <td><%= top3['fleet'].first.fleet/@city2.fleet %></td>
         </tr>
         <tr>
             <th>IDH</th>
@@ -36,8 +36,8 @@
         </tr>
         <tr>
             <th>(Densidade/Estabelecimentos de saúde)</th>
-            <td><%= @city1.health/@top['health'].first.health %></td>
-            <td><%= @city2.health/@top['health'].first.health %></td>
+            <td><%= @city1.health/top3['health'].first.health %></td>
+            <td><%= @city2.health/top3['health'].first.health %></td>
         </tr>
         <tr>
             <th>(Quantidade de homicídios)</th>
