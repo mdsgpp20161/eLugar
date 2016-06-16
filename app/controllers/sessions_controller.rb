@@ -26,22 +26,20 @@ class SessionsController < ApplicationController
   end
 
   def create_face
-  begin
-    @user = User.from_omniauth(request.env['omniauth.auth'])
+    begin
+      @user = User.from_omniauth(request.env['omniauth.auth'])
 
-    if @user
-      session[:user_id] = @user.id
+      if @user
+        session[:user_id] = @user.id
+      end
     end
+    redirect_to root_path
   end
-  redirect_to root_path
-end
 
   def destroy_face
     if current_user
       session.delete(:user_id)
       redirect_to root_path, notice: "SIGNED OUT"
-    end
-      
+    end  
   end
-
 end

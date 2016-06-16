@@ -1,37 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="sortcut icon" href="assets/eLugarLogo.ico" type="image/x-icon" />
-        <title>êLugar</title>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
-        
-        <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <link href="jquery.bxslider.css" rel="stylesheet">
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>    
-</html>
-
-<%= render 'layouts/navbar' %>  
-
 <div class="intro-header-find" style="margin-top: -50px;">
     <div class="container">
         <div class="row">
@@ -59,7 +25,7 @@
     <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
   <center>
   <br><br>
-    <%if @current_user.profileQuiz_id == nil%>
+    <%if @user.profileQuiz_id == nil%>
         <table class="table">
             <legend>Questionário</legend>
             <tr>
@@ -72,21 +38,21 @@
         
             <tr>
                 <td><%= label_tag :answer2, 'Você prefere cidade mais movimentada?'%></td>
-                <td><%= radio_button_tag :answer2, 1 %>Sim</td>
+                <td><%= radio_button_tag :answer2, 0 %>Sim</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer2, 0 %>Não</td>
+                <td><%= radio_button_tag :answer2, 1 %>Não</td>
             </tr>
             <tr>
                 <td><%= label_tag :answer3, 'Você prefere cidade grande ou pequena?'%></td>
-                <td><%= radio_button_tag :answer3, 1 %>Grande</td>
+                <td><%= radio_button_tag :answer3, 0 %>Grande</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer3, 0 %>Pequena</td>
+                <td><%= radio_button_tag :answer3, 1 %>Pequena</td>
             </tr>
             <tr>
                 <td><%= label_tag :answer4, 'Você prefere cidade mais populosa ou menos populosa?'%></td>
-                <td><%= radio_button_tag :answer4, 1 %>Mais</td>
+                <td><%= radio_button_tag :answer4, 0 %>Mais</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer4, 0 %>Menos</td>
+                <td><%= radio_button_tag :answer4, 1 %>Menos</td>
             </tr>
             <tr><td></td><td><%= submit_tag "Confirmar" %></td></tr>
             <tr><td><font color="red">*Você poderá responder apenas uma vez.</font></td></tr>

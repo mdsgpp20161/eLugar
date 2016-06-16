@@ -1,49 +1,56 @@
 <div class="container">
-<div class="row">
-</div><!-- /row -->
-<div class="row">
-<div class="col-sm-1">
-<div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-</div><!-- /thumbnail -->
-</div><!-- /col-sm-1 -->
-
-<div class="col-sm-5">
-<div class="panel panel-default">
-<div class="panel-heading">
-<%= comment.commenter %>
+    <div class="row"></div>
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-1">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            </div>
+            <!-- /thumbnail -->
+        </div>
+        <!-- /col-sm-1 -->
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <%= comment.commenter %>
+                </div>
+                <div class="panel-body">
+                    <%= comment.body %>
+                </div>
+                <!-- /panel-body -->
+            </div>
+            <!-- /panel panel-default -->
+        </div>
+        <!-- /col-sm-5 -->
+        <% @city.comments.each_with_index do |c, i| %>
+        	<% if c == comment %>
+       			<% comment = @city.comments[i+1] %>
+        		<% break %>
+        	<%end%>
+        <%end%>
+        <% if comment %>
+	        <div class="col-sm-1">
+	            <div class="thumbnail">
+	                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+	            </div>
+	            <!-- /thumbnail -->
+	        </div>
+	        <!-- /col-sm-1 -->
+	        <div class="col-sm-5">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <%= comment.commenter %>
+	                </div>
+	                <div class="panel-body">
+	                    <%= comment.body %>
+	                </div>
+	                <!-- /panel-body -->
+	            </div>
+	            <!-- /panel panel-default -->
+	        </div>
+	        <!-- /col-sm-5 -->
+        <% end %>
+    </div>
+    <!-- /row -->
 </div>
-<div class="panel-body">
-<%= comment.body %>
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div><!-- /col-sm-5 -->
-<% @city.comments.each_with_index do |c, i| %>
-  <% if c == comment %>
-      <% comment = @city.comments[i+1] %>
-      <% break %>
-  <%end%>
-<%end%>
-<%#= @city.comments[0].body %>
-
-<% if comment %>
-<div class="col-sm-1">
-<div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-</div><!-- /thumbnail -->
-</div><!-- /col-sm-1 -->
-
-<div class="col-sm-5">
-<div class="panel panel-default">
-<div class="panel-heading">
-<%= comment.commenter %>
-</div>
-<div class="panel-body">
-<%= comment.body %>
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div><!-- /col-sm-5 -->
-<% end %>
-</div><!-- /row -->
-
-</div><!-- /container -->
+<!-- /container -->

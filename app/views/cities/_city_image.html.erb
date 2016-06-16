@@ -1,19 +1,19 @@
 <td>
-	<%= link_to city_path(f), id: "#{f.id}" do %>
-		<div class="ih-item circle effect13 from_left_and_right" id=<%= "#{f.id}" %>>
-		   	<div class="img"><img src=<%="/assets/#{f.image}.jpg"%> alt="img"></div>
+	<%= link_to city_path(city), id: "#{city.id}" do %>
+		<div class="ih-item circle effect13 from_left_and_right" id=<%= "#{city.id}" %>>
+		   	<div class="img"><img src=<%="/assets/#{city.image}.jpg"%> alt="img"></div>
 		   	<div class="info">
 			    <div class="info-back">
-			    <% if f.name.length >= 11 %>
-			    	<h3> <font size="3"> <%= f.name %>  </font> </h3>
+			    <% if city.name.length >= 11 %>
+			    	<h3> <font size="3"> <%= city.name %>  </font> </h3>
 			    <% else %>
-			       	<h3><%= f.name %></h3>
+			       	<h3><%= city.name %></h3>
 			    <%end%>
 			       <p>Description goes here</p>
 			    </div>
 		   	</div></a>
 		</div>
-		<h4><%= f.name %></h4>
+		<h4><%= city.name %></h4>
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	<% end %>
 </td>
