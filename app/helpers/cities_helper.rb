@@ -292,6 +292,8 @@ module CitiesHelper
           #do nothing
         end       
       end
+    else
+      #do nothing
     end
     answers
   end
