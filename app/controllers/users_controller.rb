@@ -18,6 +18,12 @@ class UsersController < ApplicationController
             @profile_quiz.population = params[:answer4].to_i
             @profile_quiz.users_id = params[:id].to_i    
             @profile_quiz.save!
+      else
+        flash[:error] = "Precisa responder todos os campos!"
+        render 'show'
+        flash[:error] = nil
+
+
       end
       @user.profileQuiz_id = @profile_quiz.id
       @user.save!
@@ -31,11 +37,13 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Registrado com sucesso"
       render 'sessions/new'
+      flash[:notice] = nil
       #log_in @user
   		#redirect_to @user
     else
       flash[:error] = "Cadastro inválido"
       render 'new'
+      flash[:error] = nil
     end
   end
 

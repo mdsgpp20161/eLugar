@@ -1,25 +1,18 @@
 <div class="intro-header-find" style="margin-top: -50px;">
     <div class="container">
         <div class="row">
-        	<div class="col-lg-12">     
+            <div class="col-lg-12">     
                 <div class="shadow">
-					<h1>Perfil</h1>
-				</div>		
-			</div>
-		</div>
-	</div>
+                    <h1>Perfil</h1>
+                </div>      
+            </div>
+        </div>
+    </div>
 </div>
 
 <%= @user.name %>, <%= @user.email %>
 
-<% if @current_user %>
-    <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
-<% end %>
-<%#= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
-<% if @current_user %>
-    | <%= link_to "Deletar conta", @user, method: :delete,
-                                  data: { confirm: "Você tem certeza?" } %>
-  <% end %>
+
 
   <div style="float: left">
     <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
@@ -28,6 +21,11 @@
     <%if @user.profileQuiz_id == nil%>
         <table class="table">
             <legend>Questionário</legend>
+            <tr>
+                <td>
+                    <font color="red"><%= flash_message %></font>
+                </td>
+            </tr>
             <tr>
                 <td><%= label_tag :answer1, 'Você apoia o UBER?' %></td>
                 <td><%= radio_button_tag :answer1, 1 %>Sim</td>
@@ -57,8 +55,13 @@
             <tr><td></td><td><%= submit_tag "Confirmar" %></td></tr>
             <tr><td><font color="red">*Você poderá responder apenas uma vez.</font></td></tr>
         </table>
-    
     </center>
     <%end%>
     <%end%>
   </div>
+  <center>
+      <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+  <%#= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+      | <%= link_to "Deletar conta", @user, method: :delete,
+                                    data: { confirm: "Você tem certeza?" } %>
+  </center>

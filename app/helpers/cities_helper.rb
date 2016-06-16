@@ -197,50 +197,55 @@ module CitiesHelper
   def get_emoji (attr_name, attr_value)
     emoji = 0
     if attr_name == 'uber'
-    	emoji = get_emoji_uber(attr_name, attr_value)
+      emoji = get_emoji_uber(attr_name, attr_value)
     elsif attr_name == 'gini' || attr_name == 'idh'
       emoji = get_emoji_idh_gini(attr_name,attr_value)
     else
-  	  emoji = get_emoji_others(attr_name, attr_value)
+      emoji = get_emoji_others(attr_name, attr_value)
     end
     emoji
   end
 
   def get_emoji_others (attr_name, attr_value)
-  	emoji = 0
-  	if valid_attributes_show_cities[attr_name]
-	  	average = City.all.map(&attr_name.to_sym).inject(0, &:+) / City.all.length
-	  	case true
-	  	when (0...average * 0.6).include?(attr_value)
-	      if attr_name == 'health' then emoji = 1 else emoji = 5 end
-	    when (average * 0.6...average * 0.9).include?(attr_value)
-	      if attr_name == 'health' then emoji = 2 else emoji = 4 end
-	    when (average * 0.9...average * 1.1).include?(attr_value)
-	      emoji = 3
-	    when (average * 1.1...average * 1.4).include?(attr_value)
-	      if attr_name == 'health' then emoji = 4 else emoji = 2 end
-	    when attr_value > average * 1.4
-	      if attr_name == 'health' then emoji = 5 else emoji = 1 end
-	    end
-	  end
-
-    if logged_in?
-      hash = Hash.new
-      hash = find_user_and_quiz
-      if !hash[attr_name]
-        emoji = 6 - emoji
+    emoji = 0
+    if valid_attributes_show_cities[attr_name]
+      average = City.all.map(&attr_name.to_sym).inject(0, &:+) / City.all.length
+      case true
+      when (0...average * 0.6).include?(attr_value)
+        if attr_name == 'health' then emoji = 1 else emoji = 5 end
+      when (average * 0.6...average * 0.9).include?(attr_value)
+        if attr_name == 'health' then emoji = 2 else emoji = 4 end
+      when (average * 0.9...average * 1.1).include?(attr_value)
+        emoji = 3
+      when (average * 1.1...average * 1.4).include?(attr_value)
+        if attr_name == 'health' then emoji = 4 else emoji = 2 end
+      when attr_value > average * 1.4
+        if attr_name == 'health' then emoji = 5 else emoji = 1 end
       end
+    end
+    emoji = set_emojis_by_user(attr_name,emoji)
+    
+    emoji
+  end
+
+  def set_emojis_by_user(attr_name, emoji)
+    if logged_in?
+      answers = Hash.new
+      answers = get_users_preferences
+      if !answers[attr_name]
+        emoji = 6 - emoji
+      else
+        #do nothing
+      end
+    else
+      #do nothing
     end
     emoji
   end
 
-  def is_logged
-
-  end
-
   def get_emoji_idh_gini (attr_name, attr_value)
-  	emoji = 0
-  	if attr_name == 'gini'
+    emoji = 0
+    if attr_name == 'gini'
       attr_value = 1 - attr_value
     end
     if attr_value < 0.3
@@ -258,14 +263,9 @@ module CitiesHelper
   end
 
   def get_emoji_uber(attr_name, attr_value)
-    hash = Hash.new
+    answers = Hash.new
     if attr_value then emoji = 5 else emoji = 1 end
-    if logged_in?
-      hash = find_user_and_quiz
-      if !hash[attr_name]
-        emoji = 6 - emoji
-      end
-    end
+    emoji = set_emojis_by_user(attr_name, emoji)    
     emoji
   end
 
@@ -277,23 +277,23 @@ module CitiesHelper
 
 
 
-  def find_user_and_quiz
+  def get_users_preferences
     @profileQuiz = ProfileQuiz.new
     @current_user = User.find_by(id: session[:user_id])
     @profileQuiz.id = @current_user.profileQuiz_id
     @profileQuiz = ProfileQuiz.find_by(id: @profileQuiz.id)
-    hash = Hash.new
+    answers = Hash.new
      
     if @profileQuiz
       @profileQuiz.attributes.each do |attr_name, attr_value|
         if attr_name != 'id'
-          hash[attr_name] = attr_value == 1
+          answers[attr_name] = attr_value == 1
         else
           #do nothing
         end       
       end
     end
-    hash
+    answers
   end
 
 end
