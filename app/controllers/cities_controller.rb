@@ -14,12 +14,12 @@ class CitiesController < ApplicationController
   end
 
   def show_cities
-    @citiesPaginated = City.paginate(:page => params[:page], :per_page => 6)
-    
+    @citiesPaginated = City.paginate(:page => params[:page], :per_page => 12)
+
     if(params[:find])
       @find = params[:find]
       search_cities
-      @cities = @cities.paginate(:page => params[:page], :per_page => 6)
+      @cities = @cities.paginate(:page => params[:page], :per_page => 12)
 
       @cities.columns.each do |attr|
         if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
@@ -30,7 +30,7 @@ class CitiesController < ApplicationController
       end
 
     else
-      @cities = City.all.paginate(:page => params[:page], :per_page => 6)
+      @cities = City.all.paginate(:page => params[:page], :per_page => 12)
       @cities = @cities.order(:name)
     end
   end
