@@ -129,7 +129,7 @@ end
 end
 
   test "should get a filled array of cities" do
-   assert_not_nil city_data_array and assert kind_of? Array
+   assert city_data_array.size > 0
   end
 
   test "should get 5 suggested cities" do
