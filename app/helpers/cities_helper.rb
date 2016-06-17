@@ -315,14 +315,17 @@ module CitiesHelper
 
   def suggest_city (city)
     data = city_data_array
-    count = data.count
+    count = data.count    
+    # data[city.id] = nil
     data = data.compact
-    count -= data.count
+    count -= data.count    
     knn = KNN.new(data)
-    knn = knn.nearest_neighbours([city.id] , 5)
+    knn = knn.nearest_neighbours(city.attributes.values[2..9] , 6)
     suggest = Array.new
     knn.each do |a| # Mudar o nome da variavel
-      suggest.push a[0] + count
+      if(a[0]+count != city.id)
+        suggest.push a[0] + count
+      end
     end
 
     suggest
