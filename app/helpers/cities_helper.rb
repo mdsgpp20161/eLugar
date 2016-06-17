@@ -297,4 +297,34 @@ module CitiesHelper
     answers
   end
 
+  def city_data_array
+    data = Array.new
+    City.all.each do |city|
+      temp = Array.new
+      city.attributes.each do |attr_name, attr_value|
+        if(valid_attributes_show_cities[attr_name])
+          temp.push(attr_value)
+        end
+      end
+      if temp[0]
+        data[city.id] = (temp)
+      end
+    end
+    data
+  end
+
+  def suggest_city (city)
+    data = city_data_array
+    count = data.count
+    data = data.compact
+    count -= data.count
+    knn = KNN.new(data)
+    knn = knn.nearest_neighbours([city.id] , 5)
+    suggest = Array.new
+    knn.each do |a| # Mudar o nome da variavel
+      suggest.push a[0] + count
+    end
+
+    suggest
+  end
 end

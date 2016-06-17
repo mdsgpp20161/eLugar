@@ -36,6 +36,15 @@
                         <%= render 'comments/form' %>
 
                         <%= link_to 'Top', city_path %>
+                        <% var = suggest_city(@city) %>
+                        <table>
+                         <% var.each_with_index do |city1, index| %>
+                            <% if index%5==0 && index != 0 %>
+                                <tr>
+                            <% end %>
+                            <%= render :partial => 'city_image', :locals => { :city => City.find(city1)} %>
+                        <% end %> 
+                        </table>
                     </div>
                 </div>
             </div>

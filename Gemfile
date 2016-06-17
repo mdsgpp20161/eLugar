@@ -40,6 +40,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'mocha'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'naive_bayes'
+  gem 'knn'
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'

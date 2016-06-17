@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
   include CitiesHelper
   include SessionsHelper
+  require 'knn'
 
   def index
   end
