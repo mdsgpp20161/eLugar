@@ -42,7 +42,7 @@
                             <% if index%5==0 && index != 0 %>
                                 <tr>
                             <% end %>
-                            <%= render :partial => 'city_image', :locals => { :city => City.find(city1)} %>
+                            <%= render :partial => 'city_image', :locals => { :city => City.find(city1) }  %>
                         <% end %> 
                         </table>
                     </div>

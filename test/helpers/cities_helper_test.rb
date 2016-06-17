@@ -129,11 +129,19 @@ end
 end
 
   test "should get a filled array of cities" do
-   assert city_data_array.size > 0
+   assert_not_empty city_data_array
   end
 
   test "should get 5 suggested cities" do
     assert_equal 5, suggest_city(City.all[0]).size
+  end
+
+  test "top3 by an attribute should not be empty" do
+    assert_not_empty top3['idh']
+  end
+
+  test "should get cities" do
+    assert order_cities, :sort_cities => 'idh'
   end
 
 end

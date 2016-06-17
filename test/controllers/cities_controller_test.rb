@@ -14,8 +14,7 @@ class CitiesControllerTest < ActionController::TestCase
     @user = User.create(name: "Harrison", email: "pedro@gmail.com", 
       password: "123456", password_confirmation: "123456")
     @profile = ProfileQuiz.create(uber: 1, demographic_density: 1, area: 1, population: 1, users_id: @user.id)
-
-
+    controller = CitiesController.new
   end
 
   test "should get index" do
@@ -77,4 +76,7 @@ end
   assert_not_equal @profile, nil
 end
 
+test "ranking should get all cities" do
+  get :ranking, :sort_cities => 'IDH'
+  assert_not_empty assigns(:cities)
 end

@@ -300,12 +300,13 @@ module CitiesHelper
   def city_data_array
     data = Array.new
     City.all.each do |city|
-      temp = Array.new
-      city.attributes.each do |attr_name, attr_value|
-        if(valid_attributes_show_cities[attr_name])
-          temp.push(attr_value)
-        end
-      end
+      #temp = Array.new
+      temp = city.attributes.values[2..9]
+      #city.attributes.each do |attr_name, attr_value|
+       # if(valid_attributes_show_cities[attr_name])
+        #  temp.push(attr_value)
+        #end
+      #end
       if temp[0]
         data[city.id] = (temp)
       end
