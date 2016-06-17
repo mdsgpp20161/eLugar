@@ -127,3 +127,9 @@ test "should get a valid type of return on valid_attributes_compare_up" do
 end
 
 end
+
+  test "should get 5 suggested cities" do
+    assert_equal 5, suggest_city(City.all[0]).size
+  end
+
+end
