@@ -7,6 +7,8 @@ class UsersControllerTest < ActionController::TestCase
   def setup
     @user       = users(:user)
     @other_user = users(:other_user)
+    @user1 = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456", profileQuiz_id: 1)
+    @profile = ProfileQuiz.new
   end
 
   test "invalid signup information" do
@@ -81,4 +83,36 @@ class UsersControllerTest < ActionController::TestCase
         delete :destroy, :id => users(:other_user)
       end
     end
+
+    test "quiz not answered" do
+          log_in(@user)
+          get :show, :id => users(:user)
+          assert_equal nil, User.find(users(:user).id).profileQuiz_id
+        end
+
+    test "quiz answered" do
+      log_in(@user1)
+      get :show, :id => @user1.id, :uber => 1, :demographic_density => 1, :area => 1, :population => 1
+      @profile.uber = @request.params[:uber].to_i
+      @profile.demographic_density = @request.params[:demographic_density].to_i
+      @profile.area = @request.params[:area].to_i
+      @profile.population = @request.params[:population].to_i
+      @profile.users_id = @user1.id
+      @profile.save!
+      assert_not_nil @profile.users_id
+      assert (@profile.uber == 1)
+      assert (@profile.demographic_density == 1)
+      assert (@profile.area == 1)
+      assert (@profile.population == 1)
+      assert (@request.params[:uber].to_i == @profile.uber)
+      assert (@request.params[:demographic_density].to_i == @profile.demographic_density)
+      assert (@request.params[:area].to_i == @profile.area)
+      assert (@request.params[:population].to_i == @profile.population)
+      #assert_not_equal @request.params[:uber].to_i, nil
+      #assert_equal @request.params[:answer2].to_i, @profile.demographic_density
+      #assert_equal @request.params[:answer3].to_i, @profile.area
+      #assert_equal @request.params[:answer4].to_i, @profile.population
+
+    end
+
 end
