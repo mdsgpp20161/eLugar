@@ -28,29 +28,29 @@
             </tr>
             <tr>
                 <td><%= label_tag :answer1, 'Você apoia o UBER?' %></td>
-                <td><%= radio_button_tag :answer1, 1 %>Sim</td>
-        <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer1, 0 %>Não</td>
-        <%#= label_tag(:age_adult, 2) %>
+                <td><%= radio_button_tag :answer1,"sim_uber",:value => 1 %>Sim</td>
+                <%#=label_tag :answer1, 'uber_sim', :value => 1 %>
+                <td><%= radio_button_tag :answer1,"nao_uber", :value => 0 %>Não</td>
+                <%#=label_tag :answer1, 'uber_nao', :value => 0 %>
             </tr>
         
             <tr>
                 <td><%= label_tag :answer2, 'Você prefere cidade mais movimentada?'%></td>
-                <td><%= radio_button_tag :answer2, 0 %>Sim</td>
+                <td><%= radio_button_tag :answer2,"sim_movimentada", :value => 0 %>Sim</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer2, 1 %>Não</td>
+                <td><%= radio_button_tag :answer2,"nao_movimentada", :value => 1 %>Não</td>
             </tr>
             <tr>
                 <td><%= label_tag :answer3, 'Você prefere cidade grande ou pequena?'%></td>
-                <td><%= radio_button_tag :answer3, 0 %>Grande</td>
+                <td><%= radio_button_tag :answer3,"sim_grande", :value => 0 %>Grande</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer3, 1 %>Pequena</td>
+                <td><%= radio_button_tag :answer3,"sim_pequena", :value => 1 %>Pequena</td>
             </tr>
             <tr>
                 <td><%= label_tag :answer4, 'Você prefere cidade mais populosa ou menos populosa?'%></td>
-                <td><%= radio_button_tag :answer4, 0 %>Mais</td>
+                <td><%= radio_button_tag :answer4,"sim_populosa", :value => 0 %>Mais</td>
             <%#= label_tag(:age_child, 1) %>
-                <td><%= radio_button_tag :answer4, 1 %>Menos</td>
+                <td><%= radio_button_tag :answer4,"nao_populosa", :value => 1 %>Menos</td>
             </tr>
             <tr><td></td><td><%= submit_tag "Confirmar" %></td></tr>
             <tr><td><font color="red">*Você poderá responder apenas uma vez.</font></td></tr>

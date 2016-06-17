@@ -11,9 +11,10 @@ class CitiesControllerTest < ActionController::TestCase
     @cityGoiania = cities(:goiania)
     @cityFlorianopolis = cities(:florianopolis)
     @cityCuiaba = cities(:cuiaba)
-    @profile = ProfileQuiz.new
     @user = User.create(name: "Harrison", email: "pedro@gmail.com", 
       password: "123456", password_confirmation: "123456")
+    @profile = ProfileQuiz.create(uber: 1, demographic_density: 1, area: 1, population: 1, users_id: @user.id)
+
 
   end
 
@@ -181,16 +182,9 @@ end
   hash = Hash.new
   hash1 = Hash.new
   get_users_preferences
-  @profile.id = 0
-  @profile.uber = 1
-  @profile.demographic_density = 1
-  @profile.area = 0
-  @profile.population = 1
-  @profile.users_id = @user.id
-  #assert_equal hash.key?('id'), hash.value?(nil)
-  @profile.save!
+  
   hash1 = @profile.attributes
-  puts @profile.id
+  puts "id2: "+@profile.users_id.to_s
   @user.profileQuiz_id = @profile.id
   assert_equal @user.profileQuiz_id, @profile.id
 
@@ -203,11 +197,14 @@ end
   if hash1['id']!= false
     hash1['id'] = false
   end
-  puts @profile.attributes
+  @profileQuiz = ProfileQuiz.find_by(id: @user.profileQuiz_id)
+  puts @profileQuiz.population
   #assert_nil hash2['id']
   assert_not_includes(hash,'id')
   assert_equal hash['uber'], true
   assert_equal hash1['uber'], 1
+  get_users_preferences
+
   #assert_equal (assigns(hash[attr_name])), 'uber'
 end
 
