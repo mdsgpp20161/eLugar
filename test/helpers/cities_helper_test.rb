@@ -128,6 +128,10 @@ end
 
 end
 
+  test "should get a filled array of cities" do
+   assert_not_nil city_data_array and assert kind_of? Array
+  end
+
   test "should get 5 suggested cities" do
     assert_equal 5, suggest_city(City.all[0]).size
   end
