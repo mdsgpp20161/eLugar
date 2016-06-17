@@ -80,3 +80,4 @@ group :test, :cucumber do
 end
 gem 'devise'
 gem "js-routes"
+gem 'owlcarousel-rails'

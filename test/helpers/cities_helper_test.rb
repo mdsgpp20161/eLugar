@@ -132,16 +132,28 @@ end
    assert_not_empty city_data_array
   end
 
-  test "should get 5 suggested cities" do
-    assert_equal 5, suggest_city(City.all[0]).size
+  test "should get 12 suggested cities" do
+    assert_equal 12, suggest_city(City.all[0]).size
   end
 
   test "top3 by an attribute should not be empty" do
     assert_not_empty top3['idh']
   end
 
-  test "should get cities" do
-    assert order_cities, :sort_cities => 'idh'
+  test "should get valid_attributes_compare_down" do
+    assert valid_attributes_compare_down
+  end
+
+  test "should get valid_attributes_compare_up" do
+    assert valid_attributes_compare_up
+  end
+
+  test "set_medals should not be empty" do
+    assert_not_empty set_medals(City.all[0], City.all[1])
+  end
+
+  test "should get attribute_to_metric" do
+    assert attribute_to_metric
   end
 
 end

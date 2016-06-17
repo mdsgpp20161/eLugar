@@ -8,7 +8,7 @@ module CitiesHelper
 
     @cities.columns.each do |attr|
       if(sorted_cities == attribute_to_text[attr.name])
-        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
         attr.name == 'fleet')
           @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
         else
@@ -300,15 +300,9 @@ module CitiesHelper
   def city_data_array
     data = Array.new
     City.all.each do |city|
-      #temp = Array.new
       temp = city.attributes.values[2..9]
-      #city.attributes.each do |attr_name, attr_value|
-       # if(valid_attributes_show_cities[attr_name])
-        #  temp.push(attr_value)
-        #end
-      #end
       if temp[0]
-        data[city.id] = (temp)
+        data[city.id] = city.attributes.values[2..9]
       end
     end
     data
@@ -316,16 +310,16 @@ module CitiesHelper
 
   def suggest_city (city)
     data = city_data_array
-    count = data.count    
+    count = data.count
     # data[city.id] = nil
     data = data.compact
-    count -= data.count    
+    count -= data.count
     knn = KNN.new(data)
-    knn = knn.nearest_neighbours(city.attributes.values[2..9] , 6)
+    knn = knn.nearest_neighbours(city.attributes.values[2..9] , 13)
     suggest = Array.new
-    knn.each do |a| # Mudar o nome da variavel
-      if(a[0]+count != city.id)
-        suggest.push a[0] + count
+    knn.each do |neighbour|
+      if neighbour[0]+count != city.id
+        suggest.push neighbour[0] + count
       end
     end
 

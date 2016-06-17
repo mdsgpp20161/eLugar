@@ -12,7 +12,7 @@
                         <div class="list-inline intro-social-buttons black">
                             <ul class="cardboard">
                                 <%= form_tag(cities_show_path, :method => :get) do %>
-                                    <h1>  <%= @city.name %> </h1>   
+                                    <h1>  <%= @city.name %> </h1>
                                     <%= render 'cardboard' %>
                                 <% end %>
                             </ul>
@@ -26,25 +26,19 @@
                              </center>
                            <%end%>
                        </div>
-
+                       <h2>Veja também:</h2>
+                       <%= render 'suggested_cities' %>
+                       <% 2.times do %>
+         		             <%= tag(:br) %>
+                       <% end %>
                         <h2>Comentários</h2>
                         <% @city.comments.each_slice(2) do |f| %>
                             <%= render f[0]%>
                         <% end %>
-
                         <h2>Adicionar um comentário:</h2>
                         <%= render 'comments/form' %>
 
                         <%= link_to 'Top', city_path %>
-                        <% var = suggest_city(@city) %>
-                        <table>
-                         <% var.each_with_index do |city1, index| %>
-                            <% if index%5==0 && index != 0 %>
-                                <tr>
-                            <% end %>
-                            <%= render :partial => 'city_image', :locals => { :city => City.find(city1) }  %>
-                        <% end %> 
-                        </table>
                     </div>
                 </div>
             </div>
