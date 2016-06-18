@@ -9,7 +9,10 @@
                         <% end %>
                         <p><%=attribute_to_text[attribute_name]%></p>
                         <center>
-                            <%if(attribute_name != 'population' && attribute_name != 'area')%>
+                            <% if attribute_value == 0 %>
+                                <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
+                                </img>    
+                            <%elsif(attribute_name != 'population' && attribute_name != 'area')%>
                                 <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
                                 </img>
                         </center>
