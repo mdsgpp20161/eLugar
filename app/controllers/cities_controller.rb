@@ -45,6 +45,7 @@ class CitiesController < ApplicationController
   end
 
   def compare
+    top3
     if(params[:id])
       @oldID = params[:id]
       @city1 = City.find(@oldID)
@@ -60,5 +61,5 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
-    end
+  end
 end
