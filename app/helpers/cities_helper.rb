@@ -10,7 +10,7 @@ module CitiesHelper
       if(sorted_cities == attribute_to_text[attr.name])
         if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
         attr.name == 'fleet')
-          @cities = @cities.order(:"#{attr.name}")
+          @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
         else
           @cities = @cities.order("#{attr.name}": :desc)
         end
@@ -38,7 +38,7 @@ module CitiesHelper
       'idh' => City.order(idh: :desc).first(3),
       'gini' => City.order(:gini).first(3),
       'health' => City.order(health: :desc).first(3),
-      'violence' => City.order(:violence).first(3)
+      'violence' => City.order(:violence).where("violence > ?", 0).first(3)
     }
   end
 
@@ -211,7 +211,7 @@ module CitiesHelper
   	if valid_attributes_show_cities[attr_name]
 	  	average = City.all.map(&attr_name.to_sym).inject(0, &:+) / City.all.length
 	  	case true
-	  	when (0...average * 0.6).include?(attr_value)
+      when (0...average * 0.6).include?(attr_value)
 	      if attr_name == 'health' then emoji = 1 else emoji = 5 end
 	    when (average * 0.6...average * 0.9).include?(attr_value)
 	      if attr_name == 'health' then emoji = 2 else emoji = 4 end
