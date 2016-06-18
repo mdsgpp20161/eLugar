@@ -1,0 +1,33 @@
+<div class="intro-header-find" style="margin-top: -50px;">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12">     
+                <div class="shadow">
+          <h1>Atualize seu Perfil</h1>
+        </div>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |city| %>
+
+      <%= city.label :name, "Nome" %>
+      <%= city.text_field :name, class: 'form-control' %>
+
+      <%= city.label :email, "Email" %>
+      <%= city.email_field :email, class: 'form-control' %>
+
+      <%= city.label :password, "Senha" %>
+      <%= city.password_field :password, class: 'form-control' %>
+
+      <%= city.label :password_confirmation, "Confirmação" %>
+      <%= city.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= city.submit "Atualizar", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
