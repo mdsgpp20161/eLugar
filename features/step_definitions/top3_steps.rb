@@ -23,5 +23,5 @@ Then(/^I must see a silver medal close to the information$/) do
 end
 
 Then(/^I must see a bronze medal close to the information$/) do
-  expect(page).to have_css("img[src*='/assets/gold_medal.png']")
+  expect(page).to have_css("img[src*='/assets/bronze_medal.png']")
 end

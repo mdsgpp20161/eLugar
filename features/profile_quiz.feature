@@ -17,9 +17,9 @@ Feature: User wants to setup his preferences
 	And I fill in Password with 123456
 	When I press "Log in"
 	Then I should see Perfil
-	When I press "sim_uber"
-	When I press "sim_movimentada"
-	When I press "sim_grande"
-	When I press "sim_populosa"
+	When I answer uber_1
+	When I answer demographic_density_1
+	When I answer area_1
+	When I answer population_1
 	When I press "Confirmar"
 	Then I should see Perfil
