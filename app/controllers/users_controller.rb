@@ -11,11 +11,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile_quiz = ProfileQuiz.new
     if @user.profileQuiz_id == nil 
-      if params[:answer1] && params[:answer2] && params[:answer3] && params[:answer4]
-            @profile_quiz.uber = params[:answer1].to_i
-            @profile_quiz.demographic_density = params[:answer2].to_i
-            @profile_quiz.area = params[:answer3].to_i
-            @profile_quiz.population = params[:answer4].to_i
+      if params[:uber] && params[:demographic_density] && params[:area] && params[:population]
+            @profile_quiz.uber = params[:uber].to_i
+            @profile_quiz.demographic_density = params[:demographic_density].to_i
+            @profile_quiz.area = params[:area].to_i
+            @profile_quiz.population = params[:population].to_i
             @profile_quiz.users_id = params[:id].to_i    
             @profile_quiz.save!
       else
