@@ -2,6 +2,7 @@ class CitiesController < ApplicationController
   include CitiesHelper
   include SessionsHelper
   require 'knn'
+  require 'will_paginate/array'
 
   def index
   end
