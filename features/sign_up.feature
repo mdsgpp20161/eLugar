@@ -16,6 +16,6 @@ Feature: Viewer wants to sign up
         And I fill in Nome with Harrison
         And I fill in Email with harrison@gmail.com
         And I fill in Password with 123456
-        And I fill in Confirmation with 123456
+        And I fill in Confirmation with 12345
         When I press "Create my account"
         Then I should see Cadastro inválido
