@@ -65,145 +65,16 @@ test "should show city using filter for population" do
   assert_response :success
 end
 
-test "get_emoji should return 2" do
-  valor = get_emoji_idh_gini('idh',0.3)
-
-  assert (valor == 2)
-end
-
-
-test "get_emoji should return 3" do
-  valor = get_emoji_idh_gini('idh',0.599)
-
-  assert (valor == 3)
-end
-
-test "get_emoji should return 4" do
-  valor = get_emoji_idh_gini('idh',0.7)
-
-  assert (valor == 4)
-end
-
-test "should calculate valid average" do
-  
-  average = get_average(@cityBrasilia,@cityCeara, 'population')
-  assert ((average - 4.166).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'area')
-  assert ((average - 42.856).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'demographic_density')
-  assert ((average - 59.999).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'health')
-  assert ((average - 19.999).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'idh')
-  assert ((average - 59.999).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'gini')
-  assert ((average - 59.999).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'violence')
-  assert ((average - 19.999).abs > 0.0001)
-
-  average = get_average(@cityBrasilia,@cityCeara, 'fleet')
-  assert ((average - 33.333).abs > 0.0001)
-end
-
-test "get_emoji_others should return 2 if params is health and be in some range" do
-  
-  emoji = get_emoji_others('health', @cityFlorianopolis.health)
-  assert (emoji == 2)
-
-end
-
-test "get_emoji_others should return 3 if params is health and be in some range" do
-  
-  emoji = get_emoji_others('health', @cityCuiaba.health)
-  assert (emoji == 3)
-
-end
-
-test "get_emoji_others should return 4 if params is health and be in some range" do
-  
-  emoji = get_emoji_others('health', @cityCeara.health)
-  assert (emoji == 4)
-
-end
-
-test "get_emoji_others should return 5 if params is health and be in some range" do
-  
-  emoji = get_emoji_others('health', @cityGoiania.health)
-  assert (emoji == 5)
-
-end
-
-test "should get emojis according to user preferences when he doesn't support uber" do
-    log_in(@user)
-
-    emoji = set_emojis_by_user('uber', 5)
-
-    assert (emoji == 1)
-end
-
-test "should get emojis according to user preferences when he likes crowded cities" do
-    log_in(@user)
-
-    emoji = set_emojis_by_user('demographic_density', 4)
-
-    assert (emoji == 2)
-end
-
-test "should get a valid type of return on valid_attributes_ranking " do 
-  param = valid_attributes_ranking
-
-  assert (param.class == Hash)
-end
-
-test "should get a valid type of return on valid_attributes_compare_down" do 
-  param = valid_attributes_compare_down
-
-  assert (param.class == Hash)
-end
-
-test "should get a valid type of return on valid_attributes_compare_up" do 
-  param = valid_attributes_compare_up
-
-  assert (param.class == Hash)
-end
 
   test "should get users preferences" do
   log_in(@user)
-  hash = Hash.new
   hash1 = Hash.new
-  #get_users_preferences
-  #hash1 = @profile.attributes
-  puts "id2: "+@profile.users_id.to_s
   @user.profileQuiz_id = @profile.id
   @profile.id = @user.profileQuiz_id
-  puts @user.profileQuiz_id
-  puts @profile.id
-  puts @user.id
   @profile = ProfileQuiz.find_by(id: @profile.id)
-  hash1 = @profile.attributes
-  hash1['id'] = nil
-  assert_nil hash1['id'] 
-  #assert_not_equal hash['id'], true
-  #@profileQuiz = ProfileQuiz.find_by(id: @user.profileQuiz_id)
-  #puts @profileQuiz.population
-  #assert_nil hash2['id']
-  #assert_not_includes(hash,'id')
-  #assert_equal hash['uber'], true
-  #assert_equal hash1['uber'], 1
+  @profile.save!
   get_users_preferences
-  #assert_equal @profile, nil
-  #assert_equal (assigns(hash[attr_name])), 'uber'
+  assert_not_equal @profile, nil
 end
 
-#test "should get compare from show" do
-#  get :compare, id: @cityBrasilia.id
-#  assert_response :success
-#  assert_match /https:\/\/localhost:3000\/compare/, @response.redirect_url
-#end
 end

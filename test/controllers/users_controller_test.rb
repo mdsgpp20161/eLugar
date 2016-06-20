@@ -101,21 +101,7 @@ class UsersControllerTest < ActionController::TestCase
       @profile.save!
       assert (@request.params[:uber] && @request.params[:demographic_density] && @request.params[:area] && @request.params[:population])
       assert @profile.save
-      # assert_not_nil @profile.users_id
-      # assert (@request.params[:uber].to_i == 1)
-      # assert (@request.params[:demographic_density].to_i == 1)
-      # assert (@profile.area == 1)
-      # assert (@profile.population == 1)
-      # assert (@request.params[:uber].to_i == @profile.uber)
-      # assert (@request.params[:demographic_density].to_i == @profile.demographic_density)
-      # assert (@request.params[:area].to_i == @profile.area)
-      # assert (@request.params[:population].to_i == @profile.population)
       assert_template 'show'
-      #assert_not_equal @request.params[:uber].to_i, nil
-      #assert_equal @request.params[:answer2].to_i, @profile.demographic_density
-      #assert_equal @request.params[:answer3].to_i, @profile.area
-      #assert_equal @request.params[:answer4].to_i, @profile.population
-
     end
 
 end
