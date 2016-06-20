@@ -22,11 +22,11 @@ class UsersController < ApplicationController
         flash[:error] = "Precisa responder todos os campos!"
         render 'show'
         flash[:error] = nil
-
-
       end
       @user.profileQuiz_id = @profile_quiz.id
       @user.save!
+    else
+      #do nothing
     end
 
     @user = User.find(params[:id])	

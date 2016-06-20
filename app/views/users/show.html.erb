@@ -12,12 +12,10 @@
 
 <%= @user.name %>, <%= @user.email %>
 
-
-
   <div style="float: left">
     <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
   <center>
-  <br><br>
+    <br><br>
     <%if @user.profileQuiz_id == nil%>
         <table class="table">
             <legend>Questionário</legend>
