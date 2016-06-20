@@ -5,7 +5,7 @@ class UsersControllerTest < ActionController::TestCase
   fixtures :users
   include SessionsHelper
   def setup
-    @user       = users(:user)
+    @user = users(:user)
     @other_user = users(:other_user)
     @user1 = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456", profileQuiz_id: 1)
     @profile = ProfileQuiz.new
@@ -92,7 +92,7 @@ class UsersControllerTest < ActionController::TestCase
 
     test "quiz answered" do
       log_in(@user1)
-      get :show, :id => @user1.id, uber: 1, demographic_density: 1, area: 1, population: 1
+      get :show, :id => @user1.id, uber: 0, demographic_density: 1, area: 0, population: 1
       @profile.uber = @request.params[:uber].to_i
       @profile.demographic_density = @request.params[:demographic_density].to_i
       @profile.area = @request.params[:area].to_i

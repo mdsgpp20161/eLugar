@@ -12,8 +12,10 @@ class CitiesHelperTest < ActionView::TestCase
     @cityFlorianopolis = cities(:florianopolis)
     @cityCuiaba = cities(:cuiaba)
     @user = User.create(name: "Harrison", email: "pedro@gmail.com", 
-      password: "123456", password_confirmation: "123456")
-    @profile = ProfileQuiz.create(uber: 1, demographic_density: 1, area: 1, population: 1, users_id: @user.id)
+      password: "123456", password_confirmation: "123456")  
+    @profile = ProfileQuiz.create(uber: 0, demographic_density: 0, area: 1, population: 1, users_id: @user.id)
+    @user2 = User.create(name: "Junin", email: "junin@gmail.com", 
+      password: "123456", password_confirmation: "123456", profileQuiz_id: @profile.id)
   end
 
   test "get_emoji should return 2" do
@@ -91,7 +93,7 @@ test "get_emoji_others should return 5 if params is health and be in some range"
 end
 
 test "should get emojis according to user preferences when he doesn't support uber" do
-    log_in(@user)
+    log_in(@user2)
 
     emoji = set_emojis_by_user('uber', 5)
 
@@ -99,7 +101,7 @@ test "should get emojis according to user preferences when he doesn't support ub
 end
 
 test "should get emojis according to user preferences when he likes crowded cities" do
-    log_in(@user)
+    log_in(@user2)
 
     emoji = set_emojis_by_user('demographic_density', 4)
 

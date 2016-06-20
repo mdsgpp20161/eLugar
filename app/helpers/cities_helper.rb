@@ -229,10 +229,11 @@ module CitiesHelper
   end
 
   def set_emojis_by_user(attr_name, emoji)
+    @current_user = User.find_by(id: session[:user_id])
     if logged_in?
       answers = Hash.new
       answers = get_users_preferences
-      if !answers[attr_name]
+      if @current_user.profileQuiz_id && !answers[attr_name]
         emoji = 6 - emoji
       else
         #do nothing
