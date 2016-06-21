@@ -28,12 +28,12 @@ Rails.application.routes.draw do
   get 'references' => 'static_pages#references'
   get "static_pages/download_pdf"
   get "/articles", to: "articles#generate_report", as: :articles
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
+  get 'login'   => 'sessions#new'
+  post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'edit' => 'users#edit'
-  post 'edit' => 'users#update' 
-  resources :users 
+  post 'edit' => 'users#update'
+  resources :users
 
   resources :cities do
     resources :comments

@@ -23,15 +23,4 @@ class SessionsControllerTest < ActionController::TestCase
     delete :destroy
     assert_redirected_to root_url
   end
-
-  # test "unsuccessful edit" do
-  #     log_in(@user)
-  #     get :edit, id: @user
-  #     assert_template 'edit'
-  #     patch :update, user: { name:  "",
-  #                                     email: "foo@invalid",
-  #                                     password:              "foo",
-  #                                     password_confirmation: "bar" }
-  #     assert_template 'edit'
-  #   end
 end

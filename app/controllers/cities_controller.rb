@@ -1,5 +1,6 @@
 class CitiesController < ApplicationController
   include CitiesHelper
+  include SessionsHelper
 
   def index
   end

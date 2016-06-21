@@ -5,8 +5,10 @@ class UsersControllerTest < ActionController::TestCase
   fixtures :users
   include SessionsHelper
   def setup
-    @user       = users(:user)
+    @user = users(:user)
     @other_user = users(:other_user)
+    @user1 = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456", profileQuiz_id: 1)
+    @profile = ProfileQuiz.new
   end
 
   test "invalid signup information" do
@@ -81,4 +83,25 @@ class UsersControllerTest < ActionController::TestCase
         delete :destroy, :id => users(:other_user)
       end
     end
+
+    test "quiz not answered" do
+          log_in(@user)
+          get :show, :id => users(:user)
+          assert_equal nil, User.find(users(:user).id).profileQuiz_id
+        end
+
+    test "quiz answered" do
+      log_in(@user1)
+      get :show, :id => @user1.id, uber: 0, demographic_density: 1, area: 0, population: 1
+      @profile.uber = @request.params[:uber].to_i
+      @profile.demographic_density = @request.params[:demographic_density].to_i
+      @profile.area = @request.params[:area].to_i
+      @profile.population = @request.params[:population].to_i
+      @profile.users_id = @user1.id
+      @profile.save!
+      assert (@request.params[:uber] && @request.params[:demographic_density] && @request.params[:area] && @request.params[:population])
+      assert @profile.save
+      assert_template 'show'
+    end
+
 end

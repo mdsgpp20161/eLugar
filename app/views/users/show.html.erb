@@ -1,20 +1,65 @@
 <div class="intro-header-find" style="margin-top: -50px;">
     <div class="container">
         <div class="row">
-        	<div class="col-lg-12">     
+            <div class="col-lg-12">     
                 <div class="shadow">
-					<h1>Perfil</h1>
-				</div>		
-			</div>
-		</div>
-	</div>
+                    <h1>Perfil</h1>
+                </div>      
+            </div>
+        </div>
+    </div>
 </div>
 
 <%= @user.name %>, <%= @user.email %>
-<% if current_user %>
-     <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %> | 
-<% end %>
-<% if current_user %>
-    <%= link_to "Deletar conta", @user, method: :delete,
-                                  data: { confirm: "Você tem certeza?" } %>
-<% end %>
+
+  <div style="float: left">
+    <%= form_tag @user, :id => @user.id, :method => 'get' do |f| %>
+  <center>
+    <br><br>
+    <%if @user.profileQuiz_id == nil%>
+        <table class="table">
+            <legend>Questionário</legend>
+            <tr>
+                <td>
+                    <font color="red"><%= flash_message %></font>
+                </td>
+            </tr>
+            <tr>
+                <td><%= label_tag :uber, 'Você apoia o UBER?' %></td>
+                <td><%= radio_button_tag :uber, 1 %>Sim</td>
+                <%#=label_tag :uber, 'uber_sim', :value => 1 %>
+                <td><%= radio_button_tag :uber, 0 %>Não</td>
+                <%#=label_tag :uber, 'uber_nao', :value => 0 %>
+            </tr>
+        
+            <tr>
+                <td><%= label_tag :demographic_density, 'Você prefere cidade mais movimentada?'%></td>
+                <td><%= radio_button_tag :demographic_density, 0 %>Sim</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :demographic_density, 1 %>Não</td>
+            </tr>
+            <tr>
+                <td><%= label_tag :area, 'Você prefere cidade grande ou pequena?'%></td>
+                <td><%= radio_button_tag :area, 0 %>Grande</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :area, 1 %>Pequena</td>
+            </tr>
+            <tr>
+                <td><%= label_tag :population, 'Você prefere cidade mais populosa ou menos populosa?'%></td>
+                <td><%= radio_button_tag :population, 0 %>Mais</td>
+            <%#= label_tag(:age_child, 1) %>
+                <td><%= radio_button_tag :population, 1 %>Menos</td>
+            </tr>
+            <tr><td></td><td><%= submit_tag "Confirmar" %></td></tr>
+            <tr><td><font color="red">*Você poderá responder apenas uma vez.</font></td></tr>
+        </table>
+    </center>
+    <%end%>
+    <%end%>
+  </div>
+  <center>
+      <%= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+  <%#= link_to "Atualizar Perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+      | <%= link_to "Deletar conta", @user, method: :delete,
+                                    data: { confirm: "Você tem certeza?" } %>
+  </center>

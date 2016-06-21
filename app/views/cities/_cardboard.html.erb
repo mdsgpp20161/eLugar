@@ -9,16 +9,27 @@
                         <% end %>
                         <p><%=attribute_to_text[attribute_name]%></p>
                         <center>
-                            <% if attribute_value == 0 %>
-                                <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
-                                </img>    
-                            <%elsif(attribute_name != 'population' && attribute_name != 'area')%>
-                                <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
-                                </img>
+                            <% if logged_in? && @current_user.profileQuiz_id != nil %>
+                                <% if attribute_value == 0 %>
+                                    <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
+                                    </img>    
+                                <% else %>
+                                    <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
+                                    </img>
+                                <% end %>
+                            <% else %>
+                                <% if attribute_value == 0 %>
+                                    <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
+                                    </img> 
+                                <%elsif(attribute_name != 'population' && attribute_name != 'area')%>
+                                    <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
+                                    </img>
+                                <% else %>
+                                    <!-- Do nothing -->
+                                <% end %>
+                            <% end %>
                         </center>
-                        <% else %>
-                            <!-- Do nothing -->
-                        <% end %>
+                        
                         <% if top3[attribute_name] %>
                             <center>
                             <% if top3[attribute_name].index(@city) %>
