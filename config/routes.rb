@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post 'compare' => 'cities#compare'
   post 'find' => 'cities#show_cities'
   get 'about' => 'static_pages#about'
-  get 'contact' => 'static_pages#contact_us'
+  get 'contact' => 'contacts#new', via: 'get'
   get 'references' => 'static_pages#references'
   get "static_pages/download_pdf"
   get "/articles", to: "articles#generate_report", as: :articles
@@ -38,6 +38,10 @@ Rails.application.routes.draw do
   resources :cities do
     resources :comments
   end
+
+  match '/contacts', to: 'contacts#new', via: 'get'
+  resources "contacts", only: [:new, :create]
+
 
 
   # Example of regular route:

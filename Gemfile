@@ -46,6 +46,7 @@ group :development, :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
+  gem 'foreman'
 end
 
 # group :test do
@@ -56,6 +57,9 @@ end
 #   gem 'rspec'
 
 # end
+
+gem 'mail_form'
+gem 'simple_form'
 
 gem 'simplecov', :require => false, :group => :test
 gem 'selenium-webdriver'
