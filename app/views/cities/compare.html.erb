@@ -4,9 +4,13 @@
             <%= tag(:br) %>
           <% end %>
           <% if @city1 && @city2 %>
-              <%= render 'cities/compare1'%>
+              <%= render 'cities/compare1' %>
+              <% 2.times do %>
+		           <%= tag(:br) %>
+              <% end %>
+							<%= render 'cities/compare_graph' %>
           <% elsif @city1 %>
-              <%=render 'cities/compare2'%>
+              <%= render 'cities/compare2' %>
           <% end %>
   </div>
 </body>

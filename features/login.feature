@@ -37,7 +37,7 @@ Feature: User wants to sign in
 		Then I should see Perfil
 		When I press "Deletar conta"
 		# Then I should see Você tem certeza?
-		When I press "OK" button
+		# When I press "OK" button
 		Then I should be in root page
 
 	Scenario: Signs in unsuccessfully

@@ -10,7 +10,7 @@ module CitiesHelper
       if(sorted_cities == attribute_to_text[attr.name])
         if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
         attr.name == 'fleet')
-          @cities = @cities.order(:"#{attr.name}")
+          @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
         else
           @cities = @cities.order("#{attr.name}": :desc)
         end
@@ -38,7 +38,7 @@ module CitiesHelper
       'idh' => City.order(idh: :desc).first(3),
       'gini' => City.order(:gini).first(3),
       'health' => City.order(health: :desc).first(3),
-      'violence' => City.order(:violence).first(3)
+      'violence' => City.order(:violence).where("violence > ?", 0).first(3)
     }
   end
 
@@ -276,8 +276,6 @@ module CitiesHelper
     attr_value1 * 100 / (attr_value1 + attr_value2)
   end
 
-
-
   def get_users_preferences
     @profileQuiz = ProfileQuiz.new
     @current_user = User.find_by(id: session[:user_id])
@@ -300,4 +298,3 @@ module CitiesHelper
   end
 
 end
-
