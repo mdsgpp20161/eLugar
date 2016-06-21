@@ -32,7 +32,7 @@
                                             <tr>
                                         <% end %>
                                         <%= render :partial => 'city_image', :locals => { :city => city} %>
-                                    <% end %> 
+                                    <% end %>
                                     <% if @find %>
                                         <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
                                     <% else %>
@@ -46,17 +46,4 @@
             </div>
         </div>
     </div>
-    <script>
-        var count = 0;
-            $("#show_filter_form").click(function(){
-                $("#filter_form").toggle("slow");
-                if(count == 0){
-                    $("#show_filter_form").text("-");
-                    count = 1;
-                }else{
-                    $("#show_filter_form").text("+");
-                    count = 0;
-                }
-            });
-    </script>
 </body>
