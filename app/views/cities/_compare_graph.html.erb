@@ -2,7 +2,7 @@
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-<div id="container" style=" width: 1000px; height: 400px; margin: 0 auto;"></div>
+<div id="container" class="container"></div>
 
 <table id="datatable" style="display: none;">
     <thead>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr>
-            <th> êLugar </th>,
+            <th> êLugar </th>
             <td><%= @city1.population/11967825.0 %></td> <!-- Division by poulation of the most populated city -->
             <td><%= @city2.population/11967825.0 %></td>
         </tr>

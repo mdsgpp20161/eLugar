@@ -1,5 +1,6 @@
 <body>
   <div class ="intro-header-compare">
+    <div class="container">
           <% 3.times do %>
             <%= tag(:br) %>
           <% end %>
@@ -12,5 +13,6 @@
           <% elsif @city1 %>
               <%= render 'cities/compare2' %>
           <% end %>
+    </div>
   </div>
 </body>
