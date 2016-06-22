@@ -35,7 +35,7 @@ module CitiesHelper
   end
 
   def attr_to_erb
-    @attr_name = attribute_to_text.index(params[:sort_cities])
+    @attr_name = attribute_to_text.key(params[:sort_cities])
     @attr_rendered = Array.new(1)
     @cities.each do |c|
       aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
