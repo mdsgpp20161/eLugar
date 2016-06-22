@@ -3,6 +3,18 @@ module CitiesHelper
     @cities = City.where("name like ?", "%#{params[:find]}%")
   end
 
+  def filter_cities
+    if @cities != nil
+      @cities.columns.each do |attr|
+        if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
+          @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
+        end
+      end
+    else
+      #do nothing
+    end
+  end
+
   def order_cities
     sorted_cities = params[:sort_cities]
 

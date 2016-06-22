@@ -31,7 +31,7 @@ class CitiesController < ApplicationController
           break
         end
       end
-
+      filter_cities
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 12)
       @cities = @cities.order(:name)

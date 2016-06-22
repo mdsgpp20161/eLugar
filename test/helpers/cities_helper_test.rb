@@ -156,4 +156,9 @@ end
     assert attribute_to_metric
   end
 
+  test "should get cities" do
+    City.instance_variable_set("@cities", City.all)
+    assert_not_empty filter_cities
+  end
+
 end
