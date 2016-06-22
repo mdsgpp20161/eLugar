@@ -35,9 +35,11 @@
                         <% @city.comments.each_slice(2) do |f| %>
                             <%= render f[0]%>
                         <% end %>
+                        <% if current_user%>
                         <h2>Adicionar um comentário:</h2>
                         <%= render 'comments/form' %>
 
+                        <% end %>
                         <%= link_to 'Top', city_path %>
                     </div>
                 </div>
