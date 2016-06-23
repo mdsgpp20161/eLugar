@@ -54,6 +54,7 @@ class CitiesController < ApplicationController
     end
     if(params[:find])
       search_cities
+      order_cities
     else
       @cities = City.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
