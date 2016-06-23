@@ -48,7 +48,7 @@ module CitiesHelper
     top = {
       'fleet' => City.order(:fleet).first(3),
       'idh' => City.order(idh: :desc).first(3),
-      'gini' => City.order(:gini).first(3),
+      'gini' => City.order(:gini).where("gini > ?", 0).first(3),
       'health' => City.order(health: :desc).first(3),
       'violence' => City.order(:violence).where("violence > ?", 0).first(3)
     }
