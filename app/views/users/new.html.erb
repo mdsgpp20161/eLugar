@@ -19,17 +19,17 @@
     <%= flash_message %>
     <%= form_for(@user) do |city| %>
       <%= city.label :name, "Nome" %>
-      <%= city.text_field :name, :required => true%>
+      <%= city.text_field :name, :required => true, class: "form-control" %>
 
       <%= city.label :email, "Email" %>
-      <%= city.email_field :email, :required => true %>
+      <%= city.email_field :email, :required => true, class: "form-control"%>
 
       <%= city.label :password, "Password" %>
-      <%= city.password_field :password, :required => true %>
+      <%= city.password_field :password, :required => true, class: "form-control" %>
 
       <%= city.label :password_confirmation, "Confirmation" %>
-      <%= city.password_field :password_confirmation, :required => true %>
-
+      <%= city.password_field :password_confirmation, :required => true, class: "form-control" %>
+      <%= tag(:br) %>
       <%= city.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>

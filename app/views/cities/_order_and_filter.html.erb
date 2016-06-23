@@ -13,8 +13,8 @@
             <% City.columns.each do |attr| %>
                 <% if valid_attributes_show_cities[attr.name] %>
                     <%= "#{attribute_to_text[attr.name]} :" %><br>
-                    De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
-                    Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8' %>
+                    De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8',class: "form-control" %>&nbsp;&nbsp;
+                    Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8', class: "form-control" %>
                     <hr>
                 <% else %>                     
                     <!-- Do nothing -->
