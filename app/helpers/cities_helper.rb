@@ -17,9 +17,10 @@ module CitiesHelper
 
   def order_cities
     sorted_cities = params[:sort_cities]
-
+    sorted = false
     @cities.columns.each do |attr|
       if(sorted_cities == attribute_to_text[attr.name])
+	sorted = true
         if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
         attr.name == 'fleet')
           @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
@@ -29,7 +30,7 @@ module CitiesHelper
       end
     end
 
-    if(!params[:sort_cities])
+    if(!params[:sort_cities] || !sorted)
       @cities = @cities.order(:name)
     end
   end
@@ -48,7 +49,7 @@ module CitiesHelper
     top = {
       'fleet' => City.order(:fleet).first(3),
       'idh' => City.order(idh: :desc).first(3),
-      'gini' => City.order(:gini).first(3),
+      'gini' => City.order(:gini).where("gini > ?", 0).first(3),
       'health' => City.order(health: :desc).first(3),
       'violence' => City.order(:violence).where("violence > ?", 0).first(3)
     }
@@ -125,7 +126,7 @@ module CitiesHelper
     medals
   end
 
-  def valid_attributes_ranking
+  def valid_attributes_order
     valid_attributes = Hash.new
     valid_attributes = {
       'population' => 'População Estimada 2015',

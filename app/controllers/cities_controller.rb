@@ -22,16 +22,9 @@ class CitiesController < ApplicationController
     if(params[:find])
       @find = params[:find]
       search_cities
-      @cities = @cities.paginate(:page => params[:page], :per_page => 12)
-
-      @cities.columns.each do |attr|
-        if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
-          @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
-          sorted = true
-          break
-        end
-      end
+      order_cities
       filter_cities
+      @cities = @cities.paginate(:page => params[:page], :per_page => 12)
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 12)
       @cities = @cities.order(:name)

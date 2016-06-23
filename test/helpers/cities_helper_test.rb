@@ -109,8 +109,8 @@ class CitiesHelperTest < ActionView::TestCase
       assert (emoji == 2)
   end
 
-  test "should get a valid type of return on valid_attributes_ranking " do 
-    param = valid_attributes_ranking
+  test "should get a valid type of return on valid_attributes_order " do 
+    param = valid_attributes_order
 
     assert (param.class == Hash)
   end

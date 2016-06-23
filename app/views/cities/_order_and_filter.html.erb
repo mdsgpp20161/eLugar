@@ -1,6 +1,6 @@
 <div class="input-group">
     <span class="input-group-addon">Ordenar por:</span>
-    <%= select_tag :sort_cities, options_for_select(attribute_to_text.values), prompt: "Ordem alfabética" , class: "form-control" %>
+    <%= select_tag :sort_cities, options_for_select(valid_attributes_order.values), prompt: "Ordem alfabética" , class: "form-control" %>
     <span class="input-group-btn">
         <%= link_to '+', '#', :id => "show_filter_form", :class => "btn btn-default" %> 
     </span>
