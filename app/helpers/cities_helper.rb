@@ -125,7 +125,7 @@ module CitiesHelper
     medals
   end
 
-  def valid_attributes_ranking
+  def valid_attributes_order
     valid_attributes = Hash.new
     valid_attributes = {
       'population' => 'População Estimada 2015',
