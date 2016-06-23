@@ -29,56 +29,54 @@
     <![endif]-->
 
 </head>
-<nav class="navbar navbar-default topnav" role="navigation">
 
-<body>  
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="inavbacon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <% if logged_in? %>
-                        <li>
-                            <%= link_to "Perfil", current_user %>
-                        </li>
-                        <li>
-                            <%= link_to "Log out", logout_path, method: "delete" %>
-                        </li>
-                    <% else %>
-                        <li>
-                            <%= link_to "Cadastro", signup_path %>
-                        </li>
-                        <li>
-                            <%= link_to "Login", login_path %>
-                        </li>
-                    <% end %>
-                    <li>
-                        <%= link_to "Ranking", ranking_path %>
-                    </li>
-                    <li>
-                        <%= link_to "Sobre", about_path %>
-                    </li>
-                    <li>
-                        <%= link_to "Referências", references_path %>
-                    </li>
-                    <li>
-                        <%= link_to "Contato", contact_path %>
-                    </li>
-                </ul>
-            </div>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="inavbacon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="/"><img src="../assets/eLugarLogo.ico" class="logo" ></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse white" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <% if logged_in? %>
+                      <li>
+                          <%= link_to "Perfil", current_user %>
+                      </li>
+                      <li>
+                          <%= link_to "Log out", logout_path, method: "delete" %>
+                      </li>
+                  <% else %>
+                      <li>
+                          <%= link_to "Cadastro", signup_path %>
+                      </li>
+                      <li>
+                          <%= link_to "Login", login_path %>
+                      </li>
+                  <% end %>
+                  <li>
+                      <%= link_to "Ranking", ranking_path %>
+                  </li>
+                  <li>
+                      <%= link_to "Sobre", about_path %>
+                  </li>
+                  <li>
+                      <%= link_to "Referências", references_path %>
+                  </li>
+                  <li>
+                      <%= link_to "Contato", contact_path %>
+                  </li>
+              </ul>
+          </div>
             <!-- /.navbar-collapse -->
-        </div>
+      </div>
         <!-- /.container -->
-    </nav>  
+  </nav>
 </body>
-</nav>
