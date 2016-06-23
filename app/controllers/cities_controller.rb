@@ -1,6 +1,8 @@
 class CitiesController < ApplicationController
   include CitiesHelper
   include SessionsHelper
+  require 'knn'
+  require 'will_paginate/array'
 
   def index
   end
@@ -20,16 +22,9 @@ class CitiesController < ApplicationController
     if(params[:find])
       @find = params[:find]
       search_cities
+      order_cities
+      filter_cities
       @cities = @cities.paginate(:page => params[:page], :per_page => 12)
-
-      @cities.columns.each do |attr|
-        if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
-          @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
-          sorted = true
-          break
-        end
-      end
-
     else
       @cities = City.all.paginate(:page => params[:page], :per_page => 12)
       @cities = @cities.order(:name)
@@ -62,5 +57,7 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
+    @cities = @cities.paginate(:page => params[:page], :per_page => 12)
+
   end
 end

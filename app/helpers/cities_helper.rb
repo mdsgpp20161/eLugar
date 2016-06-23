@@ -3,12 +3,25 @@ module CitiesHelper
     @cities = City.where("name like ?", "%#{params[:find]}%")
   end
 
+  def filter_cities
+    if @cities != nil
+      @cities.columns.each do |attr|
+        if(params[:"from_#{attr.name}"].present?) && (params[:"to_#{attr.name}"].present?)
+          @cities = @cities.where("#{attr.name}": params[:"from_#{attr.name}"].to_f .. params[:"to_#{attr.name}"].to_f)
+        end
+      end
+    else
+      #do nothing
+    end
+  end
+
   def order_cities
     sorted_cities = params[:sort_cities]
-
+    sorted = false
     @cities.columns.each do |attr|
       if(sorted_cities == attribute_to_text[attr.name])
-        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' || 
+	sorted = true
+        if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
         attr.name == 'fleet')
           @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
         else
@@ -17,13 +30,13 @@ module CitiesHelper
       end
     end
 
-    if(!params[:sort_cities])
+    if(!params[:sort_cities] || !sorted)
       @cities = @cities.order(:name)
     end
   end
 
   def attr_to_erb
-    @attr_name = attribute_to_text.index(params[:sort_cities])
+    @attr_name = attribute_to_text.key(params[:sort_cities])
     @attr_rendered = Array.new(1)
     @cities.each do |c|
       aux = ERB.new("<%= c.#{@attr_name} %>").result(binding)
@@ -36,7 +49,7 @@ module CitiesHelper
     top = {
       'fleet' => City.order(:fleet).first(3),
       'idh' => City.order(idh: :desc).first(3),
-      'gini' => City.order(:gini).first(3),
+      'gini' => City.order(:gini).where("gini > ?", 0).first(3),
       'health' => City.order(health: :desc).first(3),
       'violence' => City.order(:violence).where("violence > ?", 0).first(3)
     }
@@ -113,7 +126,7 @@ module CitiesHelper
     medals
   end
 
-  def valid_attributes_ranking
+  def valid_attributes_order
     valid_attributes = Hash.new
     valid_attributes = {
       'population' => 'População Estimada 2015',
@@ -297,4 +310,32 @@ module CitiesHelper
     answers
   end
 
+  def city_data_array
+    data = Array.new
+    City.all.each do |city|
+      temp = city.attributes.values[2..9]
+      if temp[0]
+        data[city.id] = city.attributes.values[2..9]
+      end
+    end
+    data
+  end
+
+  def suggest_city (city)
+    data = city_data_array
+    count = data.count
+    # data[city.id] = nil
+    data = data.compact
+    count -= data.count
+    knn = KNN.new(data)
+    knn = knn.nearest_neighbours(city.attributes.values[2..9] , 13)
+    suggest = Array.new
+    knn.each do |neighbour|
+      if neighbour[0]+count != city.id
+        suggest.push neighbour[0] + count
+      end
+    end
+
+    suggest
+  end
 end
