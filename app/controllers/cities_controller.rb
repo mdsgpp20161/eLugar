@@ -64,5 +64,7 @@ class CitiesController < ApplicationController
     else
       @cities = City.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
+    @cities = @cities.paginate(:page => params[:page], :per_page => 12)
+
   end
 end

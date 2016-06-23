@@ -25,6 +25,7 @@
     </ul>
     <br>
     <ul style="margin-left: 90px;">
+	<%= will_paginate @cities %>
         <table>
             <% @cities.each_with_index do |city, index| %>
                 <% if index%3==0 && index != 0 %>
