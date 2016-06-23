@@ -17,9 +17,10 @@ module CitiesHelper
 
   def order_cities
     sorted_cities = params[:sort_cities]
-
+    sorted = false
     @cities.columns.each do |attr|
       if(sorted_cities == attribute_to_text[attr.name])
+	sorted = true
         if(attr.name == 'demographic_density' || attr.name == 'gini' || attr.name == 'violence' ||
         attr.name == 'fleet')
           @cities = @cities.order(:"#{attr.name}").where("#{attr.name} > ?", 0)
@@ -29,7 +30,7 @@ module CitiesHelper
       end
     end
 
-    if(!params[:sort_cities])
+    if(!params[:sort_cities] || !sorted)
       @cities = @cities.order(:name)
     end
   end
