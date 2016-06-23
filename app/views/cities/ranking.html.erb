@@ -1,55 +1,35 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="sortcut icon" href="../assets/eLugarLogo.ico" type="image/x-icon" />
-    <title>êLugar</title>
-
-    <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
-
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-</head>
-
 <body>
-    <%=render 'layouts/navbar' %>
-<div class="ranking">
-	<%= form_tag(ranking_path, :method => :get) do %>
-		<div class="input-group">
-			<span class="input-group-addon">Ordenar por:</span>
-			<%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), class: "form-control" %>
-			<span class="input-group-btn">
-			<%= button_tag(type: "submit", class: "btn btn-primary",id:"view_ranking") do %>
-				Visualizar
+	<div class="ranking">
+		<%= form_tag(ranking_path, :method => :get) do %>
+			<div class="input-group">
+				<span class="input-group-addon">Ordenar por:</span>
+				<%= select_tag :sort_cities, options_for_select(valid_attributes_order.values), class: "form-control" %>
+				<span class="input-group-btn">
+				<%= button_tag(type: "submit", class: "btn btn-primary",id:"view_ranking") do %>
+					Visualizar
+				<% end %>
+				</span>
 			<% end %>
-			</span>
+		</div>
+	</div>
+		<% if params[:sort_cities]%>
+			<div class = "rank-table">
+			<table class = "table table-striped table-hover table-bordered">
+				<tr class = "active">
+					<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
+				</tr>
+				<% @cities.each_with_index do |city, index| %>
+					<tr>
+						<td><%= (@cities.current_page-1)*10 + index + 1 %></td>
+						<td><%= link_to city_path(city) do %>
+							<%= city.name %>
+						<% end %></td>
+						<td><%= @attr_rendered.at(index+1) %></td>
+					</tr>
+				<% end %>
+				<center>
+					<%= will_paginate @cities %>
+				</center>
 		<% end %>
 	</div>
-</div>
-	<% if params[:sort_cities]%>
-		<div class = "rank-table">
-		<table class = "table table-striped table-hover table-bordered">
-			<% cont = 1 %>
-			<tr class = "active">
-				<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
-			</tr>
-			<% @cities.each do |f| %>
-				<tr>
-					<td><%= (@cities.current_page-1)*10 + cont %></td>
-					<td><%= link_to city_path(f) do %>
-						<%= f.name %>
-					<% end %></td>
-					<td><%= @attr_rendered.at(cont) %></td>
-				</tr>
-				<% cont = cont+1 %>
-			<% end %>
-			<center>
-				<%= will_paginate @cities %>
-			</center>
-	<% end %>
-</div>
 </body>

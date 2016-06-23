@@ -66,10 +66,10 @@ cuiaba:
   fleet: 301
   idh: 0.87
   gini: 0.3
-  health: 4
+  health: 5
   violence: 60
   uber: true
-  image: "Cuiaba"
+  image: "cuiaba"
 
 
 recife:
@@ -80,8 +80,120 @@ recife:
   area: 2015
   fleet: 200
   idh: 0.7
-  gini: 0.43
+  gini: 0.42
   health: 2
   violence: 2
   uber: true
   image: "recife"
+
+salvador:
+  id: 6
+  name: "salvador"
+  population: 131
+  demographic_density: 321
+  area: 2233
+  fleet: 200
+  idh: 0.8
+  gini: 0.43
+  health: 1.9
+  violence: 2.5
+  uber: true
+  image: "salvador"
+
+manaus:
+  id: 7
+  name: "manaus"
+  population: 142
+  demographic_density: 280
+  area: 2300
+  fleet: 400
+  idh: 0.7
+  gini: 0.44
+  health: 2.6
+  violence: 1.9
+  uber: true
+  image: "manaus"
+
+vitoria:
+  id: 8
+  name: "vitoria"
+  population: 190
+  demographic_density: 540
+  area: 3089
+  fleet: 143
+  idh: 0.8
+  gini: 0.43
+  health: 2.2
+  violence: 3.2
+  uber: true
+  image: "vitoria"
+
+fortaleza:
+  id: 9
+  name: "fortaleza"
+  population: 143
+  demographic_density: 320
+  area: 2323
+  fleet: 209
+  idh: 0.9
+  gini: 0.45
+  health: 2.3
+  violence: 2.1
+  uber: true
+  image: "fortaleza"
+
+belem:
+  id: 10
+  name: "belem"
+  population: 187
+  demographic_density: 240
+  area: 1999
+  fleet: 187
+  idh: 0.7
+  gini: 0.43
+  health: 2
+  violence: 2
+  uber: true
+  image: "belem"
+
+palmas:
+  id: 11
+  name: "palmas"
+  population: 210
+  demographic_density: 203
+  area: 2902
+  fleet: 312
+  idh: 0.8
+  gini: 0.43
+  health: 2.1
+  violence: 1.8
+  uber: true
+  image: "palmas"
+
+teresina:
+  id: 12
+  name: "teresina"
+  population: 193
+  demographic_density: 289
+  area: 2873
+  fleet: 229
+  idh: 0.8
+  gini: 0.42
+  health: 2.15
+  violence: 1.7
+  uber: true
+  image: "teresina"
+
+maceio:
+  id: 13
+  name: "maceio"
+  population: 187
+  demographic_density: 331
+  area: 2321
+  fleet: 304
+  idh: 0.83
+  gini: 0.39
+  health: 2.8
+  violence: 2.21
+  uber: true
+  image: "maceio"

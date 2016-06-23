@@ -1,60 +1,48 @@
 <div style="width: 50%;height: 300px;float: left;">
-<center style="margin-top: 300px;">
-    <h1>
-    <%= @city1.name %>
-    </h1>
-    <hr class="intro-divider">
-
-</center>
+    <center style="margin-top: 300px;">
+        <h1><%= @city1.name %></h1>
+        <hr class="intro-divider">
+    </center>
 </div>
 <div style="float: right;width: 50%;height: 50%;">
-
     <h1>Escolha mais uma cidade!</h1><br>
     <ul style="margin-left: 90px; margin-right: 120px;">
-    <%= form_tag(compare_path(:id => @oldID)) do %>
-        <div class="input-group">
-          <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
-              <span class="input-group-btn">
-                    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    <% end %>
-                </span>
-        </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon">Ordenar por:</span>
-            <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control"%>
-         </div>
-    <% end %>
-    </ul>
-            <br>
-            <ul style="margin-left: 90px;">
-              <table>
-                    <% cont = 0 %>
-                    <% @cities.each do |f| %>
-                        <% if cont<3 %>
-                            <td style="width: 100px;">
-                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' ,id:"#{f.id}" do %>
-                                    <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
-                                <% end %>
-                                 <%=f.name%>
-                                </td>
-
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                        <% else %>
-                            <tr>
-                            </tr>
-                            <td style="width: 100px;">
-                                <%= link_to compare_path(:id => @oldID, :newID => f), :class=>'opacityit' , id:"#{f.id}" do %>
-                                    <img class=" img-responsive img-rounded"src= <%="/assets/#{f.image}.jpg"%> heigth="100" width="100">
-                                <% end %>
-                                 <%=f.name%>
-                                </td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <% cont = 0 %>
+        <%= form_tag(compare_path(:id => @oldID)) do %>
+            <div class="input-group">
+              <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '10', class: 'form-control' %>
+                  <span class="input-group-btn">
+                        <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         <% end %>
-                        <% cont = cont+1 %>
+                    </span>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">Ordenar por:</span>
+                <%= select_tag :sort_cities, options_for_select(valid_attributes_order.values), prompt: "Ordem alfabética" , class: "form-control"%>
+             </div>
+        <% end %>
+    </ul>
+    <br>
+    <ul style="margin-left: 90px;">
+	<%= will_paginate @cities %>
+        <table>
+            <% @cities.each_with_index do |city, index| %>
+                <% if index%3==0 && index != 0 %>
+                    <tr></tr>
+                <% end %>
+                <td style="width: 100px;">
+                    <%= link_to compare_path(:id => @oldID, :newID => city), :class=>'opacityit' , id:"#{city.id}" do %>
+                        <img class=" img-responsive img-rounded"src= <%="/assets/#{city.image}.jpg"%> heigth="100" width="100">
                     <% end %>
-                </table>
-            </ul>
+                    <%=city.name%>
+                </td>
+                <td>
+                <% 11.times do %>
+                    &nbsp;
+                <% end %>
+                </td>
+            <% end %>
+        </table>
+    </ul>   
 </div>

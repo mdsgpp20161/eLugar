@@ -40,12 +40,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'mocha'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'naive_bayes'
+  gem 'knn'
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
+  gem 'foreman'
 end
 
 # group :test do
@@ -56,6 +59,9 @@ end
 #   gem 'rspec'
 
 # end
+
+gem 'mail_form'
+gem 'simple_form'
 
 gem 'simplecov', :require => false, :group => :test
 gem 'selenium-webdriver'
@@ -78,3 +84,4 @@ group :test, :cucumber do
 end
 gem 'devise'
 gem "js-routes"
+gem 'owlcarousel-rails'

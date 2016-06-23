@@ -1,139 +1,49 @@
-<link href="styles/ihover.css" rel="stylesheet">
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="sortcut icon" href="assets/eLugarLogo.ico" type="image/x-icon" />
-        <title>êLugar</title>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="../../assets/stylesheets/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="../../assets/stylesheets/landing-page.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <link href="jquery.bxslider.css" rel="stylesheet">
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-<!-- <nav class="navbar navbar-default topnav" role="navigation"> -->
-
 <body>
-  <%=render 'layouts/navbar'%>
-            <!-- Header -->
-            <a name="about"></a>
-            <div class="intro-header-find">
-                <div class="container">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="intro-message-find">
-                                <div class="shadow">
-                                <h1>Escolha a cidade que deseja conhecer !</h1>
-                                </div>
-                                <hr>
-                                <ul class="list-inline intro-social-buttons black">
-                                    <li>
-                                        <%= form_tag(find_path, :method => :get) do %>
-                                            <div class="input-group">
-                                                <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50', class: 'form-control' %>
-
-                                                <span class="input-group-btn">
-                                                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                                <% end %>
-                                                </span>
-                                            </div>
-                                            <br>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Ordenar por:</span>
-                                                <%= select_tag :sort_cities, options_for_select(['População Estimada 2015','Densidade Demográfica','Tamanho da Cidade','Transporte','IDH','Índice de Gini','Índice de Saúde','Índice de Violência']), prompt: "Ordem alfabética" , class: "form-control" %>
-                                                <span class="input-group-btn">
-                                                <a href="#" id="show_filter_form" class = "btn btn-default">+</a>
-                                                </span>
-                                            </div>
-                                            <div id="filter_form">
-                                            <br>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading"><left>Filtragem</left></div>
-                                                    <div class="panel-body">
-                                                        <% City.columns.each do |attr| %>
-                                                            <% if (attr.name == 'id' || attr.name == 'uber' || attr.name == 'image' || attr.name == 'created_at' || attr.name == 'updated_at' || attr.name == 'name') %>
-                                                                <% next %>
-                                                            <% end %>
-                                                            <%= "#{@hash[attr.name]} :" %><br>
-                                                            De: <%= text_field_tag :"from_#{attr.name}", nil, size:'8'%>&nbsp;&nbsp;
-                                                        Até: <%= text_field_tag :"to_#{attr.name}", nil, size:'8' %>
-                                                            <hr>
-                                                        <% end %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <% end %>
-                                    </li>
-                                    <br><br><br>
-                                    <li>
-                                        <table>                                            
-                                            <% @cities.each_with_index do |f, cont| %>
-                                                <% if cont%3!=0 %> 
-                                                    <%= render :partial => 'city_image', :locals => { :f => f} %>
-                                                <% else %>
-                                                    <tr>
-                                                    <%= render :partial => 'city_image', :locals => { :f => f} %>
-                                                    <% cont = 0 %>
-                                                <% end %>
-                                            <% end %> 
-                                            <% if @find %>
-                                                <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
-                                            <% else %>
-                                                <%= will_paginate @citiesPaginated %>
-                                            <% end %>
-                                         </table>
-                                    </li>
-                                </ul>
-                            </div>
+    <!-- Header -->
+    <div class="intro-header-find">
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-find">
+                        <div class="shadow">
+                            <h1>Escolha a cidade que deseja conhecer !</h1>
                         </div>
+                        <hr>
+                        <ul class="list-inline intro-social-buttons black">
+                            <li>
+                                <%= form_tag(find_path, :method => :get) do %>
+                                    <div class="input-group">
+                                        <%= text_field_tag :find, nil, placeholder: 'Digite o nome da cidade...', size: '50', class: 'form-control' %>
+                                        <span class="input-group-btn">
+                                            <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </span>
+                                    <% end %>
+                                    </div>
+                                    <br>
+                                    <%= render 'order_and_filter' %>
+                                <% end %>
+                            </li>
+                            <li>
+                                <table>
+                                    <% @cities.each_with_index do |city, index| %>
+                                        <% if index%3==0 && index != 0 %>
+                                            <tr>
+                                        <% end %>
+                                        <%= render :partial => 'city_image', :locals => { :city => city} %>
+                                    <% end %>
+                                    <% if @find %>
+                                        <%= will_paginate @citiesPaginated, :params => {:find => @find} %>
+                                    <% else %>
+                                        <%= will_paginate @citiesPaginated %>
+                                    <% end %>
+                                </table>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- /.container -->
             </div>
-
-    <script>
-        var count = 0;
-            $("#show_filter_form").click(function(){
-                $("#filter_form").toggle("slow");
-                if(count == 0){
-                    $("#show_filter_form").text("-");
-                    count = 1;
-                }else{
-                    $("#show_filter_form").text("+");
-                    count = 0;
-                }
-            });
-    </script>
-        <!-- /.container -->
-
-    <!-- jQuery -->
-
-    <!-- Bootstrap Core JavaScript -->
-    <!-- /.container -->
-
-   <!--  <footer style="background-color: #D0B4AE">
-        <div>
         </div>
-    </footer> -->
-
+    </div>
 </body>

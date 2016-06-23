@@ -2,11 +2,11 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   include SessionsHelper
-	def setup
-		@user = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456")
-	end
+  def setup
+    @user = User.create(name: "Harrison", email: "pedro@gmail.com", password: "123456", password_confirmation: "123456")
+  end
 
-	test "login with invalid information" do
+  test "login with invalid information" do
     get :new
     assert_template 'sessions/new'
     post :create, session: { email: "", password: "" }
@@ -23,15 +23,4 @@ class SessionsControllerTest < ActionController::TestCase
     delete :destroy
     assert_redirected_to root_url
   end
-
-  # test "unsuccessful edit" do
-  #     log_in(@user)
-  #     get :edit, id: @user
-  #     assert_template 'edit'
-  #     patch :update, user: { name:  "",
-  #                                     email: "foo@invalid",
-  #                                     password:              "foo",
-  #                                     password_confirmation: "bar" }
-  #     assert_template 'edit'
-  #   end
 end
