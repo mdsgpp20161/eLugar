@@ -6,7 +6,7 @@ Um software open-source que tem como objetivo permitir que os usuários possam o
 
 ## Posso testar a aplicação?
 
-Mas é claro! Ela está disponível [aqui](http://159.203.107.38)
+Mas é claro! Ela está disponível [aqui](http://159.203.107.38).
 
 ## Com quais tecnologias o eLugar foi construído? 
 
