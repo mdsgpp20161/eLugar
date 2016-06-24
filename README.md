@@ -4,6 +4,10 @@
 
 Um software open-source que tem como objetivo permitir que os usuários possam obter informações sobre uma determinada cidade ou compara-la com outra. Nosso público-alvo são pessoas que possuem o desejo de viverem em uma outra cidade, e o eLugar pretende ajuda-lo na escolha. 
 
+## Posso testar a aplicação?
+
+Mas é claro! Ela está disponível [aqui](http://159.203.107.38)
+
 ## Com quais tecnologias o eLugar foi construído? 
 
 Utilizamos as tecnologias Ruby, Ruby on Rails, ERB, CSS, JavaScript e Bootstrap para construir o site. Para os testes utilizamos Cucumber e Capybara, para as predições e recomendações com Machine Learning utilizamos a gem Distance Measures.
