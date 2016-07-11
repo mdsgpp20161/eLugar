@@ -1,0 +1,33 @@
+<div class="intro-header-find" style="margin-top: -50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">     
+		    <div class="shadow">
+		      <% 2.times do %>
+		        <%= tag(:br) %>
+		      <% end %>
+    		      <h1>Login</h1>
+    		    </div>		
+	        </div>
+	    </div>
+	</div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= flash_message %>
+
+        <%= form_for(:session, url: login_path) do |f| %>
+
+            <%= f.label :email, "Email" %>
+            <%= f.email_field :email, class: 'form-control' %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+            <%= tag(:br) %>
+            <%= f.submit "Log in", class: "btn btn-primary" %>
+        <% end %>
+
+        <p>Novo usuário? <%= link_to "Cadastre-se agora!", signup_path %></p>
+        <p><%= link_to "auth/facebook" do%><center><%=image_tag('fb-art.jpg', width: '40', height: '40')%></center> <%end %></p>
+    </div>
+</div>

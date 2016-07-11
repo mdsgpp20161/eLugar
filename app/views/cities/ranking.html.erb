@@ -1,0 +1,35 @@
+<body>
+	<div class="ranking">
+		<%= form_tag(ranking_path, :method => :get) do %>
+			<div class="input-group">
+				<span class="input-group-addon">Ordenar por:</span>
+				<%= select_tag :sort_cities, options_for_select(valid_attributes_order.values), class: "form-control" %>
+				<span class="input-group-btn">
+				<%= button_tag(type: "submit", class: "btn btn-primary",id:"view_ranking") do %>
+					Visualizar
+				<% end %>
+				</span>
+			<% end %>
+		</div>
+	</div>
+		<% if params[:sort_cities]%>
+			<div class = "rank-table">
+			<table class = "table table-striped table-hover table-bordered">
+				<tr class = "active">
+					<td>#</td> <td>Nome:</td> <td><%= params[:sort_cities] %></td>
+				</tr>
+				<% @cities.each_with_index do |city, index| %>
+					<tr>
+						<td><%= (@cities.current_page-1)*10 + index + 1 %></td>
+						<td><%= link_to city_path(city) do %>
+							<%= city.name %>
+						<% end %></td>
+						<td><%= @attr_rendered.at(index+1) %></td>
+					</tr>
+				<% end %>
+				<center>
+					<%= will_paginate @cities %>
+				</center>
+		<% end %>
+	</div>
+</body>

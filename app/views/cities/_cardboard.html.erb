@@ -1,0 +1,54 @@
+<% @city.attributes.each do |attribute_name, attribute_value| %>
+        <% if valid_attributes_show[attribute_name] %>
+            <li class="cardboard">
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <% 5.times do %>
+                            <%= tag(:br) %>
+                        <% end %>
+                        <p><%=attribute_to_text[attribute_name]%></p>
+                        <center>
+                            <% if logged_in? && @current_user.profileQuiz_id != nil %>
+                                <% if attribute_value == 0 %>
+                                    <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
+                                    </img>    
+                                <% else %>
+                                    <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
+                                    </img>
+                                <% end %>
+                            <% else %>
+                                <% if attribute_value == 0 %>
+                                    <img class="img-responsive foto" style="border: none;" src="/assets/emot0.png"> 
+                                    </img> 
+                                <%elsif(attribute_name != 'population' && attribute_name != 'area')%>
+                                    <img class="img-responsive foto" style="border: none;" src=<%="/assets/emot#{get_emoji(attribute_name, attribute_value)}.png"%>> 
+                                    </img>
+                                <% else %>
+                                    <!-- Do nothing -->
+                                <% end %>
+                            <% end %>
+                        </center>
+                        
+                        <% if top3[attribute_name] %>
+                            <center>
+                            <% if top3[attribute_name].index(@city) %>
+                                 <img class="img-responsive foto" src=<%="/assets/#{medal_names[top3[attribute_name].index(@city)]}.png"%>>
+                            <% end %>
+                            </center>
+                        <% end %> 
+                    </div>
+                    <div class="back">
+                        <% 3.times do %>
+                            <%= tag(:br) %>
+                        <% end %>
+                        <p><%=attribute_to_description[attribute_name]%></p>
+                        <p><%=attribute_to_value[attribute_name]%></p>
+                    </div>
+                </div>
+            </div>
+        </li> 
+    <% else %>
+        <!-- Do nothing -->
+    <% end %>
+<% end %>

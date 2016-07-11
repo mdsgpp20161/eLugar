@@ -1,0 +1,12 @@
+<script>
+  $("#owl-demo").owlCarousel();
+</script>
+
+<div id="owl-demo">
+
+  <% var = suggest_city(@city) %>
+   <% var.each_with_index do |city1, index| %>
+      <div> <%= render :partial => 'city_image', :locals => { :city => City.find(city1) }  %> </div>
+  <% end %>
+
+</div>

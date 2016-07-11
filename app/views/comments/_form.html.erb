@@ -1,0 +1,13 @@
+<%= form_for([@city, @city.comments.build]) do |f| %>
+  <p>
+    <%= f.label "Usuário"%><br>
+    <%= f.text_field :commenter, :size=>"70", :required => true, :placeholder => "Digite seu nome." %>
+  </p>
+  <p>
+    <%= f.label "Mensagem" %><br>
+    <%= f.text_area :body, :size=>"70x10", :placeholder => "Digite sua mensagem.", :required => true %>
+  </p>
+  <p>
+    <%= f.submit "Enviar" %>
+  </p>
+<% end %>
